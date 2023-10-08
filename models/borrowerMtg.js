@@ -1,23 +1,33 @@
-// const mongoose = require('mongoose')
+const mongoose = require('mongoose')
 
 
-// const borrowerMtgSchema = new mongoose.Schema({
-//   name: {
-//     type: String,
-//     required: true
-//   },
-//   lender: {
-//     type: String
-//   },
-//   referral: {
-//     type: String,
-//   },
-//   createdAt: {
-//     type: Date,
-//     default: Date.now
-//    }
+const borrowerMtgSchema = new mongoose.Schema(
+    {
+  name:{
+    type: string,
+    required: true
+  },
 
-// })
+  lender: {
+    type: String,default: TBD
+  },
+  loanNumber: {
+    type: number,default: ""
+  },
+  initialDocsSigned: {
+    type: date,
+  },  
+  closingDicsSigned: {
+    type: date,
+  },  
+  referral: {
+    type: String,required: true
+  },
+  createdAt: {
+    type: Date, default: Date.now
+   }
+
+})
 
 
-// module.exports = mongoose.model('borrowerMtg', borrowerMtgSchema)
+module.exports = mongoose.model('borrowerMtg', borrowerMtgSchema)

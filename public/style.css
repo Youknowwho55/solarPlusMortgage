@@ -87,7 +87,7 @@ body{
 }
 
 
-.sidebar .logo .bx{
+.content.sidebar .logo .bx{
     min-width: 60px;
     display: flex;
     justify-content: center;
