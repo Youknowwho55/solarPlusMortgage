@@ -14,8 +14,9 @@ const port = 3000;
 const Article = require('./models/article')
 const articleRouter = require('./routes/articles')
 
-// const borrowerMtg = require('./models/borrowerMtg')
-// const borrowerMtgRouter = require('./routes/borrowersMtg')
+
+const BorrowerMtg = require('./models/borrowerMtg')
+const borrowerMtgRouter = require('./routes/borrowersMtg')
 
 
 const app = express()
@@ -38,11 +39,19 @@ app.use(methodOverride('_method'))
 //WILL NEED TO UPDATE THIS TO THE SAHBOARD ISTES
 app.get('/', async (req, res) => {
   const articles = await Article.find().sort({ createdAt: 'desc' })
-  res.render('articles/index', { articles: articles })
+  res.render('mainDashboard/index', { articles: articles })
 })
 
+app.get('/', async (req, res) => {
+  const borrowersMtg = await BorrowerMtg.find().sort({ createdAt: 'desc' })
+  res.render('mainDashboard/index', { borrowersMtg: borrowersMtg })
+})
+
+
+
+
 app.use('/articles', articleRouter)
-//app.use('/borrowersMtg', borrowerMtgRouter)
+app.use('/borrowersMtg', borrowerMtgRouter)
 
 
 app.listen(port, () => {
@@ -56,3 +65,23 @@ app.listen(port, () => {
 
 // mongosh
 // show dbs
+
+
+//db.borrowermtgs.find()
+
+
+
+
+
+// <!-- <% borrowersMtg.forEach(borrowerMtg => { %>
+//   <div class="card mt-4">
+//     <div class="card-body">
+//       <h4 class="card-title"><%= borrowerMtg.name %></h4>
+//       <div class="card-subtitle text-muted mb-2">
+//         <%= borrowerMtg.createdAt.toLocaleDateString() %>
+//       </div>
+//       <a href="borrowerMtg/<%= borrowerMtg.id %>" class="btn btn-primary">Enter</a>
+      
+//     </div>
+//   </div>
+// <% }) %>--> 

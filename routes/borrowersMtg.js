@@ -1,53 +1,54 @@
-// // NOT SURE WHAT IM DOING HERE,, SAVING FOR LATER
+const express = require('express')
+const BorrowerMtg = require('./../models/borrowerMtg')
+const router = express.Router()
 
-// const express = require('express')
-// const borrowerMtg = require('../models/borrowerMtg')
-// const router = express.Router()
+router.get('/new', (req, res) => {
+  res.render('borrowersMtg/new', { borrowerMtg: new BorrowerMtg() })
+})
 
-// router.get('/new', (req, res) => {
-//   res.render('borrowersMtg/new', { borrowerMtg: new borrowerMtg() })
-// })
+router.get('/edit/:id', async (req, res) => {
+  const borrowerMtg = await BorrowerMtg.findById(req.params.id)
+  res.render('borrowersMtg/edit', { borrowerMtg: borrowerMtg })
+})
+// continue here
 
-// router.get('/edit/:id', async (req, res) => {
-//   const article = await Article.findById(req.params.id)
-//   res.render('articles/edit', { article: article })
-// })
+router.get('/:id', async (req, res) => {
+  const borrowerMtg = await BorrowerMtg.findById(req.params.id )
+  if (borrowerMtg == null) res.redirect('/')
+  //UPDATED TO HAVE MAIN FILE INSTEAD OF /SHOW
+  res.render('borrowersMtg/mainFile', { borrowerMtg: borrowerMtg })
+})
 
-// router.get('/:id', async (req, res) => {
-//   const article = await Article.findById(req.params.id )
-//   if (article == null) res.redirect('/')
-//   res.render('articles/show', { article: article })
-// })
+router.post('/', async (req, res, next) => {
+  req.borrowerMtg = new BorrowerMtg()
+  next()
+}, saveBorrowerMtgAndRedirect('new'))
 
-// router.post('/', async (req, res, next) => {
-//   req.article = new Article()
-//   next()
-// }, saveArticleAndRedirect('new'))
+router.put('/:id', async (req, res, next) => {
+  req.borrowerMtg = await BorrowerMtg.findById(req.params.id)
+  next()
+}, saveBorrowerMtgAndRedirect('edit'))
 
-// router.put('/:id', async (req, res, next) => {
-//   req.article = await Article.findById(req.params.id)
-//   next()
-// }, saveArticleAndRedirect('edit'))
-
-// router.delete('/:id', async (req, res) => {
-//   await Article.findByIdAndDelete(req.params.id)
-//   res.redirect('/')
-// })
+router.delete('/:id', async (req, res) => {
+  await BorrowerMtg.findByIdAndDelete(req.params.id)
+  res.redirect('/')
+})
 
 
-// //NEED TO REMOVE THE SLUG FROM HERE
-// function saveArticleAndRedirect(path) {
-//   return async (req, res) => {
-//     let article = req.article
-//     article.title = req.body.title
-//     article.description = req.body.description
-//     try {
-//       article = await article.save()
-//       res.redirect(`/articles/${article.id}`)
-//     } catch (e) {
-//       res.render(`articles/${path}`, { article: article })
-//     }
-//   }
-// }
+function saveBorrowerMtgAndRedirect(path) {
+  return async (req, res) => {
+    let borrowerMtg = req.borrowerMtg
+//THIS IS WHAT NEEDS TO BE UPDATED WITH A TON OF THE INFO
+borrowerMtg.name = req.body.borrowerName
+    try {
+      borrowerMtg = await borrowerMtg.save()
+      res.redirect(`/borrowersMtg/${borrowerMtg.id}`)
+    } catch (e) {
+      res.render(`borrowersMtg/${path}`, { borrowerMtg: borrowerMtg })
+    }
+  }
+}
 
-// module.exports = router
+
+//do it need to rename this a new router
+module.exports = router

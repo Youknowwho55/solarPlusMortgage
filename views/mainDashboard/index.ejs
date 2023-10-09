@@ -23,9 +23,14 @@
     <div class="mt-2 ml-3">
     <h1 class="mb-4">Dashboard</h1>
     <a href="/articles/new" class="btn btn-success">+ Add Lead</a>
+    </div>
+
+  <div class="container">
+    <div class="mt-2 ml-3">
+    <h1 class="mb-4">Dashboard</h1>
+    <a href="/borrowersMtg/new" class="btn btn-success">+ Add Mtg Lead</a>
+    </div>
   </div>
-
-
 
 
    <!--  include('../partials/dashboard/dashboard.ejs') %>-->
@@ -75,15 +80,19 @@
         </tr>
 
 
-
-
-
-
-
-
-
     </table>
   </div>
+
+
+
+
+
+
+
+
+
+
+
     <% articles.forEach(article => { %>
       <div class="card mt-4">
         <div class="card-body">
@@ -100,8 +109,9 @@
         </div>
       </div>
     <% }) %>
+
+
   </div>
-</div>
 
 </body>
 
