@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 
 const borrowerMtgSchema = new mongoose.Schema(
     {
-  name:{
+    borrowerName:{
     type: String,
     required: true
   },
@@ -32,6 +32,6 @@ const borrowerMtgSchema = new mongoose.Schema(
     type: Date, default: Date.now
    }
 })
-
+ 
 
 module.exports = mongoose.model('BorrowerMtg', borrowerMtgSchema)

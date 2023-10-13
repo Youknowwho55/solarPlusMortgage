@@ -37,14 +37,15 @@ app.use(methodOverride('_method'))
 
 
 //WILL NEED TO UPDATE THIS TO THE SAHBOARD ISTES
-app.get('/', async (req, res) => {
-  const articles = await Article.find().sort({ createdAt: 'desc' })
-  res.render('mainDashboard/index', { articles: articles })
-})
+//cant have both being rendered at once?
+// app.get('/', async (req, res) => {
+//   const articles = await Article.find().sort({ createdAt: 'desc' })
+//   res.render('mainDashboard/index', { articles: articles })
+// })
 
 app.get('/', async (req, res) => {
-  const borrowersMtg = await BorrowerMtg.find().sort({ createdAt: 'desc' })
-  res.render('mainDashboard/index', { borrowersMtg: borrowersMtg })
+  const borrowermtgs = await BorrowerMtg.find().sort({ createdAt: 'desc' })
+  res.render('mainDashboard/index', { borrowermtgs: borrowermtgs })
 })
 
 
@@ -71,17 +72,5 @@ app.listen(port, () => {
 
 
 
+//https://github.com/Youknowwho55/solarPlusMortgage.git
 
-
-// <!-- <% borrowersMtg.forEach(borrowerMtg => { %>
-//   <div class="card mt-4">
-//     <div class="card-body">
-//       <h4 class="card-title"><%= borrowerMtg.name %></h4>
-//       <div class="card-subtitle text-muted mb-2">
-//         <%= borrowerMtg.createdAt.toLocaleDateString() %>
-//       </div>
-//       <a href="borrowerMtg/<%= borrowerMtg.id %>" class="btn btn-primary">Enter</a>
-      
-//     </div>
-//   </div>
-// <% }) %>--> 

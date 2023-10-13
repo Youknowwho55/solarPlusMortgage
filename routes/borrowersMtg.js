@@ -10,7 +10,11 @@ router.get('/edit/:id', async (req, res) => {
   const borrowerMtg = await BorrowerMtg.findById(req.params.id)
   res.render('borrowersMtg/edit', { borrowerMtg: borrowerMtg })
 })
-// continue here
+
+router.get('/workbook/:id', async (req, res) => {
+    const borrowerMtg = await BorrowerMtg.findById(req.params.id)
+    res.render('borrowersMtg/workbook', { borrowerMtg: borrowerMtg })
+  })
 
 router.get('/:id', async (req, res) => {
   const borrowerMtg = await BorrowerMtg.findById(req.params.id )
@@ -33,13 +37,13 @@ router.delete('/:id', async (req, res) => {
   await BorrowerMtg.findByIdAndDelete(req.params.id)
   res.redirect('/')
 })
-
+ 
 
 function saveBorrowerMtgAndRedirect(path) {
   return async (req, res) => {
     let borrowerMtg = req.borrowerMtg
-//THIS IS WHAT NEEDS TO BE UPDATED WITH A TON OF THE INFO
-borrowerMtg.name = req.body.borrowerName
+    borrowerMtg.borrowerName = req.body.borrowerName
+
     try {
       borrowerMtg = await borrowerMtg.save()
       res.redirect(`/borrowersMtg/${borrowerMtg.id}`)
@@ -48,6 +52,27 @@ borrowerMtg.name = req.body.borrowerName
     }
   }
 }
+
+
+
+
+// //NEED TO REMOVE THE SLUG FROM HERE
+// function saveArticleAndRedirect(path) {
+//     return async (req, res) => {
+//       let article = req.article
+//       article.title = req.body.title
+//       article.description = req.body.description
+//       try {
+//         article = await article.save()
+//         res.redirect(`/articles/${article.id}`)
+//       } catch (e) {
+//         res.render(`articles/${path}`, { article: article })
+//       }
+//     }
+//   }
+  
+
+
 
 
 //do it need to rename this a new router
