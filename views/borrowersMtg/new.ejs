@@ -1,24 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Blog</title>
-</head>
 
-<body>
-    <div class="container">
-      <h1 class="mb-4">New Borrower</h1>
-  
-      <form action="/borrowersMtg" method="POST">
-        <%- include('_borrowerMain_form') %>
 
-      </form>
+<!-- Trigger the modal with a button -->
+<button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal">+ Add Lead</button>
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Add a new Borrower</h3>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+      </div>
+
+      <div class="modal-body">
+        <form action="/borrowersMtg" method="POST">
+
+          <div class="col-3">
+            <label for="firstName" class="form-label">First Name</label>
+            <input required value="<%= borrowerMtg.borrowerName %>" type="text" name="borrowerName" id="borrowerName" class="form-control">
+            <label for="lastName" class="form-label">Last Name</label>
+            <input type="text" class="form-control" id="lastName" placeholder="Last Name">
+          </div>
+          <div class="col-3">
+            <label for="phoneNumber" class="form-label">Phone Number</label>
+            <input value="<%= borrowerMtg.phoneNumber %>" type="text" name="phoneNumber" id="phoneNumber" class="form-control">
+            <label for="email" class="form-label">Email</label>
+            <input value="<%= borrowerMtg.Email %>" type="text" name="email" id="email" class="form-control">
+          </div>
+
+          <div class="modal-footer">
+
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
+
+          </div>
+          
+
+        </form>
+
+      </div>
+     
     </div>
-  </body>
 
-  
+  </div>
+</div>
 
-  </html>
+<!-- End of Modal -->

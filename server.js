@@ -1,3 +1,6 @@
+// what is app.set('views', path.join(__dirname, 'views'))????/
+
+
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
 }
@@ -6,43 +9,39 @@ const express = require('express')
 const mongoose = require('mongoose')
 const methodOverride = require('method-override')
 const bodyParser = require('body-parser')
+const expressLayouts = require('express-ejs-layouts')
+const path = require('path')
 
 
-const port = 3000;
-
-
-const Article = require('./models/article')
-const articleRouter = require('./routes/articles')
+const app = express()
+const port = process.env.PORT || 3000;
 
 
 const BorrowerMtg = require('./models/borrowerMtg')
 const borrowerMtgRouter = require('./routes/borrowersMtg')
 
-
-const app = express()
-
-app.use(express.static("public"));
-app.use(bodyParser.urlencoded({ limit: '10mb', extended: false}))
+const dashboardRouter = require('./routes/dashboards')
 
 
 mongoose.connect(process.env.DATABASE_URL, {
-  useNewUrlParser: true, useUnifiedTopology: true, 
+  useNewUrlParser: true, useUnifiedTopology: true 
 })
 
-//useCreateIndex: true
 app.set('view engine', 'ejs')
+app.set('views', path.join(__dirname, 'views'))
+app.set('layout', 'layouts/layout')
+
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(__dirname + '/public'));
+
+
+app.use(bodyParser.urlencoded({ limit: '10mb', extended: false}))
+app.use(expressLayouts)
 app.use(express.urlencoded({ extended: false }))
 app.use(methodOverride('_method'))
 
 
-
-//WILL NEED TO UPDATE THIS TO THE SAHBOARD ISTES
-//cant have both being rendered at once?
-// app.get('/', async (req, res) => {
-//   const articles = await Article.find().sort({ createdAt: 'desc' })
-//   res.render('mainDashboard/index', { articles: articles })
-// })
-
+//this renders the main page of the dashboars. Might need to change to have individual users
 app.get('/', async (req, res) => {
   const borrowermtgs = await BorrowerMtg.find().sort({ createdAt: 'desc' })
   res.render('mainDashboard/index', { borrowermtgs: borrowermtgs })
@@ -51,7 +50,6 @@ app.get('/', async (req, res) => {
 
 
 
-app.use('/articles', articleRouter)
 app.use('/borrowersMtg', borrowerMtgRouter)
 
 
@@ -71,6 +69,4 @@ app.listen(port, () => {
 //db.borrowermtgs.find()
 
 
-
-//https://github.com/Youknowwho55/solarPlusMortgage.git
 

@@ -1,12 +1,20 @@
+<form action="/comment/:id" method="POST">
+
 <div class="mb-3">
-    <label for="formGroupExampleInput" class="form-label">Example label</label>
+  <div>
+  <textarea id="commentSection" name="commentSectino" rows="40" cols="40">
+    <p>testing</p>  
+
+  </textarea>
+</div>
+<div>
+    <label for="formGroupExampleInput" class="form-label">Text Box</label>
     <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder">
   </div>
-  <div class="mb-3">
-    <label for="formGroupExampleInput2" class="form-label">Another label</label>
-    <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input placeholder">
-  </div>
 
+  <div>
+  <button type="submit" class="btn btn-primary">Send</button>
+</div>
 
+</form>
 
-  add a submit button and the top should be a text area?

@@ -2,19 +2,19 @@ const express = require('express')
 const BorrowerMtg = require('./../models/borrowerMtg')
 const router = express.Router()
 
-router.get('/new', (req, res) => {
-  res.render('borrowersMtg/new', { borrowerMtg: new BorrowerMtg() })
-})
+
+
+
+
+// router.get('/new', (req, res) => {
+//   res.render('borrowersMtg/new', { borrowerMtg: new BorrowerMtg() })
+// })
 
 router.get('/edit/:id', async (req, res) => {
   const borrowerMtg = await BorrowerMtg.findById(req.params.id)
   res.render('borrowersMtg/edit', { borrowerMtg: borrowerMtg })
 })
 
-router.get('/workbook/:id', async (req, res) => {
-    const borrowerMtg = await BorrowerMtg.findById(req.params.id)
-    res.render('borrowersMtg/workbook', { borrowerMtg: borrowerMtg })
-  })
 
 router.get('/:id', async (req, res) => {
   const borrowerMtg = await BorrowerMtg.findById(req.params.id )
@@ -22,6 +22,25 @@ router.get('/:id', async (req, res) => {
   //UPDATED TO HAVE MAIN FILE INSTEAD OF /SHOW
   res.render('borrowersMtg/mainFile', { borrowerMtg: borrowerMtg })
 })
+
+/// We are assuming the client is already on the borrowers page so dont need to search for ID again
+router.get('/workbook/:id', async (req, res) => {
+  const borrowerMtg = await BorrowerMtg.findById(req.params.id)
+  res.render('borrowersMtg/workbook', { borrowerMtg: borrowerMtg })
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 router.post('/', async (req, res, next) => {
   req.borrowerMtg = new BorrowerMtg()
@@ -42,7 +61,10 @@ router.delete('/:id', async (req, res) => {
 function saveBorrowerMtgAndRedirect(path) {
   return async (req, res) => {
     let borrowerMtg = req.borrowerMtg
-    borrowerMtg.borrowerName = req.body.borrowerName
+    borrowerMtg.firstName = req.body.firstName
+    borrowerMtg.lastName = req.body.lastName
+    borrowerMtg.phoneNumber = req.body.phoneNumber
+    borrowerMtg.email = req.body.email
 
     try {
       borrowerMtg = await borrowerMtg.save()

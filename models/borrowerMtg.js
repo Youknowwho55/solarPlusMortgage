@@ -3,9 +3,19 @@ const mongoose = require('mongoose')
 
 const borrowerMtgSchema = new mongoose.Schema(
     {
-    borrowerName:{
+    firstName:{
     type: String,
     required: true
+  },
+    lastName:{
+    type: String,
+    required: true
+  },
+    phoneNumber:{
+    type: String,
+  },
+    email:{
+    type: String,
   },
   address:{
     type: String
@@ -32,6 +42,36 @@ const borrowerMtgSchema = new mongoose.Schema(
     type: Date, default: Date.now
    }
 })
- 
 
+
+
+const mortgageLoanSchema = new mongoose.Schema(
+  {
+  name:{
+  type: String
+  },
+  baseLoanAmount:{
+  type: Number
+  },
+  fundingFee: {
+  type: Number
+  },
+  totalLoanAmount: {
+  type: Number
+  },
+  interestRate: {
+  type: Number
+  },
+  amortizedMonths: {
+  type: Number,
+  default: 360
+  }
+  })
+  
+  
+  
+  
+  
+  
+module.exports = mongoose.model('MortgageLoanSchema', mortgageLoanSchema)
 module.exports = mongoose.model('BorrowerMtg', borrowerMtgSchema)
