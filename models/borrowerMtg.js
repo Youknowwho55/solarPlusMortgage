@@ -47,25 +47,12 @@ const borrowerMtgSchema = new mongoose.Schema(
 
 const mortgageLoanSchema = new mongoose.Schema(
   {
-  name:{
-  type: String
-  },
-  baseLoanAmount:{
-  type: Number
-  },
-  fundingFee: {
-  type: Number
-  },
-  totalLoanAmount: {
-  type: Number
-  },
-  interestRate: {
-  type: Number
-  },
-  amortizedMonths: {
-  type: Number,
-  default: 360
-  }
+  name:{type: String},
+  baseLoanAmount:{type: Number},
+  fundingFee: {type: Number},
+  totalLoanAmount: {type: Number}, 
+  interestRate: {type: Number},
+  amortizedMonths: {type: Number,default: 360}
   })
   
   

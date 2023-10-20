@@ -31,17 +31,6 @@ router.get('/workbook/:id', async (req, res) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 router.post('/', async (req, res, next) => {
   req.borrowerMtg = new BorrowerMtg()
   next()

@@ -1,4 +1,4 @@
-<form action="/comment/:id" method="POST">
+<form action="/newComment/:id" method="POST">
 
 <div class="mb-3">
   <div>
@@ -8,8 +8,8 @@
   </textarea>
 </div>
 <div>
-    <label for="formGroupExampleInput" class="form-label">Text Box</label>
-    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input placeholder">
+    <label for="comment" class="form-label">Text Box</label>
+    <input value="<%= borrowerMtg.street %>" type="text" name="comment" id="comment" class="form-control" placeholder="Enter Comment">
   </div>
 
   <div>
