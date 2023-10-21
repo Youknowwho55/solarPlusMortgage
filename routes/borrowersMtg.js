@@ -23,11 +23,7 @@ router.get('/:id', async (req, res) => {
   res.render('borrowersMtg/mainFile', { borrowerMtg: borrowerMtg })
 })
 
-/// We are assuming the client is already on the borrowers page so dont need to search for ID again
-router.get('/workbook/:id', async (req, res) => {
-  const borrowerMtg = await BorrowerMtg.findById(req.params.id)
-  res.render('borrowersMtg/workbook', { borrowerMtg: borrowerMtg })
-})
+
 
 
 

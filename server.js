@@ -90,7 +90,7 @@ app.use(methodOverride('_method'))
 //this renders the main page of the dashboars. Might need to change to have individual users
 app.get('/', async (req, res) => {
   const borrowermtgs = await BorrowerMtg.find().sort({ createdAt: 'desc' })
-  res.render('mainDashboard/index', { borrowermtgs: borrowermtgs })
+  res.render('mainDashboard/salesDashboard', { borrowermtgs: borrowermtgs })
 })
 
 

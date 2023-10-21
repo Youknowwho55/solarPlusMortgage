@@ -1,45 +1,550 @@
 
+<div class="table-responsive">
+  <table class="table table-striped table-sm">
 
-<body>
-    <div class="container">
-      <h1 class="mb-4">Workbook</h1>
+
+ 
+    <h1>Mortgage Analysis Tool</h1>
+    <!-- <button class="addNew-btn">Add Worksheet</button>-->
   
-
-
-        <div class="col-4">
-          <label for="baseLoanAmount" class="form-label">Base Loan Amount:</label>
-          <input type="number" name="baseLoanAmount" id="baseLoanAmount" class="form-control">
-
-          <label for="fundingFee" class="form-label">Funding Fee</label>
-          <input type="number" class="form-control" id="fundingFee">
-
-          <label for="totalLoanAmount" class="form-label">Total Loan Amount</label>
-          <input type="number" class="form-control" id="totalLoanAmount">
-
-          <label for="interestRate" class="form-label">Interest Rate:</label>
-          <input type="number" class="form-control" id="interestRate">
-
-          <label for="amortizedMonths" class="form-label">Months</label>
-          <input type="number" class="form-control" id="amortizedMonths">
-        </div>
-
-
-
   <div>
-    <label for="Principal" class="form-label">Principal</label>
-    <input type="number" name="Principal" id="Principal" class="form-control">
-    <label for="Intetest" class="form-label">Interest</label>
-    <input type="number" name="Intetest" id="Intetest" class="form-control">
-
+    <p>Use the Bootstrap to Col Span-2 and have the comment section on the right.</p>
+    <p>Be able to update the left admin dashbard section. Add a User profile</p>
   </div>
-
-
-
-
-    </div>
-  </body>
-
   
+    <!-- SAVINGS-->
+  
+    <div class='savings'>
+      <h2>Savings </h2>
+      <table id="savingsTable">
+        <tr>
+          <th>Monthly Savings</th>
+          <th>Annual Savings</th>
+          <th>Consumer Debt Paid:</th>
+          <th>ADJ to Fixed:</th>
+          <th>Term Reduction:</th>
+          <th>Payment Reduction:</th>
+          <th>Recoup:</th>
+        </tr>
+        <tr>
+          <td><input type="number" name="monthlySavings" id="monthlySavings"></td>
+          <td><input type="number" name="annualSavings" id="annualSavings"></td>
+          <td><input type="number" name="debtPaid" id="debtPaid"></td>
+          <td><input type="checkbox" name="adjtoFix" id="adjtoFix"></td>
+          <td><input type="checkbox" name="termReduction" id="termReduction"></td>
+          <td><input type="number" name="paymentmReduction" id="paymentmReduction"></td>
+          <td><input type="number" name="recoup" id="recoup"></td>
+        </tr>
+      </table>
+  </div>
+  
+  
+  
+  <div class="loanInformation">
+    <h2>Loan Information </h2>
+    <table id="loanInformation">
+      <tr>
+        <th>Property Type</th>
+        <th>Occupancy</th>
+        <th>Loan Type</th>
+        <th>Term</th>
+      </tr>
+      <tr>
+        <td><input type="number" name="PropertyType" id="PropertyType"></td>
+        <td><input type="number" name="Occupancy" id="Occupancy"></td>
+        <td><input type="number" name="LoanType" id="LoanType"></td>
+        <td><input type="number" name="newTerm" id="newTerm"></td>
+      </tr>
+    <tr>   
+      <th>Loan Zip code</th>
+      <th>Purpose</th>
+      <th>Appraisal Waiver</th></tr>
+    <tr>
+      <td><input type="number" name="ZipCode" id="ZipCode"></td>
+      <td><input type="number" name="loanPurpose" id="loanPurpose"></td>
+      <td><input type="checkbox" name="appraisalWaiver" id="appraisalWaiver"></td>
+    </tr>
+      
+    </table>
+    </div>
+       
+  
+  
+  
+  
+    <!-- Payoffs and Payments section -->
+  
+  <div class="PayoffsandPayments">
+      <h2>Payoffs and Payments</h2>
+      <table id="paymentTable">
+        <tr>
+          <th></th>
+          <th>Loan Balance</th>
+          <th>Payment</th>
+          <th>Sub</th>
+          <th>Term</th>
+          <th>Rate</th>
+        </tr>
+        <tr>
+          <td>1st</td>
+          <td><input type="number" name="loanBalance1" id="loanBalance1"></td>
+          <td><input type="number" name="payment1" id="payment1"></td>
+          <td><input type="checkbox" name="sub1" id="sub1"></td>
+          <td><input type="number" name="oldTerm1" id="oldTerm1"></td>
+          <td><input type="number" name="oldRate1" id="oldRate1"></td>
+  
+        </tr>
+        <tr>
+          <td>2nd</td>
+          <td><input type="number" name="loanBalance2" id="loanBalance2"></td>
+          <td><input type="number" name="payment2" id="payment2"></td>
+          <td><input type="checkbox" name="sub2" id="sub2"></td>
+          <td><input type="number" name="oldTerm1" id="oldTerm2"></td>
+          <td><input type="number" name="oldRate1" id="oldRate2"></td>
+        </tr>
+        <tr>
+          <td>3rd</td>
+          <td><input type="number" name="loanBalance3" id="loanBalance3"></td>
+          <td><input type="number" name="payment3" id="payment3"></td>
+          <td><input type="checkbox" name="sub3" id="sub3"></td>
+          <td><input type="number" name="oldTerm1" id="oldTerm3"></td>
+          <td><input type="number" name="oldRate1" id="oldRate3"></td>
+          
+        </tr>
+      </table>
+  
+  <table>
+    <tr>
+   <td>Tax Inc?:  <input type="checkbox" name="oldTaxIncluded" id="oldTaxIncluded"></td> 
+   <td>Ins Inc?:  <input type="checkbox" name="oldInsIncluded" id="oldInsIncluded"></td> 
+  </tr>
+  
+  </table>
+  
+    </div>
+    
+  
+  
+    <!-- New Loan sections -->
+      <div class='newLoan'>
+        <h2>New Loan</h2>
+      <form>
+        <table>
+        <th>LTV</th>
+        <th>CLTV</th>
+  <tr>
+  <td><input type="number" value="0" id="LTVvalue" readonly></td>
+  <td><input type="number" value="0" id="CLTVvalue" readonly></td>
+  </tr>
+  </table>
+  
+          <table>
+            <tr>
+              <td><label><b>Market Value:</b></label></td>
+              <td><input type="number" name="marketValue" id="marketValue"></td>
+            </tr>
+            <tr>
+              <td><label>Sales Price:</label></td>
+              <td><input type="number" name="salesPrice" id="salesPrice"></td>
+            </tr>
+            <tr>
+              <td><label>Down Payment:</label></td>
+              <td><input type="number" name="downPayment" id="downPayment"></td>
+            </tr>
+  
+      
+  
+            <tr>
+              <td><label for="baseLoanAmount"><b>Base Loan Amount:</b></label></td>
+              <td><input type="number" name="baseLoanAmount" id="baseLoanAmount"></td>
+            </tr>
+            <tr>
+              <td><label for="subordinatedAmount">Subordinated:</label></td>
+              <td><input type="number" name="subordinated" id="subordinatedAmount"></td>
+            </tr>
+            <tr>
+              <td><label for="ffUmip">FF/UMIP:</label></td>
+              <td><input type="number" name="ffUmip" id="ffUmip">%$</td>
+            </tr>
+            <tr>
+              <td><label for="umipRefund">UMIP Refund:</label></td>
+              <td><input type="number" name="umipRefund" id="umipRefund"></td>
+            </tr>
+            <tr>
+              <td><label for="totalLoanAmount">Total Loan Amount:</label></td>
+              <td><input type="text" name="totalLoanAmount" id="totalLoanAmount" readonly></td>
+            </tr>
+            <tr>
+              <td><label>Note Rate:</label></td>
+              <td><input type="number" name="noteRate" id="noteRate" value="123456"></td>
+            </tr>
+          </table>
+        </form>
+      </div>  
+    
+  
+   <!-- PROPOSED Loan sections -->
+  
+   <div class='benetobwr'>
+     <h2>Benefit to the Borrower</h2>
+      <table >
+        <th></th>
+        <th>Existing Loan</th>
+        <th>Proposed Loan</th>
+        <tr>
+          <td><label for="pi">PI:</label></td>
+          <td><input type="number" id="existingPI" name="existingPI"></td>
+          <td><input type="number" id="proposedPI" name="proposedPI"></td>
+        </tr>
+        <tr>
+          <td><label for="taxes">Taxes:</label></td>
+          <td><input type="number" id="existingTaxes" name="existingTaxes"></td>
+          <td><input type="number" id="proposedTaxes" name="proposedTaxes"></td>
+          <td><input type="checkbox" id="escrowTaxes" name="escrowTaxes"></td>
+        </tr>
+        <tr>
+          <td><label for="insurance">Insurance:</label></td>
+          <td><input type="number" id="existingInsurance" name="existingInsurance"></td>
+          <td><input type="number" id="proposedInsurance" name="proposedInsurance"></td>
+          <td><input type="checkbox" id="escrowInsurance" name="escrowInsurance"></td>
+        </tr>
+        <tr>
+          <td><label for="insurance">Flood Insurance:</label></td>
+          <td><input type="number" id="existingFloodInsurance" name="existingFloodInsurance"></td>
+          <td><input type="number" id="proposedFloodInsurance" name="proposedFloodInsurance"></td>
+          <td><input type="checkbox" id="escrowFloodInsurance" name="escrowFloodInsurance"></td>
+        </tr>
+        <tr>
+          <td><label for="pmi">PMI:</label></td>
+          <td><input type="number" id="existingPMI" name="existingPMI"></td>
+          <td><input type="number" id="pmproposedPMIi" name="proposedPMI"></td>
+          <td><input type="number" id="proposedPMIamount" name="proposedPMIamount"></td>
+  
+        </tr>
+        <tr>
+          <td><label for="hoa">HOA:</label></td>
+          <td><input type="number" id="existingHOA" name="existingHOA"></td>
+          <td><input type="number" id="proposedHOA" name="proposedHOA"></td>
+        </tr>
+        <tr>
+          <td><label for="mortgagePayment">Mortgage Payment:</label></td>
+          <td><input type="number" id="existingmortgagePayment" name="existingmortgagePayment"></td>
+          <td><input type="number" id="proposedmortgagePayment" name="proposedmortgagePayment" value="123456"></td>  
+        </tr>
+        <tr>
+          <td><label for="currentPayment">Overage/Shartage:</label></td>
+          <td><input type="number" id="overageShartage" name="over"></td>
+        </tr>
+        <tr>
+          <td><label for="currentPayment">Debt Paydown:</label></td>
+          <td><input type="number" id="debtPaydown" name="debtPaydown"></td>
+        </tr>
+        <tr>
+          <td><label for="proposedPayment">Total Obligations:</label></td>
+          <td><input type="number" id="existingObligation" name="existingObligation"></td>
+          <td><input type="number" id="proposedObligation" name="proposedObligation"></td>  
+        </tr>
+    </table>
+    </div>
+    
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <!-- OTHER FEES -->
+  
+  <div class='otherFees'>
+      <h2>Other Fees</h2>
+      <table>
+        <tr>
+          <td><label>3rd Party Fee:</label></td>
+          <td><input type="number" name="thirdPartyFees" value="123456"></td>
+        </tr>
+        <tr>
+          <td><label>Appraisal Fee:</label></td>
+          <td><input type="number" name="appraisalFee"></td>
+        </tr>
+        <tr>
+          <td><label>Investor Fee:</label></td>
+          <td><input type="number" name="investorFee"></td>
+        </tr>
+        <tr>
+          <td><label>Paded Taxes:</label></td>
+          <td><input type="number" name="paymentPadTaxes"></td>
+        </tr>
+        <tr>
+          <td><label>Paded Insurance:</label></td>
+          <td><input type="number" name="paymentPadInsurace"></td>
+        </tr>
+        <tr>
+          <td><label>Lender Credit:</label></td>
+          <td><input type="number" name="lenderCredit"></td>
+        </tr>
+        <tr>
+          <td><label>Total Closing Costs:</label></td>
+          <td><input type="number" name="closingCosts"></td>
+        </tr>
+        <tr>
+          <td><label>Cash Out(Bring to Close):</label></td>
+          <td><input type="number" name="cashOutAmount"></td>
+        </tr>
+      </table>
+    </div>
+  
+  
+    <!-- Consumer Debt -->
+    <div class='ConsumerDebt1'>
+      <h2>Consumer Debt</h2>
+      <table id="consumerDebt">
+        <tr>
+          <th>Debtor</th>
+          <th>Type</th>
+          <th>Balance</th>
+          <th>Monthly</th>
+          <th>Omit</th>
+          <th>Pay</th>
+          <th>Term</th>
+          <th>Rate</th>
+        </tr>
+        
+        <tr>
+          <td><input type="text" name="debtorName1"></td>
+          <td>  
+          <select name="creditType1">
+            <option value=""></option>
+            <option value="Installment">Installment</option>
+            <option value="Mortgage">Mortgage</option>
+            <option value="Revolving">Revolving</option>
+            <option value="Lease">Lease</option>
+        </select>
+      </td>
+          <td><input type="number" name="balanceTotal1"></td>
+          <td><input type="number" name="monthlyDebtPayment1"></td>
+          <td><input type="checkbox" name="omitDebt1"></td>
+          <td><input type="checkbox" name="paydebt1"></td>
+          <td><input type="number" name="termDebt1"></td>
+          <td><input type="number" name="rateDebt1"></td>
+        </tr>
+  
+        <tr>
+          <td><input type="text" name="debtorName2"></td>
+          <td>  
+          <select name="creditType2">
+            <option value=""></option>
+            <option value="Installment">Installment</option>
+            <option value="Mortgage">Mortgage</option>
+            <option value="Revolving">Revolving</option>
+            <option value="Lease">Lease</option>
+        </select>
+      </td>
+          <td><input type="number" name="balanceTotal2"></td>
+          <td><input type="number" name="monthlyDebtPayment2"></td>
+          <td><input type="checkbox" name="omitDebt2"></td>
+          <td><input type="checkbox" name="paydebt2"></td>
+          <td><input type="number" name="termDebt2"></td>
+          <td><input type="number" name="rateDebt2"></td>
+        </tr>
+  
+  
+        <tr>
+          <td><input type="text" name="debtorName3"></td>
+          <td>  
+          <select name="creditType3">
+            <option value=""></option>
+            <option value="Installment">Installment</option>
+            <option value="Mortgage">Mortgage</option>
+            <option value="Revolving">Revolving</option>
+            <option value="Lease">Lease</option>
+        </select>
+      </td>
+          <td><input type="number" name="balanceTotal3"></td>
+          <td><input type="number" name="monthlyDebtPayment3"></td>
+          <td><input type="checkbox" name="omitDebt3"></td>
+          <td><input type="checkbox" name="paydebt3"></td>
+          <td><input type="number" name="termDebt3"></td>
+          <td><input type="number" name="rateDebt3"></td>
+        </tr>
+    
+  
+    <tr>
+      <td><input type="text" name="debtorName4"></td>
+      <td>  
+      <select name="creditType4">
+        <option value=""></option>
+        <option value="Installment">Installment</option>
+        <option value="Mortgage">Mortgage</option>
+        <option value="Revolving">Revolving</option>
+        <option value="Lease">Lease</option>
+    </select>
+  </td>
+      <td><input type="number" name="balanceTotal4"></td>
+      <td><input type="number" name="monthlyDebtPayment4"></td>
+      <td><input type="checkbox" name="omitDebt4"></td>
+      <td><input type="checkbox" name="paydebt4"></td>
+      <td><input type="number" name="termDebt4"></td>
+      <td><input type="number" name="rateDebt4"></td>
+    </tr>
+    
+      
+  
+  
+  
+  </table>
+  </div>
+  
+  
+  <!-- Debt to Income section
+  
+  <div class='child1'>
+  
+      <div class="col-md-12"></div>
+      <h3>Debt to Income</h3>
+      <div class="form-group">
+        <label for="income">Monthly Income:</label>
+        <input type="text" class="form-control" id="income" placeholder="Monthly Income">
+      </div>
+      <div class="form-group">
+        <label for="dtiFront">Front-End DTI Ratio:</label>
+        <input type="text" class="form-control" id="dtiFront" placeholder="Front-End DTI Ratio">
+      </div>
+      <div class="form-group">
+        <label for="dtiBack">Back-End DTI Ratio:</label>
+        <input type="text" class="form-control" id="dtiBack" placeholder="Back-End DTI Ratio">
+      </div>
+  </div>
+  -->
+  
+   
+  
+  
+  <div class='pricingSection'>
+      <h2>Pricing </h2>
+      <table id="pricingTable">
+        <tr>
+          <th>Description</th>
+          <th>Rate</th>
+          <th>YSP %</th>
+          <th>YSP $</th>
+          <th>BD %</th>
+          <th>BD  $</th>
+          <th>Select</th>
+        </tr>
+        <tr>
+          <td><input type="text"></td>
+          <td><input type="number" name="noteRate1" id="noteRate1"></td>
+          <td><input type="number" name="ysp1" id="ysp1"></td>
+          <td><input type="number" value="123456" name="yspDollar" id="yspDollar1"></td>
+          <td><input type="number" name="bd1" id="bd1"></td>
+          <td><input type="number" name="bdDollar" id="bdDollar1"></td>
+          <td><input type="checkbox" name="selectRate1"></td>
+        </tr>
+        <td><input type="text"></td>
+        <td><input type="number" name="noteRate1" id="noteRate2"></td>
+        <td><input type="number" name="ysp1" id="ysp2"></td>
+        <td><input type="number" value="123456" name="yspDollar" id="yspDollar2"></td>
+        <td><input type="number" name="bd1" id="bd2"></td>
+        <td><input type="number" name="bdDollar" id="bdDollar2"></td>
+        <td><input type="checkbox" name="selectRate2"></td>
+      </tr>
+      <td><input type="text"></td>
+      <td><input type="number" name="noteRate1" id="noteRate3"></td>
+      <td><input type="number" name="ysp1" id="ysp3"></td>
+      <td><input type="number" value="123456" name="yspDollar" id="yspDollar3"></td>
+      <td><input type="number" name="bd1" id="bd3"></td>
+      <td><input type="number" name="bdDollar" id="bdDollar3"></td>
+      <td><input type="checkbox" name="selectRate3"></td>
+    </tr>
+    <td><input type="text"></td>
+    <td><input type="number" name="noteRate1" id="noteRate3"></td>
+    <td><input type="number" name="ysp1" id="ysp3"></td>
+    <td><input type="number" value="123456" name="yspDollar" id="yspDollar3"></td>
+    <td><input type="number" name="bd1" id="bd3"></td>
+    <td><input type="number" name="bdDollar" id="bdDollar3"></td>
+    <td><input type="checkbox" name="selectRate3"></td>
+  </tr>
+      </table>
+  </div>
+  
+  
+  <div class="TargetFees">
+  <table id="TargetFees">
+    <tr>
+  <td>Target:<input type="number" id="targetFees"></td>
+  <td>Admin:<input type="number" id="adminFees" value="895"></td>
+  </tr>
+  <tr>
+  <td>Req Net Fees:<input type="number" id="reqNetFees"></td>
+  <td>Flood Cert:<input type="number" id="floodCert" value="8"></td>
+  </tr>
+  <tr>
+  <td>Gross Earnings:<input type="number" id="grossEarnings"></td>
+  <td>Tax Service:<input type="number" id="taxService" value="88"></td>
+  </table>
+  </div>
+  
+  
+  
+  
+  <!-- DEBT TO INCOME -->
+    <div class="INcomeSection">
+      <h2>Debt to Income</h2>
+      <div class="form-group">
+        <label for="frontRatio">Front End Ratio:</label>
+        <input type="text" class="form-control" id="frontRatio" ng-model="frontRatio" disabled>
+      </div>
+      <div class="form-group">
+        <label for="backRatio">Back End Ratio:</label>
+        <input type="text" class="form-control" id="backRatio" ng-model="backRatio" disabled>
+      </div>
+  
+  
+  
+      <div>
+        <h2>Income</h2>
+        <table id="incomeBorrow">
+            <tr>
+                <th>Borrower's Monthly Income</th>
+                <th>Co-Borrower's Monthly Income</th>
+            </tr>
+            <tr>
+              <td><input type="number" name="borrowersIncome" id="borrowersIncome"></td>
+              <td><input type="number" name="coborrowersIncome" id="coborrowersIncome"></td>
+            </table>
+        
+        </div>
+    </div>
+  
+  
+  
+  
+    </div>
+    
+  <div class="titleFees" id="titleFees">
+  <h3>Title Fees</h3>
+  
+  
+  </div>
+  
+  
+  
+  
+
+
+
+
+  </table>
+</div>
+</main>
+
+
+</div>
+
+
 
 
 
