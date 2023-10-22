@@ -57,8 +57,20 @@ const mortgageLoanSchema = new mongoose.Schema(
   
   
   
+
+  // const mtgConditionsSchema = new mongoose.Schema(
+  //   {
+  //   _id:{type: String},
+  //   conditions:{type: String},
+  //   requestedDate: {type: Date},
+  //   CpmpletedDate: {type: Date}, 
+  //   clearedDate: {type: Date},
+  //   conditionNotes: {type: String}
+  //   })
+
   
   
   
 module.exports = mongoose.model('MortgageLoanSchema', mortgageLoanSchema)
 module.exports = mongoose.model('BorrowerMtg', borrowerMtgSchema)
+// module.exports = mongoose.model('mtgConditions', mtgConditionsSchema)

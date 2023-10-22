@@ -1,4 +1,3 @@
-// what is app.set('views', path.join(__dirname, 'views'))????/
 
 
 if (process.env.NODE_ENV !== 'production') {
@@ -75,10 +74,7 @@ passport.deserializeUser(User.deserializeUser());
 
 //END OF PASSPORT
 
-// All the same code
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(__dirname + '/public'));
-app.use(express.static("public"));
+
 
 
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: false}))

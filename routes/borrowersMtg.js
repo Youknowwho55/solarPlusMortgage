@@ -43,6 +43,17 @@ router.delete('/:id', async (req, res) => {
 })
  
 
+
+
+
+
+
+
+
+
+
+
+
 function saveBorrowerMtgAndRedirect(path) {
   return async (req, res) => {
     let borrowerMtg = req.borrowerMtg
@@ -59,6 +70,9 @@ function saveBorrowerMtgAndRedirect(path) {
     }
   }
 }
+
+
+
 
 
 
