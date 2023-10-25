@@ -26,6 +26,8 @@ const logger = require('morgan');
 
 
 
+
+
 const app = express()
 const port = process.env.PORT || 3000;
 
@@ -68,6 +70,10 @@ app.use(passport.session());
 
 passport.use(User.createStrategy());
 
+// use static authenticate method of model in LocalStrategy
+passport.use(new LocalStrategy(User.authenticate()));
+
+// use static serialize and deserialize of model for passport session support
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
@@ -89,31 +95,17 @@ app.get('/', async (req, res) => {
   res.render('mainDashboard/salesDashboard', { borrowermtgs: borrowermtgs })
 })
 
-
+//, name: req.user.username
+app.get('/admin', async (req, res) => {
+  const users = await User.find().sort({ createdAtUser: 'desc' })
+  res.render('mainDashboard/adminDashboard', { users: users })
+})
 
 
 app.use('/borrowersMtg', borrowerMtgRouter)
 app.use('/', dashboardRouter)
 app.use('/comment', commentRouter)
 app.use('/', authRouter)
-
-
-
-
-
-
-passport.use(new LocalStrategy(
-  function(username, password, done) {
-    User.findOne({ username: username }, function (err, user) {
-      if (err) { return done(err); }
-      if (!user) { return done(null, false); }
-      if (!user.verifyPassword(password)) { return done(null, false); }
-      return done(null, user);
-    });
-  }
-));
-
-
 
 
 

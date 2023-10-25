@@ -11,34 +11,40 @@ router.get('/login', function(req, res, next) {
   });
 
 
+  router.post('/login', 
+  passport.authenticate('local', { failureRedirect: '/login' }),
+  function(req, res) {
+    res.redirect('/');
+  });
+
 
   // NEED TO MAKE SURE THIS REDIRECTS TO THE DASHBOARD PAGE
   // ADD ID FOR USER TO LOGIN TO THEIR OWN DASHBOARD
-  router.post("/login", function (req, res) { 
-	if (!req.body.username) { 
-		res.json({ success: false, message: "Username was not given" }) 
-	} 
-	else if (!req.body.password) { 
-		res.json({ success: false, message: "Password was not given" }) 
-	} 
-	else { 
-		passport.authenticate("local", function (err, user, info) { 
-			if (err) { 
-				res.json({ success: false, message: err }); 
-			} 
-			else { 
-				if (!user) { 
-					res.json({ success: false, message: "username or password incorrect" }); 
-				} 
-				else { 
-					const token = jwt.sign({ userId: user._id, username: user.username }, secretkey, { expiresIn: "24h" }); 
-					res.json({ success: true, message: "Authentication successful", token: token }); 
-                    res.render("mainDashboard/index")
-				} 
-			} 
-		})(req, res); 
-	} 
-}); 
+//   router.post("/login", function (req, res) { 
+// 	if (!req.body.username) { 
+// 		res.json({ success: false, message: "Username was not given" }) 
+// 	} 
+// 	else if (!req.body.password) { 
+// 		res.json({ success: false, message: "Password was not given" }) 
+// 	} 
+// 	else { 
+// 		passport.authenticate("local", function (err, user, info) { 
+// 			if (err) { 
+// 				res.json({ success: false, message: err }); 
+// 			} 
+// 			else { 
+// 				if (!user) { 
+// 					res.json({ success: false, message: "username or password incorrect" }); 
+// 				} 
+// 				else { 
+// 					const token = jwt.sign({ userId: user._id, username: user.username }, secretkey, { expiresIn: "24h" }); 
+// 					res.json({ success: true, message: "Authentication successful", token: token }); 
+//                     res.render("mainDashboard/index")
+// 				} 
+// 			} 
+// 		})(req, res); 
+// 	} 
+// }); 
 
 
   
@@ -82,6 +88,13 @@ router.get('/login', function(req, res, next) {
 }); 
 
 
+
+router.get('/:id', async (req, res) => {
+  const user = await User.findById(req.params.id )
+  if (user == null) res.redirect('/')
+  //UPDATED TO HAVE MAIN FILE INSTEAD OF /SHOW
+  res.render('borrowersMtg/individual', { user: user})
+})
 
 
 // user is your result from userschema using mongoose id TO SET PASSWORD

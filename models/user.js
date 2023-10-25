@@ -17,8 +17,11 @@ const ROLE = {
 const UserSchema = new Schema({    
     email: {type: String, required:true, unique:true}, 
     username : {type: String, unique: true, required:true}, 
+    company : {type: String}, 
     role : {type: String, default:"lo", }, 
-
+    createdAtUser: {
+        type: Date, default: Date.now
+       }
 }); 
   
 UserSchema.plugin(passportLocalMongoose);
@@ -26,3 +29,7 @@ UserSchema.plugin(findOrCreate);
 
 
 module.exports = mongoose.model('User', UserSchema);
+
+
+
+

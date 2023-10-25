@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
   }));
   
   
-  
+
   router.get('/login', function(req, res, next) {
     res.render("register/login");
   });

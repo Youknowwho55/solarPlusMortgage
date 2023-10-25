@@ -37,6 +37,15 @@ router.put('/:id', async (req, res, next) => {
   next()
 }, saveBorrowerMtgAndRedirect('edit'))
 
+
+
+router.put('/people/:id', async (req, res, next) => {
+  req.borrowerMtg = await BorrowerMtg.findById(req.params.id)
+  next()
+}, savePeople('edit'))
+
+
+
 router.delete('/:id', async (req, res) => {
   await BorrowerMtg.findByIdAndDelete(req.params.id)
   res.redirect('/')
@@ -61,7 +70,7 @@ function saveBorrowerMtgAndRedirect(path) {
     borrowerMtg.lastName = req.body.lastName
     borrowerMtg.phoneNumber = req.body.phoneNumber
     borrowerMtg.email = req.body.email
-
+    borrowerMtg.loanOfficer = req.body.loanOfficer
     try {
       borrowerMtg = await borrowerMtg.save()
       res.redirect(`/borrowersMtg/${borrowerMtg.id}`)
@@ -72,6 +81,21 @@ function saveBorrowerMtgAndRedirect(path) {
 }
 
 
+function savePeople(path) {
+  return async (req, res) => {
+    let borrowerMtg = req.borrowerMtg
+    borrowerMtg.loanOfficer = req.body.loanOfficer
+    borrowerMtg.processor = req.body.processor
+    borrowerMtg.referral = req.body.referral
+
+    try {
+      borrowerMtg = await borrowerMtg.save()
+      res.redirect(`/borrowersMtg/${borrowerMtg.id}`)
+    } catch (e) {
+      res.render(`borrowersMtg/${path}`, { borrowerMtg: borrowerMtg })
+    }
+  }
+}
 
 
 

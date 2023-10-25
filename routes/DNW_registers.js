@@ -7,7 +7,11 @@ const passportLocalMongoose = require("passport-local-mongoose");
 
 router.post("/", function(req, res){
 
-    User.register({username: req.body.username}, req.body.password, function(err, user){
+    User.register({username: req.body.username,
+      role: req.body.role,
+      company: req.body.company,
+      email: req.body.email
+    }, req.body.password, function(err, user){
       if (err) {
         console.log(err);
         res.redirect("/register/register");

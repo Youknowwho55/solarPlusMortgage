@@ -7,6 +7,20 @@
 <div class="row mb-3 text-center">
   <div class="col-md-1 themed-grid-col"></div>
 
+  <div class="form-group">
+  <form class="row g-3" action="/borrowersMtg/people/<%= borrowerMtg.id %>?_method=PUT" method="POST">
+    <div class="col-4">
+      <label for="loanOfficer" class="form-label">Loan Officer</label>
+      <input required value="<%= borrowerMtg.loanOfficer %>" type="text" name="loanOfficer" id="loanOfficer" class="form-control">
+      <label for="processor" class="form-label">Processor</label>
+      <input  value="<%= borrowerMtg.processor %>" type="text" name="processor" id="processor" class="form-control">
+      <label for="referral" class="form-label">Referral Source</label>
+      <input  value="<%= borrowerMtg.referral %>" type="text" name="referral" id="referral" class="form-control">
+    </div>
+      <button type="submit" class="btn btn-primary">Save Loan Officer</button>
+  </form>
+</div>
+
 
   <div class="col-md-8 themed-grid-col">
     <h3>Borrower Info:</h3>
@@ -76,10 +90,6 @@
  <p>PI, Taxes, Ins, HOA, Includd? </p>
  <p> loan information: lender, date opened, original amount, months, rate. Inv/Pri/ Sec</p>
      
-
-
-
-
   </div>
 
 

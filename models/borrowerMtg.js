@@ -40,7 +40,13 @@ const borrowerMtgSchema = new mongoose.Schema(
    },
   createdAt: {
     type: Date, default: Date.now
-   }
+   },
+   loanOfficer: {
+     type: String, default: ""},
+     processor: {
+      type: String, default: ""},
+       referral: {
+        type: String, default: ""}
 })
 
 

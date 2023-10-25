@@ -1,5 +1,6 @@
 const express = require('express')
 const BorrowerMtg = require('../models/borrowerMtg')
+const User = require('../models/user')
 const router = express.Router()
 const passport = require("passport");
 const passportLocalMongoose = require("passport-local-mongoose");
@@ -49,9 +50,9 @@ router.get('/messages', (req, res) => {
     res.render('borrowersMtg/benefit', { borrowerMtg: borrowerMtg })
   })
   
-  router.get('/incomeCalc/:id', async (req, res) => {
+  router.get('/income/:id', async (req, res) => {
     const borrowerMtg = await BorrowerMtg.findById(req.params.id)
-    res.render('borrowersMtg/incomeCalc', { borrowerMtg: borrowerMtg })
+    res.render('borrowersMtg/income', { borrowerMtg: borrowerMtg })
   })
   
 
