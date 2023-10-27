@@ -1,62 +1,45 @@
-<%- include('../partials/_tabs.ejs') %>
+<!-- @format -->
 
-Income Calculation File
-// income - sellect source (SS - grossable, W2, SE, Rental) calculations to see what the alue is. Then have a selector on the worksheet to see
-
-
+<%- include('../partials/_tabs.ejs') %> Income Calculation File // income -
+sellect source (SS - grossable, W2, SE, Rental) calculations to see what the
+alue is. Then have a selector on the worksheet to see
 
 <body>
-    <div class="container">
-      <h1 class="mb-4">Workbook</h1>
-  
+  <div class="container">
+    <h1 class="mb-4">Workbook</h1>
 
+    <div class="col-4">
+      <label for="baseLoanAmount" class="form-label">Base Loan Amount:</label>
+      <input
+        type="number"
+        name="baseLoanAmount"
+        id="baseLoanAmount"
+        class="form-control"
+      />
 
-        <div class="col-4">
-          <label for="baseLoanAmount" class="form-label">Base Loan Amount:</label>
-          <input type="number" name="baseLoanAmount" id="baseLoanAmount" class="form-control">
+      <label for="fundingFee" class="form-label">Funding Fee</label>
+      <input type="number" class="form-control" id="fundingFee" />
 
-          <label for="fundingFee" class="form-label">Funding Fee</label>
-          <input type="number" class="form-control" id="fundingFee">
+      <label for="totalLoanAmount" class="form-label">Total Loan Amount</label>
+      <input type="number" class="form-control" id="totalLoanAmount" />
 
-          <label for="totalLoanAmount" class="form-label">Total Loan Amount</label>
-          <input type="number" class="form-control" id="totalLoanAmount">
+      <label for="interestRate" class="form-label">Interest Rate:</label>
+      <input type="number" class="form-control" id="interestRate" />
 
-          <label for="interestRate" class="form-label">Interest Rate:</label>
-          <input type="number" class="form-control" id="interestRate">
-
-          <label for="amortizedMonths" class="form-label">Months</label>
-          <input type="number" class="form-control" id="amortizedMonths">
-        </div>
-
-
-
-  <div>
-    <label for="Principal" class="form-label">Principal</label>
-    <input type="number" name="Principal" id="Principal" class="form-control">
-    <label for="Intetest" class="form-label">Interest</label>
-    <input type="number" name="Intetest" id="Intetest" class="form-control">
-
-  </div>
-
-
-
-
+      <label for="amortizedMonths" class="form-label">Months</label>
+      <input type="number" class="form-control" id="amortizedMonths" />
     </div>
-  </body>
 
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <div>
+      <label for="Principal" class="form-label">Principal</label>
+      <input
+        type="number"
+        name="Principal"
+        id="Principal"
+        class="form-control"
+      />
+      <label for="Intetest" class="form-label">Interest</label>
+      <input type="number" name="Intetest" id="Intetest" class="form-control" />
+    </div>
+  </div>
+</body>

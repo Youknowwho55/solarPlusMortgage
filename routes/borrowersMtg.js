@@ -1,105 +1,89 @@
-const express = require('express')
-const BorrowerMtg = require('./../models/borrowerMtg')
-const router = express.Router()
+/** @format */
 
-
-
-
+const express = require("express");
+const BorrowerMtg = require("./../models/borrowerMtg");
+const router = express.Router();
 
 // router.get('/new', (req, res) => {
 //   res.render('borrowersMtg/new', { borrowerMtg: new BorrowerMtg() })
 // })
 
-router.get('/edit/:id', async (req, res) => {
-  const borrowerMtg = await BorrowerMtg.findById(req.params.id)
-  res.render('borrowersMtg/edit', { borrowerMtg: borrowerMtg })
-})
+router.get("/edit/:id", async (req, res) => {
+  const borrowerMtg = await BorrowerMtg.findById(req.params.id);
+  res.render("borrowersMtg/edit", { borrowerMtg: borrowerMtg });
+});
 
-
-router.get('/:id', async (req, res) => {
-  const borrowerMtg = await BorrowerMtg.findById(req.params.id )
-  if (borrowerMtg == null) res.redirect('/')
+router.get("/:id", async (req, res) => {
+  const borrowerMtg = await BorrowerMtg.findById(req.params.id);
+  if (borrowerMtg == null) res.redirect("/");
   //UPDATED TO HAVE MAIN FILE INSTEAD OF /SHOW
-  res.render('borrowersMtg/mainFile', { borrowerMtg: borrowerMtg })
-})
+  res.render("borrowersMtg/mainFile", { borrowerMtg: borrowerMtg });
+});
 
+router.post(
+  "/",
+  async (req, res, next) => {
+    req.borrowerMtg = new BorrowerMtg();
+    next();
+  },
+  saveBorrowerMtgAndRedirect("new")
+);
 
+router.put(
+  "/:id",
+  async (req, res, next) => {
+    req.borrowerMtg = await BorrowerMtg.findById(req.params.id);
+    next();
+  },
+  saveBorrowerMtgAndRedirect("edit")
+);
 
+router.put(
+  "/people/:id",
+  async (req, res, next) => {
+    req.borrowerMtg = await BorrowerMtg.findById(req.params.id);
+    next();
+  },
+  savePeople("edit")
+);
 
-
-router.post('/', async (req, res, next) => {
-  req.borrowerMtg = new BorrowerMtg()
-  next()
-}, saveBorrowerMtgAndRedirect('new'))
-
-router.put('/:id', async (req, res, next) => {
-  req.borrowerMtg = await BorrowerMtg.findById(req.params.id)
-  next()
-}, saveBorrowerMtgAndRedirect('edit'))
-
-
-
-router.put('/people/:id', async (req, res, next) => {
-  req.borrowerMtg = await BorrowerMtg.findById(req.params.id)
-  next()
-}, savePeople('edit'))
-
-
-
-router.delete('/:id', async (req, res) => {
-  await BorrowerMtg.findByIdAndDelete(req.params.id)
-  res.redirect('/')
-})
- 
-
-
-
-
-
-
-
-
-
-
-
+router.delete("/:id", async (req, res) => {
+  await BorrowerMtg.findByIdAndDelete(req.params.id);
+  res.redirect("/");
+});
 
 function saveBorrowerMtgAndRedirect(path) {
   return async (req, res) => {
-    let borrowerMtg = req.borrowerMtg
-    borrowerMtg.firstName = req.body.firstName
-    borrowerMtg.lastName = req.body.lastName
-    borrowerMtg.phoneNumber = req.body.phoneNumber
-    borrowerMtg.email = req.body.email
-    borrowerMtg.loanOfficer = req.body.loanOfficer
+    let borrowerMtg = req.borrowerMtg;
+    borrowerMtg.firstName = req.body.firstName;
+    borrowerMtg.lastName = req.body.lastName;
+    borrowerMtg.phoneNumber = req.body.phoneNumber;
+    borrowerMtg.email = req.body.email;
+    borrowerMtg.loanOfficer = req.body.loanOfficer;
     try {
-      borrowerMtg = await borrowerMtg.save()
-      res.redirect(`/borrowersMtg/${borrowerMtg.id}`)
+      borrowerMtg = await borrowerMtg.save();
+      res.redirect(`/borrowersMtg/${borrowerMtg.id}`);
     } catch (e) {
-      res.render(`borrowersMtg/${path}`, { borrowerMtg: borrowerMtg })
+      res.render(`borrowersMtg/${path}`, { borrowerMtg: borrowerMtg });
     }
-  }
+  };
 }
-
 
 function savePeople(path) {
   return async (req, res) => {
-    let borrowerMtg = req.borrowerMtg
-    borrowerMtg.loanOfficer = req.body.loanOfficer
-    borrowerMtg.processor = req.body.processor
-    borrowerMtg.referral = req.body.referral
+    let borrowerMtg = req.borrowerMtg;
+    borrowerMtg.loanOfficer = req.body.loanOfficer;
+    borrowerMtg.processor = req.body.processor;
+    borrowerMtg.referral = req.body.referral;
 
     try {
-      borrowerMtg = await borrowerMtg.save()
-      res.redirect(`/borrowersMtg/${borrowerMtg.id}`)
+      borrowerMtg = await borrowerMtg.save();
+      res.redirect(`/borrowersMtg/${borrowerMtg.id}`);
     } catch (e) {
-      res.render(`borrowersMtg/${path}`, { borrowerMtg: borrowerMtg })
+      res.render(`borrowersMtg/${path}`, { borrowerMtg: borrowerMtg });
     }
-  }
+  };
 }
-
-
-
-
 
 // //NEED TO REMOVE THE SLUG FROM HERE
 // function saveArticleAndRedirect(path) {
@@ -115,10 +99,6 @@ function savePeople(path) {
 //       }
 //     }
 //   }
-  
-
-
-
 
 //do it need to rename this a new router
-module.exports = router
+module.exports = router;

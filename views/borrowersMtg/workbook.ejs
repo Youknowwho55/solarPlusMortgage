@@ -1,3 +1,6 @@
+<script src="../../public/Jquery/workbook.js"></script>
+
+
 <%- include('../partials/_tabs.ejs') %>
 
 <div class="table-responsive">
@@ -51,7 +54,16 @@
         <th>Term</th>
       </tr>
       <tr>
-        <td><input type="number" name="PropertyType" id="PropertyType"></td>
+        <td>
+         <label for="PropertyType">Property Type:</label>
+         <select name="PropertyType" id="PropertyType">
+          <option value="Primary">Primary</option>
+          <option value="Secondary">Secondary</option>
+          <option value="Investment">Investment</option>
+        </select>
+      </td>
+
+
         <td><input type="number" name="Occupancy" id="Occupancy"></td>
         <td><input type="number" name="LoanType" id="LoanType"></td>
         <td><input type="number" name="newTerm" id="newTerm"></td>

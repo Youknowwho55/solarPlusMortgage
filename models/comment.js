@@ -1,5 +1,6 @@
-const mongoose = require('mongoose')
+/** @format */
 
+const mongoose = require("mongoose");
 
 const commentSchema = new mongoose.Schema({
   username: {
@@ -7,19 +8,26 @@ const commentSchema = new mongoose.Schema({
   },
   comment: {
     type: String,
-    required: true
+    required: true,
   },
 
   createdAt: {
     type: Date,
-    default: Date.now
-   },
+    default: Date.now,
+  },
 
-   id: {
-     type: String,
-    }
+  //  id: {
+  //    type: String,
+  //   }
+});
 
-})
+// {
+//   "_id": ObjectId,
+//   "lead_id": ObjectId,
+//   "user_id": ObjectId,
+//   "username": String,    // Username of the commenter
+//   "comment": String,
+//   "date": Date
+// }
 
-
-module.exports = mongoose.model('Comment', commentSchema)
+module.exports = mongoose.model("Comment", commentSchema);

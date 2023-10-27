@@ -180,6 +180,22 @@ this is where im testing to have the Mongodb set up to find all for a specific L
 
 
 
+<!-- comments.ejs -->
+
+<h1>Comments for Homebuyer Lead: <%= lead_id %></h1>
+
+<ul>
+  <% comments
+    .filter(function(comment) {
+      return comment.username === specificUsername; // Replace specificUsername with the username you want
+    })
+    .forEach(function(comment) { %>
+    <li>
+      <p><strong><%= comment.username %></strong> said on <%= comment.date %>:</p>
+      <p><%= comment.comment %></p>
+    </li>
+  <% }); %>
+</ul>
 
 
 
