@@ -1,6 +1,6 @@
 /** @format */
-
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 const LOANSTATS = {
   NEW: "new", // new
@@ -67,6 +67,11 @@ const borrowerMtgSchema = new mongoose.Schema({
   referral: {
     type: String,
     default: "",
+  },
+  user: {
+    type: Schema.ObjectId,
+    //This might need to be a capital
+    ref: "user",
   },
 });
 

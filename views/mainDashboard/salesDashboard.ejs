@@ -78,9 +78,9 @@
               </tr>
             </thead>
 
+            <tbody>
 
             <% borrowermtgs.forEach(borrowerMtg => { %>
-              <tbody>
                 <tr>
                     <td><span class="status completed"><%= borrowerMtg.loanStatus %></span></td>
                     <td><h4 class="card-title"> <%= borrowerMtg.firstName %> <%= borrowerMtg.lastName %></h4>
@@ -171,7 +171,17 @@
     </div>
 
 
+<style>
+  .even-row {
+  background-color: lightgray;
+}
 
+.odd-row {
+  background-color: white;
+}
+
+
+</style>
 
 
 

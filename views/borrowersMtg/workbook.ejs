@@ -1,20 +1,15 @@
-<script src="../../public/Jquery/workbook.js"></script>
 
 
 <%- include('../partials/_tabs.ejs') %>
 
-<div class="table-responsive">
+<div class="mainPage">
+<h1 class="pt-2">Mortgage Analysis Tool</h1>
+
+
+<div class="table-responsive ">
   <table class="table table-striped table-sm">
 
 
- 
-    <h1>Mortgage Analysis Tool</h1>
-    <!-- <button class="addNew-btn">Add Worksheet</button>-->
-  
-  <div>
-    <p>Use the Bootstrap to Col Span-2 and have the comment section on the right.</p>
-    <p>Be able to update the left admin dashbard section. Add a User profile</p>
-  </div>
   
     <!-- SAVINGS-->
   
@@ -52,32 +47,55 @@
         <th>Occupancy</th>
         <th>Loan Type</th>
         <th>Term</th>
+        <th>Purpose</th>
+        <th>Appraisal Waiver</th></tr>
       </tr>
       <tr>
         <td>
-         <label for="PropertyType">Property Type:</label>
          <select name="PropertyType" id="PropertyType">
-          <option value="Primary">Primary</option>
-          <option value="Secondary">Secondary</option>
-          <option value="Investment">Investment</option>
+          <option value="sfr">SFR</option>
+          <option value="manufactured">Manufactured</option>
+          <option value="multiUnit">Multi Unit</option>
+          <option value="condo">Condo</option>
+          <option value="pud">PUD</option>
+
+
         </select>
       </td>
 
 
-        <td><input type="number" name="Occupancy" id="Occupancy"></td>
-        <td><input type="number" name="LoanType" id="LoanType"></td>
+        <td>
+          <select name="occupancy" id="occupancy">
+          <option value="primary">Primary</option>
+          <option value="secondary">Secondary</option>
+          <option value="investment">Investment</option>
+        </select> 
+        
+        </td>
+        <td>
+          <select name="loanType" id="loanType">
+            <option value="cnv">CNV</option>
+            <option value="fha">FHA</option>
+            <option value="va">VA</option>
+            <option value="nonQM">Non-QM</option>
+
+          </select> 
+        </td>
         <td><input type="number" name="newTerm" id="newTerm"></td>
+            <td>
+            <select name="loanPurpose" id="loanPurpose">
+              <option value="purchase">Purchase</option>
+              <option value="cashOut">Cash Out</option>
+              <option value="refinance">Refinance</option>
+              <option value="irrrl">IRRRL/Streamline</option>
+  
+            </select> 
+          </td>
+      <td><input type="checkbox" name="appraisalWaiver" id="appraisalWaiver"></td>
       </tr>
     <tr>   
-      <th>Loan Zip code</th>
-      <th>Purpose</th>
-      <th>Appraisal Waiver</th></tr>
-    <tr>
-      <td><input type="number" name="ZipCode" id="ZipCode"></td>
-      <td><input type="number" name="loanPurpose" id="loanPurpose"></td>
-      <td><input type="checkbox" name="appraisalWaiver" id="appraisalWaiver"></td>
-    </tr>
-      
+
+    
     </table>
     </div>
        
@@ -94,35 +112,36 @@
           <th></th>
           <th>Loan Balance</th>
           <th>Payment</th>
-          <th>Sub</th>
           <th>Term</th>
           <th>Rate</th>
+          <th>Sub</th>
+
         </tr>
         <tr>
           <td>1st</td>
           <td><input type="number" name="loanBalance1" id="loanBalance1"></td>
           <td><input type="number" name="payment1" id="payment1"></td>
-          <td><input type="checkbox" name="sub1" id="sub1"></td>
           <td><input type="number" name="oldTerm1" id="oldTerm1"></td>
           <td><input type="number" name="oldRate1" id="oldRate1"></td>
-  
+          <td><input type="checkbox" name="sub1" id="sub1"></td>
+ 
         </tr>
         <tr>
           <td>2nd</td>
           <td><input type="number" name="loanBalance2" id="loanBalance2"></td>
           <td><input type="number" name="payment2" id="payment2"></td>
-          <td><input type="checkbox" name="sub2" id="sub2"></td>
           <td><input type="number" name="oldTerm1" id="oldTerm2"></td>
           <td><input type="number" name="oldRate1" id="oldRate2"></td>
+          <td><input type="checkbox" name="sub2" id="sub2"></td>
         </tr>
         <tr>
           <td>3rd</td>
           <td><input type="number" name="loanBalance3" id="loanBalance3"></td>
           <td><input type="number" name="payment3" id="payment3"></td>
-          <td><input type="checkbox" name="sub3" id="sub3"></td>
           <td><input type="number" name="oldTerm1" id="oldTerm3"></td>
           <td><input type="number" name="oldRate1" id="oldRate3"></td>
-          
+          <td><input type="checkbox" name="sub3" id="sub3"></td>
+
         </tr>
       </table>
   
@@ -137,21 +156,12 @@
     </div>
     
   
-    <%- include('../partials/_tabs.ejs') %>
 
     <!-- New Loan sections -->
       <div class='newLoan'>
         <h2>New Loan</h2>
       <form>
-        <table>
-        <th>LTV</th>
-        <th>CLTV</th>
-  <tr>
-  <td><input type="number" value="0" id="LTVvalue" readonly></td>
-  <td><input type="number" value="0" id="CLTVvalue" readonly></td>
-  </tr>
-  </table>
-  
+
           <table>
             <tr>
               <td><label><b>Market Value:</b></label></td>
@@ -193,6 +203,16 @@
               <td><input type="number" name="noteRate" id="noteRate" value="123456"></td>
             </tr>
           </table>
+          <br>
+          <table>
+            <th>LTV</th>
+            <th>CLTV</th>
+      <tr>
+      <td><input type="number" value="0" id="LTVvalue" readonly inputmode="none"></td>
+      <td><input type="number" value="0" id="CLTVvalue" readonly inputmode="none"></td>
+      </tr>
+      </table>
+      
         </form>
       </div>  
     
@@ -558,13 +578,41 @@
 
 </div>
 
+</div>
+
+
+<style>
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+table{
+margin: 10px;
+}
+tr td{
+  padding: 5px;
+}
+
+.mainPage{
+background-color: whitesmoke;
+
+}
+</style>
+
+<script>
+    const marketValueInput = document.getElementById("marketValue");
 
 
 
-
-
-
-
+</script>
 
 
 

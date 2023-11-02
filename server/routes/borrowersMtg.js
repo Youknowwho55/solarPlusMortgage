@@ -1,7 +1,7 @@
 /** @format */
 
 const express = require("express");
-const BorrowerMtg = require("./../models/borrowerMtg");
+const BorrowerMtg = require("../models/borrowerMtg");
 const router = express.Router();
 
 // router.get('/new', (req, res) => {

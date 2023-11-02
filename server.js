@@ -24,15 +24,9 @@ const logger = require("morgan");
 const app = express();
 const port = process.env.PORT || 3000;
 
-const BorrowerMtg = require("./models/borrowerMtg");
-const Comment = require("./models/comment");
-const User = require("./models/user");
-
-const borrowerMtgRouter = require("./routes/borrowersMtg");
-const commentRouter = require("./routes/comments");
-const dashboardRouter = require("./routes/dashboards");
-//const indexRouter = require('./routes/index')
-const authRouter = require("./routes/auth");
+const BorrowerMtg = require("./server/models/borrowerMtg");
+const Comment = require("./server/models/comment");
+const User = require("./server/models/user");
 
 mongoose.connect(process.env.DATABASE_URL, {
   useNewUrlParser: true,
@@ -43,14 +37,17 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 app.set("layout", "layouts/layout");
 
-app.use(express.static(path.join(__dirname, "public")));
+//app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static("public"));
+
 app.use(
   session({
     secret: "This is a test Secret",
     resave: false,
     saveUninitialized: false,
     //NEED TO UPDATE THIS
-    //  store: new SQLiteStore({ db: 'sessions.db', dir: './var/db' })
+    // store: MongoStore.create({
+    //   mongoUrl: process.env.MONGODB_URI
   })
 );
 app.use(passport.authenticate("session"));
@@ -86,10 +83,16 @@ app.get("/admin", async (req, res) => {
   res.render("mainDashboard/adminDashboard", { users: users });
 });
 
-app.use("/borrowersMtg", borrowerMtgRouter);
-app.use("/", dashboardRouter);
-app.use("/comment", commentRouter);
-app.use("/", authRouter);
+app.use("/borrowersMtg", require("./server/routes/borrowersMtg"));
+app.use("/", require("./server/routes/dashboards"));
+app.use("/comment", require("./server/routes/comments"));
+app.use("/", require("./server/routes/auth"));
+
+// Handle 404
+app.get("*", function (req, res) {
+  //res.status(404).send('404 Page Not Found.')
+  res.status(404).render("404");
+});
 
 app.listen(port, () => {
   console.log(`Backend server is running on http://localhost:${port}`);
