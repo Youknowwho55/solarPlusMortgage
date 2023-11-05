@@ -10,6 +10,10 @@ router.get("/login", function (req, res, next) {
   res.render("register/login", { layout: false });
 });
 
+router.get("/settings", function (req, res, next) {
+  res.render("settings");
+});
+
 router.post(
   "/login",
   passport.authenticate("local", { failureRedirect: "/login" }),
@@ -19,7 +23,7 @@ router.post(
 );
 
 // NEED TO MAKE SURE THIS REDIRECTS TO THE DASHBOARD PAGE
-// ADD ID FOR USER TO LOGIN TO THEIR OWN DASHBOARD
+// ADD TD FOR USER TO LOGIN TO THEIR OWN DASHBOARD
 //   router.post("/login", function (req, res) {
 // 	if (!req.body.username) {
 // 		res.json({ success: false, message: "Username was not given" })
