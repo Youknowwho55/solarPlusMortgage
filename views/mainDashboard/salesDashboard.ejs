@@ -1,11 +1,9 @@
-<h6> Welcome, name </h6>
+<h6 class="pt-4"> Welcome, name </h6>
 
    
    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
           <h1> Dashboard</h1>
           
-
-
 
 
 <!-- Button trigger modal -->
@@ -58,7 +56,7 @@
 
 
         <div class="table-responsive">
-          <table class="table table-striped table-sm">
+          <table class="table table-sm">
             <thead>
               <tr>
                 <th>Status</th>
@@ -78,6 +76,7 @@
 
             <tbody>
               <% borrowermtgs.forEach((borrowerMtg, index) => { %>
+              
                 <tr>
                     <td><span class="status completed"><%= borrowerMtg.loanStatus %></span></td>
                     <td><strong><p class="card-title"> <%= borrowerMtg.firstName %> <%= borrowerMtg.lastName %></p></strong>
@@ -93,6 +92,10 @@
                    <button type="button" class="btn btn-warning edit-button" data-bs-toggle="modal" data-bs-target="#editModal" data-item-id="<%= borrowerMtg.id %>">
                     Edit</button>
            
+
+
+
+
 <!-- Modal -->
 <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">

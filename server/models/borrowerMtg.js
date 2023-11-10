@@ -73,6 +73,10 @@ const borrowerMtgSchema = new mongoose.Schema({
     //This might need to be a capital
     ref: "user",
   },
+  employer: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Employer", // This should match the model name of the Employer schema
+  },
 });
 
 const mortgageLoanSchema = new mongoose.Schema({
@@ -82,6 +86,15 @@ const mortgageLoanSchema = new mongoose.Schema({
   totalLoanAmount: { type: Number },
   interestRate: { type: Number },
   amortizedMonths: { type: Number, default: 360 },
+});
+
+const employerSchema = new mongoose.Schema({
+  employerName: { type: String },
+  employerStreet: { type: Number },
+  employerStreetLine2: { type: Number },
+  employerCity: { type: Number },
+  employerState: { type: Number },
+  employerZipCode: { type: Number },
 });
 
 // const mtgConditionsSchema = new mongoose.Schema(
@@ -94,6 +107,10 @@ const mortgageLoanSchema = new mongoose.Schema({
 //   conditionNotes: {type: String}
 //   })
 
-module.exports = mongoose.model("MortgageLoanSchema", mortgageLoanSchema);
-module.exports = mongoose.model("BorrowerMtg", borrowerMtgSchema);
+module.exports = {
+  BorrowerMtg: mongoose.model("BorrowerMtg", borrowerMtgSchema),
+  MortgageLoan: mongoose.model("MortgageLoan", mortgageLoanSchema),
+  Employer: mongoose.model("Employer", employerSchema),
+};
+
 // module.exports = mongoose.model('mtgConditions', mtgConditionsSchema)

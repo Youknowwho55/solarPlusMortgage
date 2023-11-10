@@ -25,14 +25,24 @@
 
   <%- include('../sidebar/sideNav') %>
 
-  <div class="container px-3 mx-2 mt-2">
-    <body>
-      <%- body %>
-    </body>
-  </div>
-</div>
+  <div class="container container px-3 mx-2 mt-2">
+    <div class="row">
+      <div class="col-md-9">
+        <body>
+          <%- body %>
+        </body>
+      </div>
+        <div class="col-md-2 mt-8 ">
+          <%- include('../partials/_commentSection.ejs') %>
+        </div>
 
-  <%- include('../partials/footer') %>
+      </div>
+
+    </div>
+    <%- include('../partials/footer') %>
+
+  </div>
+
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 

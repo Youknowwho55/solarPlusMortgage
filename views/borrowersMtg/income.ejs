@@ -5,41 +5,77 @@ sellect source (SS - grossable, W2, SE, Rental) calculations to see what the
 alue is. Then have a selector on the worksheet to see
 
 <body>
-  <div class="container">
-    <h1 class="mb-4">Workbook</h1>
+  <h1 class="mb-4">Workbook</h1>
 
+  <div class="card">
     <div class="col-4">
-      <label for="baseLoanAmount" class="form-label">Base Loan Amount:</label>
+      <label for="employerName" class="form-label">Employer Name</label>
       <input
-        type="number"
-        name="baseLoanAmount"
-        id="baseLoanAmount"
+        value="<%= employer.employerName %>"
+        type="text"
+        name="employerName"
+        id="employerName"
         class="form-control"
       />
 
-      <label for="fundingFee" class="form-label">Funding Fee</label>
-      <input type="number" class="form-control" id="fundingFee" />
-
-      <label for="totalLoanAmount" class="form-label">Total Loan Amount</label>
-      <input type="number" class="form-control" id="totalLoanAmount" />
-
-      <label for="interestRate" class="form-label">Interest Rate:</label>
-      <input type="number" class="form-control" id="interestRate" />
-
-      <label for="amortizedMonths" class="form-label">Months</label>
-      <input type="number" class="form-control" id="amortizedMonths" />
-    </div>
-
-    <div>
-      <label for="Principal" class="form-label">Principal</label>
-      <input
-        type="number"
-        name="Principal"
-        id="Principal"
-        class="form-control"
-      />
-      <label for="Intetest" class="form-label">Interest</label>
-      <input type="number" name="Intetest" id="Intetest" class="form-control" />
+      <div class="col-12">
+        <label for="inputAddress" class="form-label">Address</label>
+        <input
+          value="<%= employer.employerStreet %>"
+          type="text"
+          name="street"
+          id="street"
+          class="form-control"
+        />
+      </div>
+      <div class="col-12">
+        <label for="inputAddress2" class="form-label">Address 2</label>
+        <input
+          value="<%= employer.employerStreetLine2 %>"
+          type="text"
+          name="streetLine2"
+          id="streetLine2"
+          class="form-control"
+        />
+      </div>
+      <div class="col-md-6">
+        <label for="inputCity" class="form-label">City</label>
+        <input
+          value="<%= employer.employerCity %>"
+          type="text"
+          name="city"
+          id="city"
+          class="form-control"
+        />
+      </div>
+      <div class="col-md-4">
+        <label for="inputState" class="form-label">State</label>
+        <input
+          value="<%= employer.employerState %>"
+          type="text"
+          name="state"
+          id="state"
+          class="form-control"
+        />
+        <select id="inputState" class="form-select">
+          <option selected>Choose...</option>
+          <option>CA</option>
+          <option>AZ</option>
+          <option>NM</option>
+        </select>
+      </div>
+      <div class="col-md-2">
+        <label for="inputZip" class="form-label">Zip</label>
+        <input
+          value="<%= employer.employerZipCode %>"
+          type="text"
+          name="zipCode"
+          id="zipCode"
+          class="form-control"
+        />
+      </div>
     </div>
   </div>
 </body>
+
+<script src="/public/Jquery/income.js"></script>

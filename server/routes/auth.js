@@ -6,6 +6,12 @@ const router = express.Router();
 const passport = require("passport");
 const passportLocalMongoose = require("passport-local-mongoose");
 
+//, name: req.user.username
+router.get("/admin", async (req, res) => {
+  const users = await User.find().sort({ createdAtUser: "desc" });
+  res.render("mainDashboard/adminDashboard", { users: users });
+});
+
 router.get("/login", function (req, res, next) {
   res.render("register/login", { layout: false });
 });

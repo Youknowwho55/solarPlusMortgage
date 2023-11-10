@@ -5,20 +5,27 @@ const sideLinks = document.querySelectorAll(
 );
 
 sideLinks.forEach((item) => {
-  const li = item.parentElement;
-  item.addEventListener("click", () => {
-    sideLinks.forEach((i) => {
-      i.parent;
-      Element.classList.remove("active");
-    });
-    li.classList.add("active");
-  });
+  // Check if the link's href matches the current URL
+  if (item.getAttribute("href") === window.location.pathname) {
+    item.parentElement.classList.add("active");
+  }
 });
+
 const menuBar = document.querySelector(".content nav .bx.bx-menu");
 const sideBar = document.querySelector(".sidebar");
 
+// Check if the sidebar state is stored in localStorage and set the initial state
+const isSidebarClosed = localStorage.getItem("sidebarClosed") === "true";
+if (isSidebarClosed) {
+  sideBar.classList.add("close");
+}
+
 menuBar.addEventListener("click", () => {
   sideBar.classList.toggle("close");
+
+  // Store the current sidebar state in localStorage
+  const isClosed = sideBar.classList.contains("close");
+  localStorage.setItem("sidebarClosed", isClosed.toString());
 });
 
 const searchBtn = document.querySelector(

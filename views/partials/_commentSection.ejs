@@ -1,27 +1,32 @@
+<!-- @format -->
+
 <form action="/newComment/:id" method="POST">
+  <div class="mb-3">
+    <div>
+      <textarea
+        id="commentSection"
+        name="commentSection"
+        rows="10"
+        cols="20"
+        readonly
+      ></textarea>
+    </div>
+    <div>
+      <label for="comment" class="form-label">Comment Section:</label>
+      <input
+        type="text"
+        name="comment"
+        id="comment"
+        class="form-control"
+        placeholder="Enter Comment"
+      />
 
-<div class="mb-3">
-  <div>
-  <textarea id="commentSection" name="commentSectino" rows="40" cols="20">
-    <p>testing</p>  
-
-  </textarea>
-</div>
-<div>
-  <!-- need to add username username-->
-
-    <label for="comment" class="form-label">Text Box</label>
-    <input type="hidden" name="username" value="<%=  %>">
-
-    <input value="<%= borrowerMtg.street %>" type="text" name="comment" id="comment" class="form-control" placeholder="Enter Comment">
+      <button type="button" id="addCommentButton" class="btn btn-primary">
+        Send
+      </button>
+    </div>
   </div>
-
-  <div>
-  <button type="submit" class="btn btn-primary">Send</button>
-</div>
-
 </form>
-
 
 <!-- comments.ejs lead_id 
 
@@ -36,17 +41,18 @@
   <% //}); %>
 </ul>-->
 
-
-
-
-
-
-
-
-
-<!-- comment-form.ejs -->
-<form action="/submit-comment" method="post">
-  <!-- Other comment input fields -->
-  <button type="submit">Submit Comment</button>
-</form>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function () {
+    $("#addCommentButton").on("click", function () {
+      var commentText = $("#comment").val();
+      if (commentText.trim() !== "") {
+        var currentComments = $("#commentSection").val();
+        var newComment =
+          new Date().toLocaleString() + ": " + commentText + "\n";
+        $("#commentSection").val(newComment + currentComments);
+        $("#comment").val(""); // Clear the input field
+      }
+    });
+  });
+</script>
