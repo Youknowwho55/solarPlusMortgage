@@ -21,7 +21,7 @@ exports.getBorrowerMtgById = async (req, res) => {
   try {
     const borrowerMtg = await BorrowerMtg.findById(req.params.id);
     const locals = {
-      title: "ID",
+      title: "Custimer",
       description: "Get the borrowers identification",
     };
     res.render("borrowersMtg/mainFile", {
