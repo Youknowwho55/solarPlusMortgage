@@ -1,12 +1,5 @@
 /** @format */
 
-//defining multiple from the same
-const models = require("../models/borrowerMtg");
-
-const BorrowerMtg = models.BorrowerMtg;
-const MortgageLoan = models.MortgageLoan;
-const Employer = models.Employer;
-
 const express = require("express");
 const router = express.Router();
 const borrowerMtgController = require("../controllers/borrowerMtgController");

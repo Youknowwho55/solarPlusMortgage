@@ -1,9 +1,10 @@
 /** @format */
 
-const models = require("../models/borrowerMtg");
-const BorrowerMtg = models.BorrowerMtg;
-
-const Employer = models.Employer;
+const {
+  BorrowerMtg,
+  MortgageLoan,
+  Employer,
+} = require("../models/borrowerMtg");
 
 // , { borrowerMtg: new BorrowerMtg() }
 
@@ -126,6 +127,7 @@ exports.getBenefitID = async (req, res) => {
 exports.getIncomeID = async (req, res) => {
   try {
     const borrowerMtg = await BorrowerMtg.findById(req.params.id);
+
     const locals = {
       title: "Income",
       description: "Calculates income",
@@ -133,7 +135,6 @@ exports.getIncomeID = async (req, res) => {
     res.render("borrowersMtg/income", {
       locals,
       borrowerMtg: borrowerMtg,
-      employer,
     });
   } catch (error) {
     console.error(error);

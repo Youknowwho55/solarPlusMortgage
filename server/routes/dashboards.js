@@ -4,13 +4,6 @@ const User = require("../models/user");
 const passport = require("passport");
 const passportLocalMongoose = require("passport-local-mongoose");
 
-//defining multiple from the same
-const models = require("../models/borrowerMtg");
-
-const BorrowerMtg = models.BorrowerMtg;
-const MortgageLoan = models.MortgageLoan;
-const Employer = models.Employer;
-
 const express = require("express");
 const router = express.Router();
 const dashboardController = require("../controllers/dashboardController");

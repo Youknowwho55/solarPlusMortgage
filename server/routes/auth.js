@@ -1,114 +1,17 @@
 /** @format */
 
 const express = require("express");
-const User = require("../models/user");
 const router = express.Router();
-const passport = require("passport");
-const passportLocalMongoose = require("passport-local-mongoose");
 
-//, name: req.user.username
-router.get("/admin", async (req, res) => {
-  const users = await User.find().sort({ createdAtUser: "desc" });
-  res.render("mainDashboard/adminDashboard", { users: users });
-});
+const mainController = require("../controllers/authController");
 
-router.get("/login", function (req, res, next) {
-  res.render("register/login", { layout: false });
-});
+router.get("/admin", mainController.getAdmin);
+router.get("/login", mainController.getLogin);
+router.get("/register", mainController.getRegister);
 
-router.get("/settings", function (req, res, next) {
-  res.render("settings");
-});
-
-router.post(
-  "/login",
-  passport.authenticate("local", { failureRedirect: "/login" }),
-  function (req, res) {
-    res.redirect("/");
-  }
-);
-
-// NEED TO MAKE SURE THIS REDIRECTS TO THE DASHBOARD PAGE
-// ADD TD FOR USER TO LOGIN TO THEIR OWN DASHBOARD
-//   router.post("/login", function (req, res) {
-// 	if (!req.body.username) {
-// 		res.json({ success: false, message: "Username was not given" })
-// 	}
-// 	else if (!req.body.password) {
-// 		res.json({ success: false, message: "Password was not given" })
-// 	}
-// 	else {
-// 		passport.authenticate("local", function (err, user, info) {
-// 			if (err) {
-// 				res.json({ success: false, message: err });
-// 			}
-// 			else {
-// 				if (!user) {
-// 					res.json({ success: false, message: "username or password incorrect" });
-// 				}
-// 				else {
-// 					const token = jwt.sign({ userId: user._id, username: user.username }, secretkey, { expiresIn: "24h" });
-// 					res.json({ success: true, message: "Authentication successful", token: token });
-//                     res.render("mainDashboard/index")
-// 				}
-// 			}
-// 		})(req, res);
-// 	}
-// });
-
-//THIS ISNT WORKING
-router.post("/logout", function (req, res, next) {
-  req.logout(function (err) {
-    if (err) {
-      return next(err);
-    }
-    res.redirect("/");
-  });
-});
-
-router.get("/register", function (req, res, next) {
-  res.render("register/register", { layout: false });
-});
-
-//NEED TO ADD IN RES.REDIRECT!!!
-
-router.post("/register", function (req, res) {
-  User.register(
-    new User({ email: req.body.email, username: req.body.username }),
-    req.body.password,
-    function (err, user) {
-      if (err) {
-        res.json({
-          success: false,
-          message: "Your account could not be saved. Error: " + err,
-        });
-      } else {
-        req.login(user, (er) => {
-          if (er) {
-            res.json({ success: false, message: er });
-          } else {
-            res.json({ success: true, message: "Your account has been saved" });
-            res.render("mainDashboard/index");
-          }
-        });
-      }
-    }
-  );
-});
-
-//this is where the individual file is for the different LO's or wharever
-router.get("/:id", async (req, res) => {
-  const user = await User.findById(req.params.id);
-  if (user == null) res.redirect("/");
-  //UPDATED TO HAVE MAIN FILE INSTEAD OF /SHOW
-  res.render("borrowersMtg/individual", { user: user });
-});
-
-// user is your result from userschema using mongoose id TO SET PASSWORD
-// user.setPassword(req.body.password, function(err, user){ ..
-
-// // user is your result from userschema using mongoose id to change password
-// user.changePassword(req.body.oldpassword, req.body.newpassword, function(err) ...
+// router.post("/", mainController.postlogin);
+router.post("/register", mainController.postRegister);
+router.post("/logout", mainController.postLogout);
 
 module.exports = router;
 

@@ -168,11 +168,66 @@
       </form>
 
       <h1>additional properties in new form</h1>
-      <p>PI, Taxes, Ins, HOA, Includd?</p>
-      <p>
-        loan information: lender, date opened, original amount, months, rate.
-        Inv/Pri/ Sec
-      </p>
+
+      <!-- @format -->
+
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a
+            class="nav-link active"
+            aria-current="page"
+            href="/borrowersMtg/<%= borrowerMtg.id %>"
+            class="btn btn-info"
+            >Property 1</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link active"
+            aria-current="page"
+            href="/workbook/<%= borrowerMtg.id %>"
+            class="btn btn-info"
+            >Property 2</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link active"
+            aria-current="page"
+            href="/income/<%= borrowerMtg.id %>"
+            class="btn btn-info"
+            >Property 3</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link active"
+            aria-current="page"
+            href="/conditions/<%= borrowerMtg.id %>"
+            class="btn btn-info"
+            >Property 4</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link active"
+            aria-current="page"
+            href="/documents/<%= borrowerMtg.id %>"
+            class="btn btn-info"
+            >Property 5</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link active"
+            aria-current="page"
+            href="/benefit/<%= borrowerMtg.id %>"
+            class="btn btn-info"
+            >Property 6</a
+          >
+        </li>
+      </ul>
+      <%- include('../partials/_properties.ejs') %>
     </div>
   </div>
 </div>

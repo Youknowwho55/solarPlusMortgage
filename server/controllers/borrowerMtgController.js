@@ -1,7 +1,11 @@
 /** @format */
+const {
+  BorrowerMtg,
+  MortgageLoan,
+  Employer,
+} = require("../models/borrowerMtg");
 
-const models = require("../models/borrowerMtg");
-const BorrowerMtg = models.BorrowerMtg;
+// Now you can use BorrowerMtg, MortgageLoan, and Employer directly.
 
 exports.getBorrowerMtgEdit = async (req, res) => {
   try {
@@ -21,7 +25,7 @@ exports.getBorrowerMtgById = async (req, res) => {
   try {
     const borrowerMtg = await BorrowerMtg.findById(req.params.id);
     const locals = {
-      title: "Custimer",
+      title: "Customer",
       description: "Get the borrowers identification",
     };
     res.render("borrowersMtg/mainFile", {
