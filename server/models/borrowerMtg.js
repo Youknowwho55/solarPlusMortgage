@@ -73,9 +73,22 @@ const borrowerMtgSchema = new mongoose.Schema({
     //This might need to be a capital
     ref: "user",
   },
+  // Add a reference to the MortgageLoan schema
+  mortgageLoan: {
+    type: Schema.Types.ObjectId,
+    ref: "MortgageLoan",
+  },
+
+  // Add a reference to the Employer schema
   employer: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Employer", // This should match the model name of the Employer schema
+    type: Schema.Types.ObjectId,
+    ref: "Employer",
+  },
+
+  // Add a reference to the mtgConditions schema
+  mtgConditions: {
+    type: Schema.Types.ObjectId,
+    ref: "mtgConditions",
   },
 });
 
@@ -97,20 +110,19 @@ const employerSchema = new mongoose.Schema({
   employerZipCode: { type: Number },
 });
 
-// const mtgConditionsSchema = new mongoose.Schema(
-//   {
-//   _id:{type: String},
-//   conditions:{type: String},
-//   requestedDate: {type: Date},
-//   CpmpletedDate: {type: Date},
-//   clearedDate: {type: Date},
-//   conditionNotes: {type: String}
-//   })
+const mtgConditionsSchema = new mongoose.Schema({
+  conditions: { type: String },
+  requestedDate: { type: Date },
+  CpmpletedDate: { type: Date },
+  clearedDate: { type: Date },
+  conditionNotes: { type: String },
+});
 
 module.exports = {
   BorrowerMtg: mongoose.model("BorrowerMtg", borrowerMtgSchema),
   MortgageLoan: mongoose.model("MortgageLoan", mortgageLoanSchema),
   Employer: mongoose.model("Employer", employerSchema),
+  mtgConditions: mongoose.model("mtgConditions", mtgConditionsSchema),
 };
 
 // module.exports = mongoose.model('mtgConditions', mtgConditionsSchema)

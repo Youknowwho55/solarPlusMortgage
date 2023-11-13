@@ -6,8 +6,6 @@ const {
   Employer,
 } = require("../models/borrowerMtg");
 
-// , { borrowerMtg: new BorrowerMtg() }
-
 exports.getMessages = async (req, res) => {
   try {
     const locals = {
@@ -61,8 +59,6 @@ exports.getMarketData = async (req, res) => {
   }
 };
 
-//// Work from here
-
 exports.getWorkbookID = async (req, res) => {
   try {
     const borrowerMtg = await BorrowerMtg.findById(req.params.id);
@@ -89,7 +85,11 @@ exports.getConditionsID = async (req, res) => {
       title: "Conditions",
       description: "Used to assist with conditions to close",
     };
-    res.render("borrowersMtg/conditions", { locals, borrowerMtg: borrowerMtg });
+    res.render("borrowersMtg/conditions", {
+      locals,
+      borrowerMtg: borrowerMtg,
+      layout: "../views/layouts/dashboardLayout",
+    });
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");
@@ -103,7 +103,11 @@ exports.getDocumentsID = async (req, res) => {
       title: "Documents",
       description: "repository for documents used in the process",
     };
-    res.render("borrowersMtg/documents", { locals, borrowerMtg: borrowerMtg });
+    res.render("borrowersMtg/documents", {
+      locals,
+      borrowerMtg: borrowerMtg,
+      layout: "../views/layouts/dashboardLayout",
+    });
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");
@@ -117,7 +121,11 @@ exports.getBenefitID = async (req, res) => {
       title: "Benefit",
       description: "Breaks down the benefit to the borrower",
     };
-    res.render("borrowersMtg/benefit", { locals, borrowerMtg: borrowerMtg });
+    res.render("borrowersMtg/benefit", {
+      locals,
+      borrowerMtg: borrowerMtg,
+      layout: "../views/layouts/dashboardLayout",
+    });
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");
@@ -126,8 +134,10 @@ exports.getBenefitID = async (req, res) => {
 
 exports.getIncomeID = async (req, res) => {
   try {
-    const borrowerMtg = await BorrowerMtg.findById(req.params.id);
-
+    const borrowerMtg = await BorrowerMtg.findById(req.params.id)
+      .populate("mortgageLoan")
+      .populate("employer")
+      .populate("mtgConditions");
     const locals = {
       title: "Income",
       description: "Calculates income",
@@ -135,6 +145,7 @@ exports.getIncomeID = async (req, res) => {
     res.render("borrowersMtg/income", {
       locals,
       borrowerMtg: borrowerMtg,
+      layout: "../views/layouts/dashboardLayout",
     });
   } catch (error) {
     console.error(error);

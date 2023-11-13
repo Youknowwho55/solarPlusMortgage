@@ -1,17 +1,21 @@
 <!-- @format -->
 
-<%- include('../partials/_tabs.ejs') %> Income Calculation File // income -
-sellect source (SS - grossable, W2, SE, Rental) calculations to see what the
-alue is. Then have a selector on the worksheet to see
-
+<%- include('../partials/_tabs.ejs') %>
 <body>
   <h1 class="mb-4">Workbook</h1>
+  <p>
+    Income Calculation File // income - sellect source (SS - grossable, W2, SE,
+    Rental) calculations to see what the alue is. Then have a selector on the
+    worksheet to see
+  </p>
+  <button>Add Employer</button>
+  <% if (borrowerMtg.employer) { %>
 
   <div class="card">
     <div class="col-4">
       <label for="employerName" class="form-label">Employer Name</label>
       <input
-        value="<%= employer.employerName %>"
+        value="<%= borrowerMtg.employer.employerName %>"
         type="text"
         name="employerName"
         id="employerName"
@@ -21,7 +25,7 @@ alue is. Then have a selector on the worksheet to see
       <div class="col-12">
         <label for="inputAddress" class="form-label">Address</label>
         <input
-          value="<%= employer.employerStreet %>"
+          value="<%= borrowerMtg.employer.employerStreet %>"
           type="text"
           name="street"
           id="street"
@@ -31,7 +35,7 @@ alue is. Then have a selector on the worksheet to see
       <div class="col-12">
         <label for="inputAddress2" class="form-label">Address 2</label>
         <input
-          value="<%= employer.employerStreetLine2 %>"
+          value="<%= borrowerMtg.employer.employerStreetLine2 %>"
           type="text"
           name="streetLine2"
           id="streetLine2"
@@ -41,7 +45,7 @@ alue is. Then have a selector on the worksheet to see
       <div class="col-md-6">
         <label for="inputCity" class="form-label">City</label>
         <input
-          value="<%= employer.employerCity %>"
+          value="<%= borrowerMtg.employer.employerCity %>"
           type="text"
           name="city"
           id="city"
@@ -51,7 +55,7 @@ alue is. Then have a selector on the worksheet to see
       <div class="col-md-4">
         <label for="inputState" class="form-label">State</label>
         <input
-          value="<%= employer.employerState %>"
+          value="<%= borrowerMtg.employer.employerState %>"
           type="text"
           name="state"
           id="state"
@@ -67,7 +71,7 @@ alue is. Then have a selector on the worksheet to see
       <div class="col-md-2">
         <label for="inputZip" class="form-label">Zip</label>
         <input
-          value="<%= employer.employerZipCode %>"
+          value="<%= borrowerMtg.employer.employerZipCode %>"
           type="text"
           name="zipCode"
           id="zipCode"
@@ -76,6 +80,9 @@ alue is. Then have a selector on the worksheet to see
       </div>
     </div>
   </div>
+  <% } else { %>
+  <p>No employer information available</p>
+  <% } %>
 </body>
 
 <script src="/public/Jquery/income.js"></script>

@@ -72,18 +72,6 @@ exports.updatePeople = async (req, res) => {
   }
 };
 
-// keeping this it might be the way to solve my error
-// async function (req, res) {
-//   const borrowerMtg = await BorrowerMtg.findById(req.params.id);
-//   // Update borrowerMtg properties related to people
-//   try {
-//     // Save updated borrowerMtg
-//     res.redirect(`/borrowersMtg/${borrowerMtg.id}`);
-//   } catch (e) {
-//     res.render("borrowersMtg/edit", { borrowerMtg: borrowerMtg });
-//   }
-// }
-
 exports.deleteBorrowerMtg = async (req, res) => {
   try {
     await BorrowerMtg.findByIdAndDelete(req.params.id);
@@ -97,22 +85,6 @@ exports.deleteBorrowerMtg = async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 };
-
-// function savePeople(path) {
-//   return async (req, res) => {
-//     let borrowerMtg = req.borrowerMtg;
-//     borrowerMtg.loanOfficer = req.body.loanOfficer;
-//     borrowerMtg.processor = req.body.processor;
-//     borrowerMtg.referral = req.body.referral;
-
-//     try {
-//       borrowerMtg = await borrowerMtg.save();
-//       res.redirect(`/borrowersMtg/${borrowerMtg.id}`);
-//     } catch (e) {
-//       res.render(`borrowersMtg/${path}`, { borrowerMtg: borrowerMtg });
-//     }
-//   };
-// }
 
 async function saveBorrowerMtgAndRender(req, res, path, locals) {
   let borrowerMtg;
