@@ -6,13 +6,10 @@
 
 <div class="table-responsive ">
   <table class="table ">
-
-
-  
     <!-- SAVINGS-->
   
     <div class='savings'>
-      <h2>Savings </h2>
+      <h3>Savings </h3>
       <table id="savingsTable">
         <tr>
           <th>Monthly Savings</th>
@@ -37,10 +34,10 @@
     <h2>Loan Information </h2>
     <table id="loanInformation">
       <tr>
-        <th>Property Type</th>
+        <th>Property</th>
         <th>Occupancy</th>
-        <th>Loan Type</th>
-        <th>Term</th>
+        <th>Loan</th>
+        <th>Term (mo)</th>
         <th>Purpose</th>
         <th>Appraisal Waiver</th></tr>
       </tr>
@@ -138,23 +135,15 @@
 
         </tr>
       </table>
-  
-  <table>
-    <tr>
-   <td>Tax Inc?:  <input type="checkbox" name="oldTaxIncluded" id="oldTaxIncluded"></td> 
-   <td>Ins Inc?:  <input type="checkbox" name="oldInsIncluded" id="oldInsIncluded"></td> 
-  </tr>
-  
-  </table>
+
   
     </div>
     
   
 
     <!-- New Loan sections -->
-      <div class='newLoan'>
+      <div class='newLoan pt-2'>
         <h2>New Loan</h2>
-      <form>
 
           <table>
             <tr>
@@ -207,7 +196,6 @@
       </tr>
       </table>
       
-        </form>
       </div>  
     
   
@@ -370,11 +358,12 @@
       <td><input type="number" name="bd1" id="bd3"></td>
       <td><input type="number" name="bdDollar" id="bdDollar3"></td>
       <td><input type="checkbox" name="selectRate3"></td>
-    </tr>
+         </tr>
         </table>
     </div>
-    
-    
+            <!-- End Pricing -->
+
+            <!-- Fees -->
     <div class="TargetFees">
     <table id="TargetFees">
       <tr>
@@ -390,7 +379,7 @@
     <td>Tax Service:<input type="number" id="taxService" value="88"></td>
     </table>
     </div>
-        <!-- End Pricing -->
+        <!-- End Fees -->
   
 
 
@@ -405,10 +394,10 @@
           <th>Type</th>
           <th>Balance</th>
           <th>Monthly</th>
-          <th>Omit</th>
-          <th>Pay</th>
           <th>Term</th>
           <th>Rate</th>
+          <th class="smallSelect">Omit</th>
+          <th class="smallSelect">Pay</th>
           <th>Action</th>
 
         </tr>
@@ -425,10 +414,11 @@
           </td>
           <td><input type="number" name="balanceTotal"></td>
           <td><input type="number" name="monthlyDebtPayment"></td>
-          <td><input type="checkbox" name="omitDebt"></td>
-          <td><input type="checkbox" name="paydebt"></td>
+
           <td><input type="number" name="termDebt"></td>
           <td><input type="number" name="rateDebt"></td>
+          <td><input  class="smallSelect"type="checkbox" name="omitDebt"></td>
+          <td><input  class="smallSelect"type="checkbox" name="paydebt"></td>
           <td><button type="button" class="btn btn-danger btn-sm" name="delete">Delete </button></td>
 
         </tr>
@@ -474,18 +464,15 @@
     <!-- DEBT TO INCOME -->
 
   
-  
-    </div>
-    
+      
   <div class="titleFees" id="titleFees">
   <h3>Title Fees</h3>
-  
-  
   </div>
   
   
 
   </table>
+
 </div>
 
 
@@ -512,7 +499,9 @@ tr td{
   padding: 3px;
 }
 
-
+.smallSelect{
+  width: 50%;
+}
 
 
 </style>
@@ -535,10 +524,10 @@ tr td{
         '</select></td>' +
         '<td><input type="number" name="balanceTotal' + ($('#consumerDebt tr').length + 1) + '"></td>' +
         '<td><input type="number" name="monthlyDebtPayment' + ($('#consumerDebt tr').length + 1) + '"></td>' +
-        '<td><input type="checkbox" name="omitDebt' + ($('#consumerDebt tr').length + 1) + '"></td>' +
-        '<td><input type="checkbox" name="paydebt' + ($('#consumerDebt tr').length + 1) + '"></td>' +
         '<td><input type="number" name="termDebt' + ($('#consumerDebt tr').length + 1) + '"></td>' +
         '<td><input type="number" name="rateDebt' + ($('#consumerDebt tr').length + 1) + '"></td>' +
+        '<td><input type="checkbox" name="omitDebt' + ($('#consumerDebt tr').length + 1) + '"></td>' +
+        '<td><input type="checkbox" name="paydebt' + ($('#consumerDebt tr').length + 1) + '"></td>' +
         '</tr>';
 
       $('#consumerDebt').append(newRow);

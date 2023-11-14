@@ -35,7 +35,7 @@ input:read-only {
 }
 
 #commentSection {
-  height: 600px; /* Set a fixed height for the comment section */
+  height: 550px; /* Set a fixed height for the comment section */
   overflow-y: scroll; /* Add a vertical scrollbar when needed */
 }
 
@@ -108,7 +108,7 @@ textarea {
 input {
   background-color: #3276b92e;
   outline: #181a1e;
-  width: 10rem;
+  width: 8rem;
 }
 
 .sidebar .logo {

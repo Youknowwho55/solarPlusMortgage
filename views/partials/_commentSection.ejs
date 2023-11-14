@@ -2,8 +2,9 @@
 
 <!-- @format  <form action="/newComment/:id" method="POST">
 -->
+<h6 class="pt-3">Comments:</h6>
 
-<div class="mt-4">
+<div>
   <div class="row">
     <div class="col-md-12">
       <div
@@ -16,7 +17,7 @@
   </div>
 
   <div class="row mt-3">
-    <div class="col-md-12">
+    <div class="col-md-9">
       <input
         type="text"
         id="comment"
@@ -24,8 +25,8 @@
         placeholder="Enter your comment"
       />
     </div>
-    <div class="col-md-4">
-      <button id="addCommentButton" class="btn btn-sm btn-primary">Add</button>
+    <div class="col-md-2 pb-2">
+      <button id="addCommentButton" class="btn btn-success">Add</button>
     </div>
   </div>
 </div>
@@ -55,6 +56,7 @@
         var newComment =
           '<span class="blue-text">' +
           formattedDate +
+          " Username" +
           "</span>: " +
           commentText +
           "<br>";
@@ -69,9 +71,7 @@
   .blue-text {
     color: blue;
   }
-  .commentHeight {
-    height: 50px; /* Adjust the height value as needed */
-  }
+
   .word-wrap {
     word-wrap: break-word;
   }
