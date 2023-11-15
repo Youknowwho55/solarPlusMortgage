@@ -70,22 +70,18 @@ const borrowerMtgSchema = new mongoose.Schema({
   },
   user: {
     type: Schema.ObjectId,
-    //This might need to be a capital
     ref: "user",
   },
-  // Add a reference to the MortgageLoan schema
   mortgageLoan: {
     type: Schema.Types.ObjectId,
     ref: "MortgageLoan",
   },
 
-  // Add a reference to the Employer schema
   employer: {
     type: Schema.Types.ObjectId,
     ref: "Employer",
   },
 
-  // Add a reference to the mtgConditions schema
   mtgConditions: {
     type: Schema.Types.ObjectId,
     ref: "mtgConditions",

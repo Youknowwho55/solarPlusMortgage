@@ -1,10 +1,12 @@
 <!-- @format -->
 
-<!-- @format  <form action="/newComment/:id" method="POST">
+<!-- @format  
 -->
-<h6 class="pt-3">Comments:</h6>
+<!-- comments.ejs -->
 
-<div>
+<h6 class="pt-3">Comments:</h6>
+<form action="/comments/newComment/<%= borrowerMtg.id %>" method="POST">
+  <div>
   <div class="row">
     <div class="col-md-12">
       <div
@@ -12,47 +14,55 @@
         contenteditable="false"
         class="word-wrap"
         style="border: 1px solid #ccc; padding: 5px; min-height: 100px"
-      ></div>
+      >
+        <% comments.forEach(function(comment) { %>
+          <span class="blue-text"><%= comment.createdAt %></span>: <%= comment.comment %><br>
+        <% }); %>
+
+
+      </div>
     </div>
   </div>
+</div>
+  
 
   <div class="row mt-3">
     <div class="col-md-9">
       <input
         type="text"
-        id="comment"
+        id="comment"  
+        name="comment" 
         class="form-control commentHeight"
         placeholder="Enter your comment"
       />
     </div>
     <div class="col-md-2 pb-2">
-      <button id="addCommentButton" class="btn btn-success">Add</button>
+      <button type="submit" id="addCommentButton" class="btn btn-success">Add</button>
     </div>
   </div>
 </div>
-
-<!-- comments.ejs lead_id 
-
-<h1>Comments for Homebuyer Lead: <%=  %></h1>
-
-<ul>
-  <% //comments.forEach(function(comment) { %>
-    <li>
-      <p><strong><%= //comment.username %></strong> said on <%= //comment.date %>:</p>
-      <p><%= //comment.comment %></p>
-    </li>
-  <% //}); %>
-</ul>-->
+</form>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
   $(document).ready(function () {
-    $("#addCommentButton").on("click", function () {
+    $("#addCommentButton").on("click", function (e) {
+      e.preventDefault(); // Prevent the default form submission
+
       var commentText = $("#comment").val();
       if (commentText.trim() !== "") {
-        var currentComments = $("#commentSection").html();
-        var options = { hour: "numeric", minute: "numeric", hour12: true };
-        var formattedDate = new Date().toLocaleTimeString("en-US", options);
+        var options = {
+          month: "numeric",
+          day: "numeric",
+          year: "numeric",
+          hour: "numeric",
+          minute: "numeric",
+          hour12: true,
+        };
+
+        var formattedDate = new Date().toLocaleString("en-US", options);
+
+        // Update the local comment section
         var newComment =
           '<span class="blue-text">' +
           formattedDate +
@@ -60,19 +70,32 @@
           "</span>: " +
           commentText +
           "<br>";
-        $("#commentSection").html(currentComments + newComment);
+          "<br>";
+
+        $("#commentSection").append(newComment);
         $("#comment").val(""); // Clear the input field
+
+        // Send the comment to the server using AJAX
+        $.ajax({
+          url: "/comments/newComment/<%= borrowerMtg.id %>",
+          method: "PUT",
+          data: {
+            username: "Username", // Replace with actual username
+            comment: commentText,
+          },
+          success: function (response) {
+            // Handle the server response if needed
+          },
+          error: function (error) {
+            console.error("Error posting comment:", error);
+          },
+        });
       }
     });
   });
 </script>
 
-<style>
-  .blue-text {
-    color: blue;
-  }
 
-  .word-wrap {
-    word-wrap: break-word;
-  }
-</style>
+
+
+

@@ -65,13 +65,13 @@ passport.deserializeUser(User.deserializeUser());
 
 app.use(bodyParser.urlencoded({ limit: "10mb", extended: false }));
 app.use(expressLayouts);
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 
 // All routes
 app.use("/borrowersMtg", require("./server/routes/borrowersMtg"));
 app.use("/", require("./server/routes/dashboards"));
-app.use("/comment", require("./server/routes/comments"));
+app.use("/comments", require("./server/routes/comments"));
 app.use("/", require("./server/routes/auth"));
 app.use("/", require("./server/routes/index"));
 app.use("/", require("./server/routes/404"));

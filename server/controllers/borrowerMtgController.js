@@ -5,34 +5,25 @@ const {
   Employer,
 } = require("../models/borrowerMtg");
 
-// Now you can use BorrowerMtg, MortgageLoan, and Employer directly.
-
-exports.getBorrowerMtgEdit = async (req, res) => {
-  try {
-    const borrowerMtg = await BorrowerMtg.findById(req.params.id);
-    const locals = {
-      title: "Edit",
-      description: "Edit the borrowers information",
-    };
-    res.render("borrowersMtg/edit", { locals, borrowerMtg: borrowerMtg });
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Internal Server Error");
-  }
-};
+const Comment = require("../models/comment");
+const commentsController = require("../controllers/commentController");
 
 exports.getBorrowerMtgById = async (req, res) => {
   try {
     const borrowerMtg = await BorrowerMtg.findById(req.params.id);
+    const comments = await commentsController.getCommentsByBorrowerMtgId(
+      req.params.id
+    );
+
     const locals = {
-      title: "Customer",
-      description: "Get the borrowers identification",
-    };
-    res.render("borrowersMtg/mainFile", {
-      locals,
-      borrowerMtg: borrowerMtg,
+      title: "Edit",
+      description: "Edit the borrower's information",
+      borrowerMtg,
+      comments,
       layout: "../views/layouts/dashboardLayout",
-    });
+    };
+
+    res.render("borrowersMtg/mainFile", locals);
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");

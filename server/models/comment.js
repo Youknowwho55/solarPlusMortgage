@@ -10,24 +10,21 @@ const commentSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-
   createdAt: {
-    type: Date,
-    default: Date.now,
+    type: String,
+    default: new Date().toLocaleString("en-US", {
+      month: "numeric",
+      day: "numeric",
+      year: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+      hour12: true,
+    }),
   },
-
-  //  id: {
-  //    type: String,
-  //   }
+  borrowersMtg: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "borrowersMtg",
+  },
 });
-
-// {
-//   "_id": ObjectId,
-//   "lead_id": ObjectId,
-//   "user_id": ObjectId,
-//   "username": String,    // Username of the commenter
-//   "comment": String,
-//   "date": Date
-// }
 
 module.exports = mongoose.model("Comment", commentSchema);

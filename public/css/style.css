@@ -671,3 +671,11 @@ input {
     min-width: 340px;
   }
 }
+
+.blue-text {
+  color: blue;
+}
+
+.word-wrap {
+  word-wrap: break-word;
+}
