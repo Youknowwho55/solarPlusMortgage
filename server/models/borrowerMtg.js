@@ -6,7 +6,7 @@ const LOANSTATS = {
   NEW: "new", // new
   NOS: "nos", //no sale - remove
   SOLD: "sold", // sold - keeping in process
-  do: "do", // docs out
+  DOCO: "do", // docs out
   AWC: "awc", // approved with conditions
   UND: "und", // with underwriting
   CTC: "ctc", // clear to close
@@ -40,12 +40,12 @@ const borrowerMtgSchema = new mongoose.Schema({
     type: Number,
   },
   initialDocsSigned: {
-    type: Date,
+    type: String,
   },
-  closingDicsSigned: {
-    type: Date,
+  closingDocsSigned: {
+    type: String,
   },
-  referral: {
+  referralSource: {
     type: String,
   },
   loanStatus: {

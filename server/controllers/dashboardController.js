@@ -5,6 +5,8 @@ const {
   MortgageLoan,
   Employer,
 } = require("../models/borrowerMtg");
+const Comment = require("../models/comment");
+const commentsController = require("../controllers/commentController");
 
 exports.getMessages = async (req, res) => {
   try {
@@ -62,7 +64,9 @@ exports.getMarketData = async (req, res) => {
 exports.getWorkbookID = async (req, res) => {
   try {
     const borrowerMtg = await BorrowerMtg.findById(req.params.id);
-
+    const comments = await commentsController.getCommentsByBorrowerMtgId(
+      req.params.id
+    );
     const locals = {
       title: "Workbook",
       description: "calculate te mortgage payment",
@@ -70,6 +74,7 @@ exports.getWorkbookID = async (req, res) => {
     res.render("borrowersMtg/workbook", {
       locals,
       borrowerMtg: borrowerMtg,
+      comments,
       layout: "../views/layouts/dashboardLayout",
     });
   } catch (error) {
@@ -81,6 +86,9 @@ exports.getWorkbookID = async (req, res) => {
 exports.getConditionsID = async (req, res) => {
   try {
     const borrowerMtg = await BorrowerMtg.findById(req.params.id);
+    const comments = await commentsController.getCommentsByBorrowerMtgId(
+      req.params.id
+    );
     const locals = {
       title: "Conditions",
       description: "Used to assist with conditions to close",
@@ -88,6 +96,7 @@ exports.getConditionsID = async (req, res) => {
     res.render("borrowersMtg/conditions", {
       locals,
       borrowerMtg: borrowerMtg,
+      comments,
       layout: "../views/layouts/dashboardLayout",
     });
   } catch (error) {
@@ -99,6 +108,9 @@ exports.getConditionsID = async (req, res) => {
 exports.getDocumentsID = async (req, res) => {
   try {
     const borrowerMtg = await BorrowerMtg.findById(req.params.id);
+    const comments = await commentsController.getCommentsByBorrowerMtgId(
+      req.params.id
+    );
     const locals = {
       title: "Documents",
       description: "repository for documents used in the process",
@@ -106,6 +118,7 @@ exports.getDocumentsID = async (req, res) => {
     res.render("borrowersMtg/documents", {
       locals,
       borrowerMtg: borrowerMtg,
+      comments,
       layout: "../views/layouts/dashboardLayout",
     });
   } catch (error) {
@@ -117,6 +130,9 @@ exports.getDocumentsID = async (req, res) => {
 exports.getBenefitID = async (req, res) => {
   try {
     const borrowerMtg = await BorrowerMtg.findById(req.params.id);
+    const comments = await commentsController.getCommentsByBorrowerMtgId(
+      req.params.id
+    );
     const locals = {
       title: "Benefit",
       description: "Breaks down the benefit to the borrower",
@@ -124,6 +140,7 @@ exports.getBenefitID = async (req, res) => {
     res.render("borrowersMtg/benefit", {
       locals,
       borrowerMtg: borrowerMtg,
+      comments,
       layout: "../views/layouts/dashboardLayout",
     });
   } catch (error) {
@@ -138,6 +155,9 @@ exports.getIncomeID = async (req, res) => {
       .populate("mortgageLoan")
       .populate("employer")
       .populate("mtgConditions");
+    const comments = await commentsController.getCommentsByBorrowerMtgId(
+      req.params.id
+    );
     const locals = {
       title: "Income",
       description: "Calculates income",
@@ -145,6 +165,7 @@ exports.getIncomeID = async (req, res) => {
     res.render("borrowersMtg/income", {
       locals,
       borrowerMtg: borrowerMtg,
+      comments,
       layout: "../views/layouts/dashboardLayout",
     });
   } catch (error) {
@@ -152,48 +173,3 @@ exports.getIncomeID = async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 };
-
-// // Route to edit or add Employer information
-// router.get("/income/employer/:id", async (req, res) => {
-//   try {
-//     const borrowerMtg = await BorrowerMtg.findById(req.params.id)
-//       .populate("employer")
-//       .exec();
-//     if (!borrowerMtg) {
-//       return res.redirect("/");
-//     }
-//     res.render("income/edit-employer", { borrowerMtg: borrowerMtg });
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).send("Internal Server Error");
-//   }
-// });
-
-// // Route to calculate and display income
-// router.get("/income/calculate/:id", async (req, res) => {
-//   try {
-//     const borrowerMtg = await BorrowerMtg.findById(req.params.id)
-//       .populate("employer")
-//       .exec();
-//     if (!borrowerMtg) {
-//       return res.redirect("/");
-//     }
-
-//     // Perform income calculation based on hourly pay, etc.
-//     const hourlyPay = borrowerMtg.employer.hourlyPay;
-//     const hoursWorked = 40; // Example hours worked
-//     const calculatedIncome = hourlyPay * hoursWorked;
-
-//     res.render("income/calculate", {
-//       borrowerMtg: borrowerMtg,
-//       calculatedIncome: calculatedIncome,
-//     });
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).send("Internal Server Error");
-//   }
-// });
-
-//if borrower is selected
-
-/// We are assuming the client is already on the borrowers page so dont need to search for ID again

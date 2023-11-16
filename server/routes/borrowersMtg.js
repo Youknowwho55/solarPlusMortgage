@@ -8,6 +8,7 @@ const borrowerMtgController = require("../controllers/borrowerMtgController");
 // router.get("/edit/:id", borrowerMtgController.getBorrowerMtgEdit);
 router.get("/:id", borrowerMtgController.getBorrowerMtgById);
 router.post("/", borrowerMtgController.createBorrowerMtg);
+router.post("/Modal/:id", borrowerMtgController.updateBorrowerMtgModal);
 router.put("/:id", borrowerMtgController.updateBorrowerMtg);
 router.put("/people/:id", borrowerMtgController.updatePeople);
 router.delete("/:id", borrowerMtgController.deleteBorrowerMtg);

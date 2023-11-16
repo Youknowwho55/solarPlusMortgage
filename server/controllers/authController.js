@@ -4,7 +4,7 @@ const models = require("../models/borrowerMtg");
 const BorrowerMtg = models.BorrowerMtg;
 
 const user = require("../models/user");
-const User = models.User;
+const User = models.user;
 
 exports.getAdmin = async (req, res) => {
   try {
@@ -13,7 +13,7 @@ exports.getAdmin = async (req, res) => {
       title: "Admin",
       description: "Admin Dashboard",
     };
-    res.render("mainDashboard/adminDashboard", { locals, users: users });
+    res.render("mainDashboard/adminDashboard", { locals, users });
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");
