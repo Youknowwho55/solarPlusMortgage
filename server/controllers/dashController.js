@@ -5,7 +5,7 @@ const {
   Employer,
 } = require("../models/borrowerMtg");
 
-exports.dashboardSales = async (req, res) => {
+exports.dashSales = async (req, res) => {
   const borrowermtgs = await BorrowerMtg.find().sort({
     createdAt: "desc",
   });
@@ -19,7 +19,21 @@ exports.dashboardSales = async (req, res) => {
   });
 };
 
-exports.dashboardSettings = async (req, res) => {
+exports.dashProcessing = async (req, res) => {
+  const borrowermtgs = await BorrowerMtg.find().sort({
+    createdAt: "desc",
+  });
+  const locals = {
+    title: "Dashboard",
+    description: "Main Dashboard for Sales professionals",
+  };
+  res.render("mainDashboard/processorDashboard", {
+    locals,
+    borrowermtgs: borrowermtgs,
+  });
+};
+
+exports.dashSettings = async (req, res) => {
   try {
     const locals = {
       title: "Settings",

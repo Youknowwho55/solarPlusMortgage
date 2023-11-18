@@ -1,19 +1,34 @@
 /** @format */
 
-const models = require("../models/borrowerMtg");
-const BorrowerMtg = models.BorrowerMtg;
+const BorrowerMtg = require("../models/borrowerMtg");
 
-const user = require("../models/user");
-const User = models.user;
+const User = require("../models/user");
 
 exports.getAdmin = async (req, res) => {
+  const users = await User.find().sort({
+    createdAt: "desc",
+  });
+  const locals = {
+    title: "Admin",
+    description: "Admin Dashboard",
+  };
+  res.render("mainDashboard/adminDashboard", {
+    locals,
+    users: users,
+  });
+};
+
+exports.getUser = async (req, res) => {
   try {
-    const users = await User.find().sort({ createdAtUser: "desc" });
+    const users = await User.findById(req.params.id);
+
     const locals = {
-      title: "Admin",
-      description: "Admin Dashboard",
+      title: "User",
+      description: "View the User Information",
+      users: users,
     };
-    res.render("mainDashboard/adminDashboard", { locals, users });
+
+    res.render("user/userIndex", locals);
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");

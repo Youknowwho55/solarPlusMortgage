@@ -6,7 +6,7 @@ const {
   Employer,
 } = require("../models/borrowerMtg");
 const Comment = require("../models/comment");
-const commentsController = require("../controllers/commentController");
+const commentsController = require("./commentController");
 
 exports.getMessages = async (req, res) => {
   try {

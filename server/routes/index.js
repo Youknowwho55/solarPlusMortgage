@@ -2,12 +2,13 @@
 
 const express = require("express");
 const router = express.Router();
-const mainController = require("../controllers/mainController");
+const dashController = require("../controllers/dashController");
 
 /**
  * App Routes
  */
-router.get("/", mainController.dashboardSales);
-router.get("/settings", mainController.dashboardSettings);
+router.get("/", dashController.dashSales);
+router.get("/processing", dashController.dashProcessing);
+router.get("/settings", dashController.dashSettings);
 
 module.exports = router;

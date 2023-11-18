@@ -6,7 +6,7 @@ const passportLocalMongoose = require("passport-local-mongoose");
 
 const express = require("express");
 const router = express.Router();
-const dashboardController = require("../controllers/dashboardController");
+const dashboardController = require("../controllers/modulesController");
 
 router.get("/messages", dashboardController.getMessages);
 router.get("/analytics", dashboardController.getAnalytics);

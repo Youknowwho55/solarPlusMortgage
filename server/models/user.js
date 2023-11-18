@@ -14,6 +14,9 @@ const ROLE = {
 };
 
 const UserSchema = new Schema({
+  firstName: { type: String },
+  lastName: { type: String },
+
   email: { type: String, required: true, unique: true },
   username: { type: String, unique: true, required: true },
   company: { type: String },

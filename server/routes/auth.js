@@ -6,12 +6,17 @@ const router = express.Router();
 const mainController = require("../controllers/authController");
 
 router.get("/admin", mainController.getAdmin);
+router.get("/User", mainController.getUser);
+
 router.get("/login", mainController.getLogin);
 router.get("/register", mainController.getRegister);
 
 // router.post("/", mainController.postlogin);
 router.post("/register", mainController.postRegister);
 router.post("/logout", mainController.postLogout);
+
+//Edit
+// router.get("/EditUser", mainController.editUser);
 
 module.exports = router;
 
