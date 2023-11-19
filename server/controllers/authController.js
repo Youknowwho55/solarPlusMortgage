@@ -4,20 +4,21 @@ const BorrowerMtg = require("../models/borrowerMtg");
 
 const User = require("../models/user");
 
-exports.getAdmin = async (req, res) => {
-  const users = await User.find().sort({
-    createdAt: "desc",
-  });
-  const locals = {
-    title: "Admin",
-    description: "Admin Dashboard",
-  };
-  res.render("mainDashboard/adminDashboard", {
-    locals,
-    users: users,
-  });
+//Direct to the Login
+exports.getLogin = async (req, res) => {
+  try {
+    const locals = {
+      title: "Login",
+      description: "login",
+    };
+    res.render("register/login", { locals, layout: false, users: users });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
 };
 
+//Direct to the Users ID Page
 exports.getUser = async (req, res) => {
   try {
     const users = await User.findById(req.params.id);
@@ -35,22 +36,17 @@ exports.getUser = async (req, res) => {
   }
 };
 
-exports.getRegister = async (req, res) => {
-  try {
-    const locals = {
-      title: "Register",
-      description: "Admin Dashboard",
-    };
-    res.render("register/register", { locals, users: users, layout: false });
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Internal Server Error");
-  }
-};
-
-exports.postRegister = async (req, res) => {
+// Post Route to Add User
+exports.addUser = async (req, res) => {
   User.register(
-    new User({ email: req.body.email, username: req.body.username }),
+    new User({
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      username: req.body.username,
+      email: req.body.email,
+      company: req.body.company,
+      role: req.body.role,
+    }),
     req.body.password,
     function (err, user) {
       if (err) {
@@ -70,19 +66,6 @@ exports.postRegister = async (req, res) => {
       }
     }
   );
-};
-
-exports.getLogin = async (req, res) => {
-  try {
-    const locals = {
-      title: "Login",
-      description: "login",
-    };
-    res.render("register/login", { locals, layout: false });
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Internal Server Error");
-  }
 };
 
 // exports.postLogin = async (req, res) => {

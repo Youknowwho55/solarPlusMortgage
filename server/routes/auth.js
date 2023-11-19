@@ -3,17 +3,15 @@
 const express = require("express");
 const router = express.Router();
 
-const mainController = require("../controllers/authController");
+const authController = require("../controllers/authController");
 
-router.get("/admin", mainController.getAdmin);
-router.get("/User", mainController.getUser);
+router.get("/User", authController.getUser);
 
-router.get("/login", mainController.getLogin);
-router.get("/register", mainController.getRegister);
+router.get("/login", authController.getLogin);
 
 // router.post("/", mainController.postlogin);
-router.post("/register", mainController.postRegister);
-router.post("/logout", mainController.postLogout);
+router.post("/AddUser", authController.addUser);
+router.post("/logout", authController.postLogout);
 
 //Edit
 // router.get("/EditUser", mainController.editUser);

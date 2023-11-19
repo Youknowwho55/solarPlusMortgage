@@ -130,15 +130,15 @@
                                   <tr>
                                       <td>
                                         <select class="status" name="loanStatus" id="loanStatus" value="<%= borrowerMtg.loanStatus %>">
-                                     <option>NEW</option>
-                                     <option>NOS</option>
-                                     <option>SOLD</option>
-                                     <option>DOCO</option>
-                                     <option>AWC</option>
-                                     <option>UND</option>
-                                     <option>CTC</option>
-                                     <option>FUN</option>
-                                     <option>COMP</option>
+                                     <option value="NEW" <%= borrowerMtg.loanStatus === 'NEW' ? 'selected' : '' %>>NEW</option>
+                                     <option value="NOS" <%= borrowerMtg.loanStatus === 'NOS' ? 'selected' : '' %>>NOS</option>
+                                     <option value="SOLD" <%= borrowerMtg.loanStatus === 'SOLD' ? 'selected' : '' %>>SOLD</option>
+                                     <option value="DOCO" <%= borrowerMtg.loanStatus === 'DOCO' ? 'selected' : '' %>>DOCO</option>
+                                     <option value="AWC" <%= borrowerMtg.loanStatus === 'AWC' ? 'selected' : '' %>>AWC</option>
+                                     <option value="UND" <%= borrowerMtg.loanStatus === 'UND' ? 'selected' : '' %>>UND</option>
+                                     <option value="CTC" <%= borrowerMtg.loanStatus === 'CTC' ? 'selected' : '' %>>CTC</option>
+                                     <option value="FUN" <%= borrowerMtg.loanStatus === 'FUN' ? 'selected' : '' %>>FUN</option>
+                                     <option value="COMP" <%= borrowerMtg.loanStatus === 'COMP' ? 'selected' : '' %>>COMP</option>
                                       </select>
                                         </td>
                                       <td readonly><strong><p  class="card-title"> <%= borrowerMtg.firstName %> <%= borrowerMtg.lastName %></strong></p> </td>
@@ -163,10 +163,10 @@
 
                                       </td>
                                       <td>
-                                        <input value="<%= borrowerMtg.initialDocsSigned %>" type="date" id="initialDocsSigned" name="initialDocsSigned">
+                                        <input value="<%= borrowerMtg.initialDocsSigned  || ''%>" type="date" id="initialDocsSigned" name="initialDocsSigned">
                                     </td>
                                     <td>
-                                        <input value="<%= borrowerMtg.closingDocsSigned %>" type="date" id="closingDocsSigned" name="closingDocsSigned">
+                                        <input value="<%= borrowerMtg.closingDocsSigned || '' %>" type="date" id="closingDocsSigned" name="closingDocsSigned">
                                     </td>
                                     <td><input  value="<%= borrowerMtg.referral %>" type="text" id="referral" name="referral"> </input></td>                             
                                   </tr>

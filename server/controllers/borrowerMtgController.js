@@ -51,7 +51,6 @@ exports.updateBorrowerMtg = async (req, res) => {
 
 exports.updateBorrowerMtgModal = async (req, res) => {
   const borrowerId = req.params.id;
-
   try {
     // Fetch the existing document
     const borrowerMtg = await BorrowerMtg.findById(borrowerId);
@@ -60,14 +59,29 @@ exports.updateBorrowerMtgModal = async (req, res) => {
     borrowerMtg.loanStatus = req.body.loanStatus;
     borrowerMtg.lender = req.body.lender;
     borrowerMtg.loanNumber = req.body.loanNumber;
-    borrowerMtg.initialDocsSigned = formatDate(req.body.initialDocsSigned);
-    borrowerMtg.closingDocsSigned = formatDate(req.body.closingDocsSigned);
+    borrowerMtg.initialDocsSigned = req.body.initialDocsSigned;
+    borrowerMtg.closingDocsSigned = req.body.closingDocsSigned;
     borrowerMtg.referral = req.body.referral;
 
     // Save the updated document
     await borrowerMtg.save();
 
     res.redirect("/"); // Redirect to the desired page after successful update
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
+};
+
+exports.getBorrowerMtgModal = async (req, res) => {
+  const borrowerId = req.params.id;
+
+  try {
+    // Fetch the existing document
+    const borrowerMtg = await BorrowerMtg.findById(borrowerId);
+
+    // Render the modal view and pass the borrowerMtg data
+    res.render("mainDashboard/salesDashboard", { borrowerMtg });
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");
@@ -126,13 +140,4 @@ async function saveBorrowerMtgAndRender(req, res, path, locals) {
       locals: locals,
     });
   }
-}
-
-// Function to format a date field
-function formatDate(dateString) {
-  return new Date(dateString).toLocaleDateString("en-US", {
-    day: "numeric",
-    month: "numeric",
-    year: "numeric",
-  });
 }

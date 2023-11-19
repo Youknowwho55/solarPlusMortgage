@@ -6,7 +6,7 @@ const LOANSTATS = {
   NEW: "new", // new
   NOS: "nos", //no sale - remove
   SOLD: "sold", // sold - keeping in process
-  DOCO: "do", // docs out
+  DOCO: "doco", // docs out
   AWC: "awc", // approved with conditions
   UND: "und", // with underwriting
   CTC: "ctc", // clear to close
