@@ -5,6 +5,8 @@ const {
   Employer,
 } = require("../models/borrowerMtg");
 
+const User = require("../models/user");
+
 const statusOrder = [
   "new",
   "nos",

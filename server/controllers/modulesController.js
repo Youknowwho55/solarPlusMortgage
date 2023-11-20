@@ -5,7 +5,8 @@ const {
   MortgageLoan,
   Employer,
 } = require("../models/borrowerMtg");
-const Comment = require("../models/comment");
+const Condition = require("../models/condition");
+
 const commentsController = require("./commentController");
 
 exports.getMessages = async (req, res) => {
@@ -89,6 +90,8 @@ exports.getConditionsID = async (req, res) => {
     const comments = await commentsController.getCommentsByBorrowerMtgId(
       req.params.id
     );
+    const condition = await Condition.findById(req.params.id);
+
     const locals = {
       title: "Conditions",
       description: "Used to assist with conditions to close",
@@ -97,6 +100,7 @@ exports.getConditionsID = async (req, res) => {
       locals,
       borrowerMtg: borrowerMtg,
       comments,
+      condition,
       layout: "../views/layouts/dashboardLayout",
     });
   } catch (error) {
@@ -170,6 +174,73 @@ exports.getIncomeID = async (req, res) => {
     });
   } catch (error) {
     console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
+};
+
+// POST Conditions
+exports.postConditionsID = async (req, res) => {
+  try {
+    const borrowerMtgId = req.params.id;
+    const newCondition = new Condition(); // Create a new instance of the Condition model
+
+    newCondition.condition = req.body.condition;
+    newCondition.description = req.body.description;
+
+    // Save the condition to the database
+    await newCondition.save();
+
+    // Find the BorrowerMtg by ID and push the new condition
+    const borrowerMtg = await BorrowerMtg.findById(borrowerMtgId);
+    borrowerMtg.conditions.push(newCondition);
+
+    // Save the BorrowerMtg with the updated conditions
+    await borrowerMtg.save();
+
+    // Respond with a success message
+    res
+      .status(201)
+      .json({ message: "Condition added successfully", newCondition });
+  } catch (error) {
+    console.error("Error adding condition:", error);
+    res.status(500).send("Internal Server Error");
+  }
+};
+
+// PUT Conditions
+exports.putConditionsID = async (req, res) => {
+  try {
+    const borrowerMtgId = req.params.id;
+    const conditionId = req.params.conditionId;
+    const updatedCondition = req.body;
+
+    // Find the BorrowerMtg by ID
+    const borrowerMtg = await BorrowerMtg.findById(borrowerMtgId);
+
+    // Find the index of the condition to be updated
+    const conditionIndex = borrowerMtg.conditions.findIndex(
+      (condition) => condition._id == conditionId
+    );
+
+    if (conditionIndex === -1) {
+      return res.status(404).json({ message: "Condition not found" });
+    }
+
+    // Update the condition
+    borrowerMtg.conditions[conditionIndex].condition =
+      updatedCondition.condition;
+    borrowerMtg.conditions[conditionIndex].description =
+      updatedCondition.description;
+
+    // Save the updated BorrowerMtg
+    await borrowerMtg.save();
+
+    // Respond with a success message
+    res
+      .status(200)
+      .json({ message: "Condition updated successfully", updatedCondition });
+  } catch (error) {
+    console.error("Error updating condition:", error);
     res.status(500).send("Internal Server Error");
   }
 };

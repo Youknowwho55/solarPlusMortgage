@@ -107,9 +107,10 @@ const employerSchema = new mongoose.Schema({
 });
 
 const mtgConditionsSchema = new mongoose.Schema({
-  conditions: { type: String },
+  condition: { type: String },
+  condition: { type: String },
   requestedDate: { type: Date },
-  CpmpletedDate: { type: Date },
+  CompletedDate: { type: Date },
   clearedDate: { type: Date },
   conditionNotes: { type: String },
 });

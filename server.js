@@ -70,7 +70,7 @@ app.use(methodOverride("_method"));
 
 // All routes
 app.use("/borrowersMtg", require("./server/routes/borrowersMtg"));
-app.use("/", require("./server/routes/dashboards"));
+app.use("/", require("./server/routes/modules"));
 app.use("/comments", require("./server/routes/comments"));
 app.use("/", require("./server/routes/auth"));
 app.use("/", require("./server/routes/index"));

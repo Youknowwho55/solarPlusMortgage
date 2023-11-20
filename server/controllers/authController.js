@@ -11,7 +11,25 @@ exports.getLogin = async (req, res) => {
       title: "Login",
       description: "login",
     };
-    res.render("register/login", { locals, layout: false, users: users });
+    res.render("register/login", { locals, layout: false });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
+};
+
+exports.postLogin = async (req, res) => {
+  try {
+    const locals = {
+      title: "Login",
+      description: "login",
+    };
+    passport.authenticate("local", {
+      failureRedirect: "/login",
+      locals,
+      layout: false,
+    }),
+      res.redirect("/");
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");
@@ -67,24 +85,6 @@ exports.addUser = async (req, res) => {
     }
   );
 };
-
-// exports.postLogin = async (req, res) => {
-//   try {
-//     const locals = {
-//       title: "Login",
-//       description: "login",
-//     };
-//     passport.authenticate("local", {
-//       failureRedirect: "/login",
-//       locals,
-//       layout: false,
-//     }),
-//       res.redirect("/");
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).send("Internal Server Error");
-//   }
-// };
 
 exports.postLogout = async (req, res, next) => {
   req.logout(function (err) {

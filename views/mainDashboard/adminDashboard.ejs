@@ -37,9 +37,7 @@
           </div>
           <div class="col-8">
             <label for="role" class="form-label">Role *</label>
-            <input  type="text"  class="form-control">
             <select Required value="<%= users.role %>" name="role" id="role">
-
               <option>Loan Officer</option>
               <option>Solar</option>
               <option>All Sales</option>
@@ -47,6 +45,10 @@
               <option>Processor</option>
               <option>Admin</option>
             </select>
+          </div>
+          <div class="col-8">
+            <label for="password" class="form-label">Password *</label>
+            <input Required value="<%= users.password %>" type="text" name="password" id="password" class="form-control">
           </div>
       </div>
 

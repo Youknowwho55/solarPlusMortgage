@@ -6,11 +6,12 @@ const router = express.Router();
 const authController = require("../controllers/authController");
 
 router.get("/User", authController.getUser);
-
 router.get("/login", authController.getLogin);
 
 // router.post("/", mainController.postlogin);
 router.post("/AddUser", authController.addUser);
+router.post("/login", authController.postLogin);
+
 router.post("/logout", authController.postLogout);
 
 //Edit
