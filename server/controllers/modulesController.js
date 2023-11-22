@@ -6,6 +6,7 @@ const {
   Employer,
 } = require("../models/borrowerMtg");
 const Condition = require("../models/condition");
+const Partners = require("../models/partner");
 
 const commentsController = require("./commentController");
 
@@ -62,6 +63,22 @@ exports.getMarketData = async (req, res) => {
   }
 };
 
+exports.getPartners = async (req, res) => {
+  try {
+    const partner = await Partners.findById(req.params.id);
+
+    const locals = {
+      title: "Market Data",
+      description:
+        "Daily market information about rate adjustments and market trensd",
+    };
+    res.render("sidebar/partners", { locals, partner });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
+};
+
 exports.getWorkbookID = async (req, res) => {
   try {
     const borrowerMtg = await BorrowerMtg.findById(req.params.id);
@@ -86,21 +103,30 @@ exports.getWorkbookID = async (req, res) => {
 
 exports.getConditionsID = async (req, res) => {
   try {
-    const borrowerMtg = await BorrowerMtg.findById(req.params.id);
+    const borrowerMtgId = req.params.id;
+
+    // Find the BorrowerMtg by ID
+    const borrowerMtg = await BorrowerMtg.findById(borrowerMtgId);
     const comments = await commentsController.getCommentsByBorrowerMtgId(
       req.params.id
     );
-    const condition = await Condition.findById(req.params.id);
+    if (!borrowerMtg) {
+      return res.status(404).send("BorrowerMtg not found");
+    }
+
+    // Find the associated condition(s) based on the relationship
+    const conditions = await Condition.find({ borrowersMtg: borrowerMtgId });
 
     const locals = {
       title: "Conditions",
       description: "Used to assist with conditions to close",
     };
+
     res.render("borrowersMtg/conditions", {
       locals,
       borrowerMtg: borrowerMtg,
+      conditions,
       comments,
-      condition,
       layout: "../views/layouts/dashboardLayout",
     });
   } catch (error) {
@@ -157,8 +183,7 @@ exports.getIncomeID = async (req, res) => {
   try {
     const borrowerMtg = await BorrowerMtg.findById(req.params.id)
       .populate("mortgageLoan")
-      .populate("employer")
-      .populate("mtgConditions");
+      .populate("employer");
     const comments = await commentsController.getCommentsByBorrowerMtgId(
       req.params.id
     );
@@ -179,19 +204,30 @@ exports.getIncomeID = async (req, res) => {
 };
 
 // POST Conditions
-exports.postConditionsID = async (req, res) => {
+exports.postConditions = async (req, res) => {
   try {
+    // Ensure that you correctly extract the id from req.params
     const borrowerMtgId = req.params.id;
-    const newCondition = new Condition(); // Create a new instance of the Condition model
 
-    newCondition.condition = req.body.condition;
-    newCondition.description = req.body.description;
+    // Create a new instance of the Condition model
+    const newCondition = new Condition({
+      condition: req.body.condition,
+      description: req.body.description,
+      borrowersMtg: borrowerMtgId,
+    });
 
     // Save the condition to the database
     await newCondition.save();
 
-    // Find the BorrowerMtg by ID and push the new condition
+    // Find the BorrowerMtg by ID
     const borrowerMtg = await BorrowerMtg.findById(borrowerMtgId);
+
+    // Check if BorrowerMtg exists
+    if (!borrowerMtg) {
+      return res.status(404).json({ error: "BorrowerMtg not found" });
+    }
+
+    // Push the new condition to BorrowerMtg's conditions array
     borrowerMtg.conditions.push(newCondition);
 
     // Save the BorrowerMtg with the updated conditions
@@ -203,7 +239,7 @@ exports.postConditionsID = async (req, res) => {
       .json({ message: "Condition added successfully", newCondition });
   } catch (error) {
     console.error("Error adding condition:", error);
-    res.status(500).send("Internal Server Error");
+    res.status(500).json({ error: "Internal Server Error" });
   }
 };
 

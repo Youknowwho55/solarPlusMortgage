@@ -81,11 +81,6 @@ const borrowerMtgSchema = new mongoose.Schema({
     type: Schema.Types.ObjectId,
     ref: "Employer",
   },
-
-  mtgConditions: {
-    type: Schema.Types.ObjectId,
-    ref: "mtgConditions",
-  },
 });
 
 const mortgageLoanSchema = new mongoose.Schema({
@@ -106,20 +101,10 @@ const employerSchema = new mongoose.Schema({
   employerZipCode: { type: Number },
 });
 
-const mtgConditionsSchema = new mongoose.Schema({
-  condition: { type: String },
-  condition: { type: String },
-  requestedDate: { type: Date },
-  CompletedDate: { type: Date },
-  clearedDate: { type: Date },
-  conditionNotes: { type: String },
-});
-
 module.exports = {
   BorrowerMtg: mongoose.model("BorrowerMtg", borrowerMtgSchema),
   MortgageLoan: mongoose.model("MortgageLoan", mortgageLoanSchema),
   Employer: mongoose.model("Employer", employerSchema),
-  mtgConditions: mongoose.model("mtgConditions", mtgConditionsSchema),
 };
 
 // module.exports = mongoose.model('mtgConditions', mtgConditionsSchema)

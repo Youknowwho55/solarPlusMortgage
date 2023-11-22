@@ -11,7 +11,6 @@ const conditionsSchema = new mongoose.Schema({
   },
   notes: {
     type: String,
-    required: true,
   },
   createdAt: {
     type: Date,

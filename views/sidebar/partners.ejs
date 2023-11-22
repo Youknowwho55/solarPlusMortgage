@@ -1,0 +1,98 @@
+<!-- @format -->
+
+button that allows you to add Referral partners and keep tract of deals they
+have send you
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+    <h1> Referral Partners</h1>
+    
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#partnerModal">
++ Add Partner</button>
+
+<!-- Modal -->
+<div class="modal fade" id="partnerModal" tabindex="-1" aria-labelledby="partnerModal" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+  <h1 class="modal-title fs-5" id="mtgModalLabel">Add a new Referral Partner</h1>
+  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+
+<div class="modal-body">
+  <form action="/partner" method="POST">
+
+    <div class="col-8">
+      <label for="firstName" class="form-label">First Name *</label>
+      <input required value="" type="text" name="firstName" id="firstName" class="form-control">
+      <label for="lastName" class="form-label">Last Name *</label>
+      <input required value="" type="text" name="lastName" class="form-control" id="lastName" >
+    </div>
+    <div class="col-8">
+      <label for="phoneNumber" class="form-label">Phone Number</label>
+      <input value="" type="tel" name="phoneNumber" id="phoneNumber" class="form-control">
+      <label for="email" class="form-label">Email</label>
+      <input value="" type="text" name="email" id="email" class="form-control">
+    </div>
+    <div class="col-8">
+      <label for="business" class="form-label">Business</label>
+      <input Required value="" type="text" name="business" id="business" class="form-control">
+    </div>
+</div>
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+</div>
+
+</div>
+</div>
+</div>
+
+</div>
+<!-- End of Modal and Heading Class -->
+
+
+
+
+  <div class="table-responsive">
+    <table class="table table-sm">
+      <thead>
+        <tr>
+          <th>Partner</th>
+          <th>Business</th>
+          <th>Loans received last 90 Days</th>
+          <th>Loans in process last 90 Days</th>
+          <th>Loans Funded last 90 Days</th>
+          <th>Edit</th>
+          <th>Enter</th>
+
+        </tr>
+      </thead>
+
+
+
+      <tbody>
+        <% if (partner && partner.length > 0) { %>
+          <% partner.forEach((partner, index) => { %>
+            <tr>
+              <td><%= partner.firstName %></td>
+              <td><%= partner.business %></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td><a href="partner/<%= partner.id %>" class="btn btn-primary">Edit</a></td>
+              <td><a href="partner/<%= partner.id %>" class="btn btn-primary">Enter</a></td>
+            </tr>
+          <% }) %>
+        <% } else { %>
+          <tr>
+            <td colspan="7">No partners available</td>
+          </tr>
+        <% } %>
+      </tbody>
+
+        </table></div>
+  
