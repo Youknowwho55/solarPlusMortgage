@@ -2,6 +2,59 @@
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
       <h1>Admin Dashboard</h1>
 
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#mtgModal">
+  + Add Company</button>
+
+<!-- Modal -->
+<div class="modal fade" id="mtgModal" tabindex="-1" aria-labelledby="newCompanyModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="newCompanyModal">Add a New Company</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+        <form action="/AddUCompany" method="POST">
+
+          <div class="col-8">
+            <label for="companyName" class="form-label">Company Name *</label>
+            <input Required value="<%= users.firstName %>" type="text" name="firstName" id="firstName" class="form-control">
+          </div>
+          <div class="col-8">
+            <label for="role" class="form-label">Company Role *</label>
+            <select Required value="<%= users.role %>" name="role" id="role">
+              <option>Mortgage</option>
+              <option>Solar</option>
+              <option>All Sales</option>
+              <option>Processing</option>
+            </select>
+          </div>
+
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- End Add Company Modal -->
+
+
+
+
+
+
+
+
+
 
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#mtgModal">

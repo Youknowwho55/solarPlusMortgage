@@ -206,34 +206,26 @@ exports.getIncomeID = async (req, res) => {
 // POST Conditions
 exports.postConditions = async (req, res) => {
   try {
-    // Ensure that you correctly extract the id from req.params
     const borrowerMtgId = req.params.id;
 
-    // Create a new instance of the Condition model
     const newCondition = new Condition({
       condition: req.body.condition,
       description: req.body.description,
       borrowersMtg: borrowerMtgId,
     });
 
-    // Save the condition to the database
     await newCondition.save();
 
-    // Find the BorrowerMtg by ID
     const borrowerMtg = await BorrowerMtg.findById(borrowerMtgId);
 
-    // Check if BorrowerMtg exists
     if (!borrowerMtg) {
       return res.status(404).json({ error: "BorrowerMtg not found" });
     }
 
-    // Push the new condition to BorrowerMtg's conditions array
     borrowerMtg.conditions.push(newCondition);
 
-    // Save the BorrowerMtg with the updated conditions
     await borrowerMtg.save();
 
-    // Respond with a success message
     res
       .status(201)
       .json({ message: "Condition added successfully", newCondition });
@@ -243,35 +235,51 @@ exports.postConditions = async (req, res) => {
   }
 };
 
-// PUT Conditions
+// PUT Conditions (Including Status Update)
+// PUT Conditions (Including Status Update)
 exports.putConditionsID = async (req, res) => {
   try {
     const borrowerMtgId = req.params.id;
     const conditionId = req.params.conditionId;
     const updatedCondition = req.body;
 
-    // Find the BorrowerMtg by ID
     const borrowerMtg = await BorrowerMtg.findById(borrowerMtgId);
 
-    // Find the index of the condition to be updated
-    const conditionIndex = borrowerMtg.conditions.findIndex(
-      (condition) => condition._id == conditionId
+    // Find the condition by its unique identifier (_id)
+    const conditionToUpdate = borrowerMtg.conditions.find(
+      (condition) => condition._id.toString() === conditionId
     );
 
-    if (conditionIndex === -1) {
+    if (!conditionToUpdate) {
       return res.status(404).json({ message: "Condition not found" });
     }
 
-    // Update the condition
-    borrowerMtg.conditions[conditionIndex].condition =
-      updatedCondition.condition;
-    borrowerMtg.conditions[conditionIndex].description =
-      updatedCondition.description;
+    conditionToUpdate.condition = updatedCondition.condition;
+    conditionToUpdate.description = updatedCondition.description;
 
-    // Save the updated BorrowerMtg
+    // Handle status update
+    const currentTime = new Date().toLocaleTimeString();
+    const user = "John Doe"; // Replace with actual user data
+
+    switch (updatedCondition.status) {
+      case "Requested":
+        conditionToUpdate.requestedDate = new Date();
+        conditionToUpdate.requestedBy = user;
+        break;
+      case "Completed":
+        conditionToUpdate.completedDate = new Date();
+        conditionToUpdate.completedBy = user;
+        break;
+      case "Cleared":
+        conditionToUpdate.clearedDate = new Date();
+        conditionToUpdate.clearedBy = user;
+        break;
+      default:
+        break;
+    }
+
     await borrowerMtg.save();
 
-    // Respond with a success message
     res
       .status(200)
       .json({ message: "Condition updated successfully", updatedCondition });
