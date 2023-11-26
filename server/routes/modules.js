@@ -3,7 +3,10 @@
 const User = require("../models/user");
 const passport = require("passport");
 const passportLocalMongoose = require("passport-local-mongoose");
-
+const {
+  checkAuthenticated,
+  checkNotAuthenticated,
+} = require("../middleware/checkAuth");
 const express = require("express");
 const router = express.Router();
 const modulesController = require("../controllers/modulesController");

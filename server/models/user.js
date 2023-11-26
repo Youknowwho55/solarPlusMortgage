@@ -16,15 +16,15 @@ const ROLE = {
 const UserSchema = new Schema({
   firstName: { type: String },
   lastName: { type: String },
-
   email: { type: String, required: true, unique: true },
   username: { type: String, unique: true, required: true },
   company: { type: String },
-  role: { type: String, default: "lo" },
+  role: { type: String },
   createdAtUser: {
     type: Date,
     default: Date.now,
   },
+  borrowerMtg: [{ type: mongoose.Schema.Types.ObjectId, ref: "BorrowerMtg" }],
 });
 
 UserSchema.plugin(passportLocalMongoose);

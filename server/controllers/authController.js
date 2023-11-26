@@ -3,6 +3,7 @@
 const BorrowerMtg = require("../models/borrowerMtg");
 
 const User = require("../models/user");
+const passport = require("passport");
 
 //Direct to the Login
 exports.getLogin = async (req, res) => {
@@ -18,22 +19,29 @@ exports.getLogin = async (req, res) => {
   }
 };
 
-exports.postLogin = async (req, res) => {
-  try {
-    const locals = {
-      title: "Login",
-      description: "login",
-    };
-    passport.authenticate("local", {
-      failureRedirect: "/login",
-      locals,
-      layout: false,
-    }),
-      res.redirect("/");
-  } catch (error) {
-    console.error(error);
-    res.status(500).send("Internal Server Error");
-  }
+exports.postLogin = (req, res, next) => {
+  passport.authenticate("local", (err, user, info) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send("Internal Server Error");
+    }
+
+    if (!user) {
+      // Authentication failed
+      req.flash("error", info.message); // assuming you're using flash messages
+      return res.redirect("/login");
+    }
+
+    // Authentication succeeded
+    req.logIn(user, (loginErr) => {
+      if (loginErr) {
+        console.error(loginErr);
+        return res.status(500).send("Internal Server Error");
+      }
+
+      return res.redirect("/");
+    });
+  })(req, res, next);
 };
 
 //Direct to the Users ID Page
@@ -91,36 +99,6 @@ exports.postLogout = async (req, res, next) => {
     if (err) {
       return next(err);
     }
-    res.redirect("/");
+    res.redirect("/register/login");
   });
 };
-
-/// update here
-
-// NEED TO MAKE SURE THIS REDIRECTS TO THE DASHBOARD PAGE
-// ADD TD FOR USER TO LOGIN TO THEIR OWN DASHBOARD
-//   .post("/login", function (req, res) {
-// 	if (!req.body.username) {
-// 		res.json({ success: false, message: "Username was not given" })
-// 	}
-// 	else if (!req.body.password) {
-// 		res.json({ success: false, message: "Password was not given" })
-// 	}
-// 	else {
-// 		passport.authenticate("local", function (err, user, info) {
-// 			if (err) {
-// 				res.json({ success: false, message: err });
-// 			}
-// 			else {
-// 				if (!user) {
-// 					res.json({ success: false, message: "username or password incorrect" });
-// 				}
-// 				else {
-// 					const token = jwt.sign({ userId: user._id, username: user.username }, secretkey, { expiresIn: "24h" });
-// 					res.json({ success: true, message: "Authentication successful", token: token });
-//                     res.render("mainDashboard/index")
-// 				}
-// 			}
-// 		})(req, res);
-// 	}
-// });

@@ -21,10 +21,18 @@ const statusOrder = [
 
 exports.dashSales = async (req, res) => {
   const borrowermtgs = await BorrowerMtg.find();
+  const user = await User.findById(req.user.id).populate("borrowerMtg");
+
   const locals = {
     title: "Dashboard",
-    description: "Main Dashboard for Sales professionals",
+    description: "View your personalized Sales dashboard",
+    user: user,
   };
+  const filteredBorrowerMtg = borrowermtgs.filter(
+    (borrowerMtg) =>
+      borrowerMtg.user && borrowerMtg.user.toString() === user._id.toString()
+  );
+
   // Sort the borrowermtgs based on the specified order
   const sortedBorrowerMtg = borrowermtgs.sort((a, b) => {
     const statusAIndex = statusOrder.indexOf(a.loanStatus);
@@ -40,10 +48,14 @@ exports.dashSales = async (req, res) => {
 
     return statusAIndex - statusBIndex;
   });
+
   res.render("mainDashboard/salesDashboard", {
     locals,
-    borrowermtgs: borrowermtgs,
     sortedBorrowerMtg: sortedBorrowerMtg,
+    filteredBorrowerMtg: filteredBorrowerMtg,
+
+    user: user,
+    borrowermtgs: user.borrowerMtg,
   });
 };
 

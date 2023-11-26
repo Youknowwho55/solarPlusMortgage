@@ -1,6 +1,7 @@
-<h6 class="pt-4"> Welcome, name </h6>
+<h6 class="pt-4"> Welcome, <%= user.firstName %> </h6>
 
-   
+
+
    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
           <h1> Dashboard</h1>
           
@@ -77,8 +78,8 @@
 
 
             <tbody>
-              <% borrowermtgs.forEach((borrowerMtg, index) => { %>
-              
+              <% filteredBorrowerMtg.forEach((borrowerMtg, index) => { %>
+
                 <tr>
                     <td><span class="status"><%= borrowerMtg.loanStatus %></span></td>
                     <td><strong><p class="card-title"> <%= borrowerMtg.firstName %> <%= borrowerMtg.lastName %></p></strong>
@@ -198,6 +199,12 @@
 
 
     </div>
+
+
+
+ 
+
+
 
 
 

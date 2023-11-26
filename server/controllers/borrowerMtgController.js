@@ -130,6 +130,9 @@ async function saveBorrowerMtgAndRender(req, res, path, locals) {
     borrowerMtg.email = req.body.email;
     borrowerMtg.loanOfficer = req.body.loanOfficer;
 
+    // Associate user with borrowerMtg
+    borrowerMtg.user = req.user.id;
+
     borrowerMtg = await borrowerMtg.save();
 
     res.redirect(`/borrowersMtg/${borrowerMtg.id}`);
