@@ -15,7 +15,7 @@ router.get("/solar", dashController.dashSolar);
 
 router.get("/admin", dashController.getAdmin);
 router.get("/processing", dashController.dashProcessing);
-router.get("/settings", dashController.dashSettings);
+router.get("/settings", checkAuthenticated, dashController.dashSettings);
 
 //possible Manager dashboard
 

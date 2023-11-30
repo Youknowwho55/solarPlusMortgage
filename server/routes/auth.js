@@ -10,8 +10,9 @@ const {
 } = require("../middleware/checkAuth");
 
 router.get("/User", authController.getUser);
-checkNotAuthenticated, router.get("/login", authController.getLogin);
-
+router.get("/login", checkNotAuthenticated, authController.getLogin);
+router.get("/auth/google", authController.getGoogle);
+router.get("/auth/google/solarplusmtg", authController.getGoogleRedirect);
 // router.post("/", mainController.postlogin);
 router.post("/AddUser", authController.addUser);
 checkNotAuthenticated, router.post("/login", authController.postLogin);

@@ -102,3 +102,33 @@ exports.postLogout = async (req, res, next) => {
     res.redirect("/register/login");
   });
 };
+
+///OAuth with google
+// exports.getGoogle = async (req, res) => {
+//   try {
+//     // const users = await User.findById(req.params.id);
+
+//     const locals = {
+//       title: "User",
+//       description: "View the User Information",
+//       // users: users,
+//     };
+
+//     passport.authenticate("google", { scope: ["profile"] });
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).send("Internal Server Error");
+//   }
+// };
+
+// OAuth with Google
+exports.getGoogle = passport.authenticate("google", { scope: ["profile"] });
+
+// Callback route after Google has authenticated the user
+(exports.getGoogleRedirect = passport.authenticate("google", {
+  failureRedirect: "/",
+})),
+  (req, res) => {
+    // Successful authentication, redirect to the desired page
+    res.redirect("/"); // Replace "/desired-page" with the actual route you want to redirect to
+  };

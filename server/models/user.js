@@ -24,6 +24,7 @@ const UserSchema = new Schema({
     type: Date,
     default: Date.now,
   },
+  googleId: { type: String },
   borrowerMtg: [{ type: mongoose.Schema.Types.ObjectId, ref: "BorrowerMtg" }],
 });
 

@@ -118,11 +118,13 @@ exports.dashProcessing = async (req, res) => {
 
 exports.dashSettings = async (req, res) => {
   try {
+    const user = await User.findById(req.user.id);
     const locals = {
       title: "Settings",
       description: "User Settings",
+      user: user,
     };
-    res.render("settings", { locals });
+    res.render("settings/salesSettings", { locals, user: user });
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");

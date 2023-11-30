@@ -1,11 +1,61 @@
 <!-- @format -->
 
 <form>
+  <div class="col-8">
+    <label for="inputAddress" class="form-label">Address</label>
+    <input
+      value="<%= borrowerMtg.street %>"
+      type="text"
+      name="street"
+      id="street"
+      class="form-control"
+    />
+  </div>
+  <div class="col-8">
+    <label for="inputAddress2" class="form-label">Address 2</label>
+    <input
+      value="<%= borrowerMtg.streetLine2 %>"
+      type="text"
+      name="streetLine2"
+      id="streetLine2"
+      class="form-control"
+    />
+  </div>
+  <div class="col-md-5">
+    <label for="inputCity" class="form-label">City</label>
+    <input
+      value="<%= borrowerMtg.city %>"
+      type="text"
+      name="city"
+      id="city"
+      class="form-control"
+    />
+  </div>
+  <div class="col-md-3">
+    <label for="inputState" class="form-label">State</label>
+    <input
+      value="<%= borrowerMtg.state %>"
+      type="text"
+      name="state"
+      id="state"
+      class="form-control"
+    />
+  </div>
+  <div class="col-md-2">
+    <label for="inputZip" class="form-label">Zip</label>
+    <input
+      value="<%= borrowerMtg.zipCode %>"
+      type="text"
+      name="zipCode"
+      id="zipCode"
+      class="form-control"
+    />
+  </div>
   <div class="row mb-3">
     <label for="occupancyMainFile" class="col-sm-2 col-form-label"
       >Occupancy</label
     >
-    <div class="col-sm-10">
+    <div class="col-sm-3">
       <input type="text" class="form-control" id="occupancyMainFile" />
     </div>
   </div>
@@ -13,7 +63,7 @@
     <label for="mortgageMainFile" class="col-sm-2 col-form-label"
       >Mortgage Holder</label
     >
-    <div class="col-sm-10">
+    <div class="col-sm-3">
       <input type="text" class="form-control" id="mortgageMainFile" />
     </div>
   </div>
@@ -21,7 +71,7 @@
     <label for="originaAmtlMainFile" class="col-sm-2 col-form-label"
       >Original Amount</label
     >
-    <div class="col-sm-10">
+    <div class="col-sm-3">
       <input type="number" class="form-control" id="originaAmtlMainFile" />
     </div>
   </div>
@@ -29,7 +79,7 @@
     <label for="loanAmtMainFile" class="col-sm-2 col-form-label"
       >Loan Amount</label
     >
-    <div class="col-sm-10">
+    <div class="col-sm-3">
       <input type="number" class="form-control" id="loanAmtMainFile" />
     </div>
   </div>
@@ -37,19 +87,19 @@
     <label for="dateOpenedMainFile" class="col-sm-2 col-form-label"
       >Date Opened</label
     >
-    <div class="col-sm-10">
+    <div class="col-sm-3">
       <input type="date" class="form-control" id="dateOpenedMainFile" />
     </div>
   </div>
   <div class="row mb-3">
     <label for="rateMainFile" class="col-sm-2 col-form-label">Rate</label>
-    <div class="col-sm-10">
+    <div class="col-sm-3">
       <input type="number" class="form-control" id="rateMainFile" />
     </div>
   </div>
   <div class="row mb-3">
     <label for="termMainFile" class="col-sm-2 col-form-label">Term</label>
-    <div class="col-sm-10">
+    <div class="col-sm-3">
       <input type="number" class="form-control" id="termMainFile" />
     </div>
   </div>
@@ -59,126 +109,28 @@
   <label for="mtgPmtMainFile" class="col-sm-2 col-form-label"
     >Mortgage payment</label
   >
-  <div class="col-sm-10">
+  <div class="col-sm-3">
     <input type="number" class="form-control" id="mtgPmtMainFile" />
   </div>
 </div>
 
 <div class="row mb-3">
   <label for="propTaxMainFile" class="col-sm-2 col-form-label">Taxes</label>
-  <div class="col-sm-10">
+  <div class="col-sm-3">
     <input type="number" class="form-control" id="propTaxMainFile" />
   </div>
 </div>
 
 <div class="row mb-3">
   <label for="propInsMainFile" class="col-sm-2 col-form-label">Insurance</label>
-  <div class="col-sm-10">
+  <div class="col-sm-3">
     <input type="number" class="form-control" id="propInsMainFile" />
   </div>
 </div>
 
 <div class="row mb-3">
   <label for="propHOAMainFile" class="col-sm-2 col-form-label">HOA</label>
-  <div class="col-sm-10">
+  <div class="col-sm-3">
     <input type="number" class="form-control" id="propHOAMainFile" />
-  </div>
-</div>
-
-<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-  <li class="nav-item" role="presentation">
-    <button
-      class="nav-link active"
-      id="pills-home-tab"
-      data-bs-toggle="pill"
-      data-bs-target="#pills-home"
-      type="button"
-      role="tab"
-      aria-controls="pills-home"
-      aria-selected="true"
-    >
-      Home
-    </button>
-  </li>
-  <li class="nav-item" role="presentation">
-    <button
-      class="nav-link"
-      id="pills-profile-tab"
-      data-bs-toggle="pill"
-      data-bs-target="#pills-profile"
-      type="button"
-      role="tab"
-      aria-controls="pills-profile"
-      aria-selected="false"
-    >
-      Profile
-    </button>
-  </li>
-  <li class="nav-item" role="presentation">
-    <button
-      class="nav-link"
-      id="pills-contact-tab"
-      data-bs-toggle="pill"
-      data-bs-target="#pills-contact"
-      type="button"
-      role="tab"
-      aria-controls="pills-contact"
-      aria-selected="false"
-    >
-      Contact
-    </button>
-  </li>
-  <li class="nav-item" role="presentation">
-    <button
-      class="nav-link"
-      id="pills-disabled-tab"
-      data-bs-toggle="pill"
-      data-bs-target="#pills-disabled"
-      type="button"
-      role="tab"
-      aria-controls="pills-disabled"
-      aria-selected="false"
-      disabled
-    >
-      Disabled
-    </button>
-  </li>
-</ul>
-<div class="tab-content" id="pills-tabContent">
-  <div
-    class="tab-pane fade show active"
-    id="pills-home"
-    role="tabpanel"
-    aria-labelledby="pills-home-tab"
-    tabindex="0"
-  >
-    ...
-  </div>
-  <div
-    class="tab-pane fade"
-    id="pills-profile"
-    role="tabpanel"
-    aria-labelledby="pills-profile-tab"
-    tabindex="0"
-  >
-    ...
-  </div>
-  <div
-    class="tab-pane fade"
-    id="pills-contact"
-    role="tabpanel"
-    aria-labelledby="pills-contact-tab"
-    tabindex="0"
-  >
-    ...
-  </div>
-  <div
-    class="tab-pane fade"
-    id="pills-disabled"
-    role="tabpanel"
-    aria-labelledby="pills-disabled-tab"
-    tabindex="0"
-  >
-    ...
   </div>
 </div>

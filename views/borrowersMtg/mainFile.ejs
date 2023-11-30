@@ -11,6 +11,8 @@
   <button type="submit" class="btn btn-primary">Save</button>
 </div>
 
+<!-- Start People -->
+
 <form
   class="row g-3"
   action="/borrowersMtg/people/<%= borrowerMtg.id %>?_method=PUT"
@@ -55,33 +57,31 @@
       />
     </div>
   </div>
+  <!-- End People -->
 
-  <div>
-    <div class="col">
-      <label for="firstName" class="form-label">First Name</label>
+  <div class="col-5">
+    <label for="firstName" class="form-label">First Name</label>
 
-      <input
-        required
-        value="<%= borrowerMtg.firstName %>"
-        type="text"
-        name="firstName"
-        id="firstName"
-        class="form-control"
-      />
-    </div>
-    <div class="col">
-      <label for="lastName" class="form-label">Last Name</label>
-      <input
-        required
-        value="<%= borrowerMtg.lastName %>"
-        type="text"
-        class="form-control"
-        name="lastName"
-        id="lastName"
-      />
-    </div>
+    <input
+      required
+      value="<%= borrowerMtg.firstName %>"
+      type="text"
+      name="firstName"
+      id="firstName"
+      class="form-control"
+    />
   </div>
-
+  <div class="col-5">
+    <label for="lastName" class="form-label">Last Name</label>
+    <input
+      required
+      value="<%= borrowerMtg.lastName %>"
+      type="text"
+      class="form-control"
+      name="lastName"
+      id="lastName"
+    />
+  </div>
   <div class="col-4">
     <label for="phoneNumber" class="form-label">Phone Number</label>
     <input
@@ -91,6 +91,8 @@
       id="phoneNumber"
       class="form-control"
     />
+  </div>
+  <div class="col-6">
     <label for="email" class="form-label">Email</label>
     <input
       value="<%= borrowerMtg.email %>"
@@ -100,18 +102,9 @@
       class="form-control"
     />
   </div>
-  <div class="col-6">
-    <label for="borrowerDateOfBirth" class="form-label">DOB</label>
-    <input
-      value="<%= borrowerMtg.dateOfBirth %>"
-      type="text"
-      name="borrowerDateOfBirth"
-      id="borrowerDateOfBirth"
-      class="form-control"
-    />
-  </div>
 
-  <div class="col-12">
+  <h5>Primary Address</h5>
+  <div class="col-8">
     <label for="inputAddress" class="form-label">Address</label>
     <input
       value="<%= borrowerMtg.street %>"
@@ -121,7 +114,7 @@
       class="form-control"
     />
   </div>
-  <div class="col-12">
+  <div class="col-8">
     <label for="inputAddress2" class="form-label">Address 2</label>
     <input
       value="<%= borrowerMtg.streetLine2 %>"
@@ -131,7 +124,7 @@
       class="form-control"
     />
   </div>
-  <div class="col-md-6">
+  <div class="col-md-5">
     <label for="inputCity" class="form-label">City</label>
     <input
       value="<%= borrowerMtg.city %>"
@@ -141,7 +134,7 @@
       class="form-control"
     />
   </div>
-  <div class="col-md-4">
+  <div class="col-md-3">
     <label for="inputState" class="form-label">State</label>
     <input
       value="<%= borrowerMtg.state %>"
@@ -163,65 +156,6 @@
   </div>
 </form>
 
-<h4>Additional properties</h4>
-
-<!-- @format -->
-
-<ul class="nav nav-tabs">
-  <li class="nav-item">
-    <a
-      class="nav-link active"
-      aria-current="page"
-      href="/borrowersMtg/<%= borrowerMtg.id %>"
-      class="btn btn-info"
-      >Property 1</a
-    >
-  </li>
-  <li class="nav-item">
-    <a
-      class="nav-link active"
-      aria-current="page"
-      href="/workbook/<%= borrowerMtg.id %>"
-      class="btn btn-info"
-      >Property 2</a
-    >
-  </li>
-  <li class="nav-item">
-    <a
-      class="nav-link active"
-      aria-current="page"
-      href="/income/<%= borrowerMtg.id %>"
-      class="btn btn-info"
-      >Property 3</a
-    >
-  </li>
-  <li class="nav-item">
-    <a
-      class="nav-link active"
-      aria-current="page"
-      href="/conditions/<%= borrowerMtg.id %>"
-      class="btn btn-info"
-      >Property 4</a
-    >
-  </li>
-  <li class="nav-item">
-    <a
-      class="nav-link active"
-      aria-current="page"
-      href="/documents/<%= borrowerMtg.id %>"
-      class="btn btn-info"
-      >Property 5</a
-    >
-  </li>
-  <li class="nav-item">
-    <a
-      class="nav-link active"
-      aria-current="page"
-      href="/benefit/<%= borrowerMtg.id %>"
-      class="btn btn-info"
-      >Property 6</a
-    >
-  </li>
-</ul>
+<h4 class="pt-4">Subject Property</h4>
 
 <div><%- include('../partials/_properties.ejs') %></div>
