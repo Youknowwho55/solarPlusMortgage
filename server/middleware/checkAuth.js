@@ -78,8 +78,9 @@ passport.use(
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       callbackURL: "http://localhost:3000/auth/google/solarplusmtg",
+      passReqToCallback: true, // Add this line
     },
-    async function (accessToken, refreshToken, profile, done) {
+    async function (req, accessToken, refreshToken, profile, done) {
       try {
         // Check if the user is already authenticated
         if (req.isAuthenticated()) {

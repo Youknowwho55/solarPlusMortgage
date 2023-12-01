@@ -39,6 +39,11 @@ exports.postLogin = (req, res, next) => {
         return res.status(500).send("Internal Server Error");
       }
 
+      // If "Remember Me" is checked, set a longer-lasting session
+      if (req.body.rememberMe) {
+        req.session.cookie.maxAge = 30 * 24 * 60 * 60 * 1000; // 30 days in milliseconds
+      }
+
       return res.redirect("/");
     });
   })(req, res, next);
@@ -103,23 +108,18 @@ exports.postLogout = async (req, res, next) => {
   });
 };
 
-///OAuth with google
-// exports.getGoogle = async (req, res) => {
-//   try {
-//     // const users = await User.findById(req.params.id);
+exports.getLogout = (req, res) => {
+  req.logout((err) => {
+    if (err) {
+      // Handle error, if any
+      console.error(err);
+      return res.redirect("/");
+    }
 
-//     const locals = {
-//       title: "User",
-//       description: "View the User Information",
-//       // users: users,
-//     };
-
-//     passport.authenticate("google", { scope: ["profile"] });
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).send("Internal Server Error");
-//   }
-// };
+    // Redirect to the home page or a login page
+    res.redirect("/");
+  });
+};
 
 // OAuth with Google
 exports.getGoogle = passport.authenticate("google", { scope: ["profile"] });

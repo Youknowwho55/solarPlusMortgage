@@ -20,6 +20,9 @@ router.get("/partners", modulesController.getPartners);
 router.get("/workbook/:id", modulesController.getWorkbookID);
 router.get("/conditions/:id", modulesController.getConditionsID);
 router.get("/documents/:id", modulesController.getDocumentsID);
+//Google
+router.get("/documents/:id", modulesController.downloadGoogle);
+
 router.get("/benefit/:id", modulesController.getBenefitID);
 router.get("/income/:id", modulesController.getIncomeID);
 // router.get("/income/employer/:id", dashboardController.getEmployerID);

@@ -1,37 +1,42 @@
 <!-- @format -->
 
-insert analytics here. This will be personal analytics to help with conversion.
-Also have a section for where the referral sources are coming from
-<!-- @format -->
-<body>
+
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-2 mb-3 border-bottom">
+  <h1> Analytics</h1>
+  </div>
+
+  <body>
     <main>
+      <p>Month to date statistics</p>
     <!-- Insights -->
     <ul class="insights">
       <li>
         <i class="bx bx-calendar-check"></i>
         <span class="info">
-          <h3>13</h3>
+          <h3 id="loansInProgress"></h3>
           <p>Loans in Process</p>
         </span>
+
       </li>
       <li>
         <i class="bx bx-dollar-circle"></i>
         <span class="info">
-          <h3>6</h3>
+          <h3 id="newLoans"></h3>
           <p>New Loans (MTD)</p>
         </span>
       </li>
       <li>
         <i class="bx bx-show-alt"></i>
         <span class="info">
-          <h3>3</h3>
+          <h3 id="pendingLock"></h3>
           <p>Pending Lock</p>
+          
         </span>
       </li>
       <li>
         <i class="bx bx-line-chart"></i>
         <span class="info">
-          <h3>14</h3>
+          <h3 id="ctc"></h3>
           <p>CTC</p>
         </span>
       </li>
@@ -40,3 +45,4 @@ Also have a section for where the referral sources are coming from
   </div>
 </main>
 </body>
+<script src="../../public/js/analytics.js"></script>

@@ -18,6 +18,7 @@ router.post("/AddUser", authController.addUser);
 checkNotAuthenticated, router.post("/login", authController.postLogin);
 
 router.post("/logout", authController.postLogout);
+router.get("/logout", authController.getLogout);
 
 //Edit
 // router.get("/EditUser", mainController.editUser);

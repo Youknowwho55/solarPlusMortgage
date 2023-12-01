@@ -1,6 +1,10 @@
 <!-- @format -->
 
-<h3 class="mb-4">User Settings</h3>
+<div
+  class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-2 mb-3 border-bottom"
+>
+  <h1>User Settings</h1>
+</div>
 
 <form>
   <div class="row mb-3">
@@ -27,17 +31,26 @@
     </div>
   </div>
 
+  <div class="row mb-3">
+    <label for="nmls" class="col-sm-2 col-form-label">NMLS ID:</label>
+    <div class="col-sm-10">
+      <input type="text" value="<%= user.nmls %>" id="nmls" name="nmls" />
+    </div>
+  </div>
+
   <div>
-    <p>Update Profile photo</p>
-    <p readonly>NMLS</p>
+    <div class="col-sm-3 mb-3">
+      <label for="formFile" class="form-label">Update Profile Photo:</label>
+      <input class="form-control" type="file" id="formFile" />
+    </div>
   </div>
   <button>Save</button>
 </form>
 
-<h6 class="pt-2">Connect to Google</h6>
+<h6 class="py-2">Connect to Google</h6>
 <div class="row col-md-11 mb-3">
   <label for="connect" class="col-sm-2 col-form-label">Connect:</label>
-  <div class="col-sm-10">
+  <div class="col-sm-10 pb-5">
     <a class="btn btn-warning" href="/auth/google" role="button">
       <svg
         xmlns="http://www.w3.org/2000/svg"

@@ -20,6 +20,7 @@ const UserSchema = new Schema({
   username: { type: String, unique: true, required: true },
   company: { type: String },
   role: { type: String },
+  nmls: { type: String },
   createdAtUser: {
     type: Date,
     default: Date.now,
