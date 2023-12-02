@@ -6,6 +6,8 @@ const {
 } = require("../models/borrowerMtg");
 
 const Comment = require("../models/comment");
+const User = require("../models/user");
+
 const commentsController = require("../controllers/commentController");
 
 exports.getBorrowerMtgById = async (req, res) => {
@@ -14,12 +16,14 @@ exports.getBorrowerMtgById = async (req, res) => {
     const comments = await commentsController.getCommentsByBorrowerMtgId(
       req.params.id
     );
+    const user = await User.findById(req.user.id).populate("borrowerMtg");
 
     const locals = {
       title: "Edit",
       description: "Edit the borrower's information",
       borrowerMtg,
       comments,
+      user,
       layout: "../views/layouts/dashboardLayout",
     };
 

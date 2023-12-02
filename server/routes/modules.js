@@ -11,20 +11,36 @@ const express = require("express");
 const router = express.Router();
 const modulesController = require("../controllers/modulesController");
 
-router.get("/messages", modulesController.getMessages);
-router.get("/analytics", modulesController.getAnalytics);
-router.get("/guides", modulesController.getGuides);
-router.get("/marketData", modulesController.getMarketData);
-router.get("/partners", modulesController.getPartners);
+router.get("/messages", checkAuthenticated, modulesController.getMessages);
+router.get("/analytics", checkAuthenticated, modulesController.getAnalytics);
+router.get("/guides", checkAuthenticated, modulesController.getGuides);
+router.get("/marketData", checkAuthenticated, modulesController.getMarketData);
+router.get("/partners", checkAuthenticated, modulesController.getPartners);
 
-router.get("/workbook/:id", modulesController.getWorkbookID);
-router.get("/conditions/:id", modulesController.getConditionsID);
-router.get("/documents/:id", modulesController.getDocumentsID);
+router.get(
+  "/workbook/:id",
+  checkAuthenticated,
+  modulesController.getWorkbookID
+);
+router.get(
+  "/conditions/:id",
+  checkAuthenticated,
+  modulesController.getConditionsID
+);
+router.get(
+  "/documents/:id",
+  checkAuthenticated,
+  modulesController.getDocumentsID
+);
 //Google
-router.get("/documents/:id", modulesController.downloadGoogle);
+router.get(
+  "/documents/:id",
+  checkAuthenticated,
+  modulesController.downloadGoogle
+);
 
-router.get("/benefit/:id", modulesController.getBenefitID);
-router.get("/income/:id", modulesController.getIncomeID);
+router.get("/benefit/:id", checkAuthenticated, modulesController.getBenefitID);
+router.get("/income/:id", checkAuthenticated, modulesController.getIncomeID);
 // router.get("/income/employer/:id", dashboardController.getEmployerID);
 // router.get("/income/calculate/:id", dashboardController.getIncomeCalcID);
 

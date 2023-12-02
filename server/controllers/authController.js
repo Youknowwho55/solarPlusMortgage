@@ -49,15 +49,15 @@ exports.postLogin = (req, res, next) => {
   })(req, res, next);
 };
 
-//Direct to the Users ID Page
-exports.getUser = async (req, res) => {
+//Direct to the Users ID Page where Admin
+exports.getUserAdmin = async (req, res) => {
   try {
-    const users = await User.findById(req.params.id);
+    const user = await User.findById(req.params.id);
 
     const locals = {
       title: "User",
       description: "View the User Information",
-      users: users,
+      user,
     };
 
     res.render("user/userIndex", locals);
@@ -91,7 +91,7 @@ exports.addUser = async (req, res) => {
             res.json({ success: false, message: er });
           } else {
             res.json({ success: true, message: "Your account has been saved" });
-            res.render("mainDashboard/index");
+            res.redirect("mainDashboard/index");
           }
         });
       }

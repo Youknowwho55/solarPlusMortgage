@@ -7,16 +7,19 @@ const {
 } = require("../models/borrowerMtg");
 const Condition = require("../models/condition");
 const Partners = require("../models/partner");
+const User = require("../models/user");
 
 const commentsController = require("./commentController");
 
 exports.getMessages = async (req, res) => {
   try {
+    const user = await User.findById(req.user.id).populate("borrowerMtg");
+
     const locals = {
       title: "Messages",
       description: "Check your messages",
     };
-    res.render("sidebar/messages", { locals });
+    res.render("sidebar/messages", { locals, user });
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");
@@ -25,11 +28,13 @@ exports.getMessages = async (req, res) => {
 
 exports.getAnalytics = async (req, res) => {
   try {
+    const user = await User.findById(req.user.id).populate("borrowerMtg");
+
     const locals = {
       title: "Analytics",
       description: "Compare statistically how the month has been.",
     };
-    res.render("sidebar/analytics", { locals });
+    res.render("sidebar/analytics", { locals, user });
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");
@@ -38,11 +43,13 @@ exports.getAnalytics = async (req, res) => {
 
 exports.getGuides = async (req, res) => {
   try {
+    const user = await User.findById(req.user.id).populate("borrowerMtg");
+
     const locals = {
       title: "Guides",
       description: "lists of resources to help",
     };
-    res.render("sidebar/guides", { locals });
+    res.render("sidebar/guides", { locals, user });
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");
@@ -51,12 +58,13 @@ exports.getGuides = async (req, res) => {
 
 exports.getMarketData = async (req, res) => {
   try {
+    const user = await User.findById(req.user.id).populate("borrowerMtg");
     const locals = {
       title: "Market Data",
       description:
-        "Daily market information about rate adjustments and market trensd",
+        "Daily market information about rate adjustments and market trends",
     };
-    res.render("sidebar/marketData", { locals });
+    res.render("sidebar/marketData", { locals, user });
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");
@@ -66,13 +74,14 @@ exports.getMarketData = async (req, res) => {
 exports.getPartners = async (req, res) => {
   try {
     const partner = await Partners.findById(req.params.id);
+    const user = await User.findById(req.user.id).populate("borrowerMtg");
 
     const locals = {
       title: "Market Data",
       description:
         "Daily market information about rate adjustments and market trensd",
     };
-    res.render("sidebar/partners", { locals, partner });
+    res.render("sidebar/partners", { locals, partner, user });
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");
@@ -85,6 +94,8 @@ exports.getWorkbookID = async (req, res) => {
     const comments = await commentsController.getCommentsByBorrowerMtgId(
       req.params.id
     );
+    const user = await User.findById(req.user.id).populate("borrowerMtg");
+
     const locals = {
       title: "Workbook",
       description: "calculate te mortgage payment",
@@ -94,6 +105,7 @@ exports.getWorkbookID = async (req, res) => {
       borrowerMtg: borrowerMtg,
       comments,
       layout: "../views/layouts/dashboardLayout",
+      user,
     });
   } catch (error) {
     console.error(error);
@@ -104,6 +116,7 @@ exports.getWorkbookID = async (req, res) => {
 exports.getConditionsID = async (req, res) => {
   try {
     const borrowerMtgId = req.params.id;
+    const user = await User.findById(req.user.id).populate("borrowerMtg");
 
     // Find the BorrowerMtg by ID
     const borrowerMtg = await BorrowerMtg.findById(borrowerMtgId);
@@ -128,6 +141,7 @@ exports.getConditionsID = async (req, res) => {
       conditions,
       comments,
       layout: "../views/layouts/dashboardLayout",
+      user,
     });
   } catch (error) {
     console.error(error);
@@ -141,6 +155,8 @@ exports.getDocumentsID = async (req, res) => {
     const comments = await commentsController.getCommentsByBorrowerMtgId(
       req.params.id
     );
+    const user = await User.findById(req.user.id).populate("borrowerMtg");
+
     const locals = {
       title: "Documents",
       description: "repository for documents used in the process",
@@ -150,6 +166,7 @@ exports.getDocumentsID = async (req, res) => {
       borrowerMtg: borrowerMtg,
       comments,
       layout: "../views/layouts/dashboardLayout",
+      user,
     });
   } catch (error) {
     console.error(error);
@@ -189,6 +206,8 @@ exports.getBenefitID = async (req, res) => {
     const comments = await commentsController.getCommentsByBorrowerMtgId(
       req.params.id
     );
+    const user = await User.findById(req.user.id).populate("borrowerMtg");
+
     const locals = {
       title: "Benefit",
       description: "Breaks down the benefit to the borrower",
@@ -198,6 +217,7 @@ exports.getBenefitID = async (req, res) => {
       borrowerMtg: borrowerMtg,
       comments,
       layout: "../views/layouts/dashboardLayout",
+      user,
     });
   } catch (error) {
     console.error(error);
@@ -213,6 +233,8 @@ exports.getIncomeID = async (req, res) => {
     const comments = await commentsController.getCommentsByBorrowerMtgId(
       req.params.id
     );
+    const user = await User.findById(req.user.id).populate("borrowerMtg");
+
     const locals = {
       title: "Income",
       description: "Calculates income",
@@ -222,6 +244,7 @@ exports.getIncomeID = async (req, res) => {
       borrowerMtg: borrowerMtg,
       comments,
       layout: "../views/layouts/dashboardLayout",
+      user,
     });
   } catch (error) {
     console.error(error);

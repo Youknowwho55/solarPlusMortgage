@@ -4,6 +4,7 @@ const {
   MortgageLoan,
   Employer,
 } = require("../models/borrowerMtg");
+const multer = require("multer");
 
 const User = require("../models/user");
 
@@ -61,6 +62,8 @@ exports.dashSales = async (req, res) => {
 
 exports.dashSolar = async (req, res) => {
   const borrowermtgs = await BorrowerMtg.find();
+  const user = await User.findById(req.user.id).populate("borrowerMtg");
+
   const locals = {
     title: "Dashboard",
     description: "Main Dashboard for Sales professionals",
@@ -84,6 +87,7 @@ exports.dashSolar = async (req, res) => {
     locals,
     borrowermtgs: borrowermtgs,
     sortedBorrowerMtg: sortedBorrowerMtg,
+    user,
   });
 };
 
@@ -92,6 +96,8 @@ exports.getAdmin = async (req, res) => {
   const users = await User.find().sort({
     createdAt: "desc",
   });
+  const user = await User.findById(req.user.id);
+
   const locals = {
     title: "Admin",
     description: "Admin Dashboard",
@@ -99,6 +105,7 @@ exports.getAdmin = async (req, res) => {
   res.render("mainDashboard/adminDashboard", {
     locals,
     users: users,
+    user,
   });
 };
 
@@ -106,6 +113,8 @@ exports.dashProcessing = async (req, res) => {
   const borrowermtgs = await BorrowerMtg.find().sort({
     createdAt: "desc",
   });
+  const user = await User.findById(req.user.id).populate("borrowerMtg");
+
   const locals = {
     title: "Dashboard",
     description: "Main Dashboard for Sales professionals",
@@ -113,6 +122,7 @@ exports.dashProcessing = async (req, res) => {
   res.render("mainDashboard/processorDashboard", {
     locals,
     borrowermtgs: borrowermtgs,
+    user,
   });
 };
 
@@ -130,5 +140,30 @@ exports.dashSettings = async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 };
+// const storage = multer.memoryStorage();
+// const upload = multer({ storage: storage });
+
+// exports.postProfileUpload = async (req, res) => {
+//   try {
+//     // Handle file upload and store the URL in the user's profilePhotoUrl field
+//     const user = await User.findById(req.user._id); // Assuming you have user authentication
+//     if (!user) {
+//       return res.status(404).json({ error: "User not found" });
+//     }
+
+//     // Process the uploaded file and save it to your database or storage service
+//     // In this example, we'll use a placeholder URL
+//     const profilePhotoUrl = "http://example.com/path/to/profile-photo.jpg";
+
+//     // Update the user's profilePhotoUrl field
+//     user.profilePhotoUrl = profilePhotoUrl;
+//     await user.save();
+
+//     res.json({ success: true, profilePhotoUrl });
+//   } catch (error) {
+//     console.error("Error uploading file:", error);
+//     res.status(500).json({ success: false, error: "Internal Server Error" });
+//   }
+// };
 
 // add random other pages that are main like About, FAQ, Help

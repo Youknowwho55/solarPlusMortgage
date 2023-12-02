@@ -679,3 +679,41 @@ input {
 .word-wrap {
   word-wrap: break-word;
 }
+
+.profile-container {
+  display: flex;
+  align-items: center;
+}
+
+.profile-container {
+  display: flex;
+  align-items: center;
+}
+
+.profile-photo {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #e3f2fd; /* Choose a background color for the circle */
+  border: 2px solid black; /* Add a white border */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.initials {
+  color: black; /* Choose a text color for the initials */
+  font-size: 16px; /* Choose a font size for the initials */
+  font-weight: bold;
+  margin-right: -1px; /* Adjust the margin to bring initials closer together */
+  font-family: "pacifico";
+  margin-top: 1px;
+}
+
+/* Style for the toggle-down icon */
+.bx-chevron-down {
+  font-size: 16px; /* Choose a font size for the icon */
+  padding-left: 3px;
+  color: white;
+}

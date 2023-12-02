@@ -59,103 +59,148 @@
   </div>
   <!-- End People -->
 
-  <div class="col-5">
-    <label for="firstName" class="form-label">First Name</label>
+  <div class="row mb-3 pb-2">
+    <label for="firstName" class="col-sm-2 col-form-label">First Name</label>
 
-    <input
-      required
-      value="<%= borrowerMtg.firstName %>"
-      type="text"
-      name="firstName"
-      id="firstName"
-      class="form-control"
-    />
+    <div class="col-sm-4">
+      <input
+        required
+        value="<%= borrowerMtg.firstName %>"
+        type="text"
+        name="firstName"
+        id="firstName"
+        class="form-control"
+      />
+    </div>
+
+    <label for="lastName" class="col-sm-2 col-form-label">Last Name</label>
+
+    <div class="col-sm-4">
+      <input
+        required
+        value="<%= borrowerMtg.lastName %>"
+        type="text"
+        class="form-control"
+        name="lastName"
+        id="lastName"
+      />
+    </div>
   </div>
-  <div class="col-5">
-    <label for="lastName" class="form-label">Last Name</label>
-    <input
-      required
-      value="<%= borrowerMtg.lastName %>"
-      type="text"
-      class="form-control"
-      name="lastName"
-      id="lastName"
-    />
-  </div>
-  <div class="col-4">
-    <label for="phoneNumber" class="form-label">Phone Number</label>
-    <input
-      value="<%= borrowerMtg.phoneNumber %>"
-      type="text"
-      name="phoneNumber"
-      id="phoneNumber"
-      class="form-control"
-    />
-  </div>
-  <div class="col-6">
-    <label for="email" class="form-label">Email</label>
-    <input
-      value="<%= borrowerMtg.email %>"
-      type="text"
-      name="email"
-      id="email"
-      class="form-control"
-    />
+
+  <div class="row mb-3 pb-2">
+    <label for="phoneNumber" class="col-sm-2 col-form-label"
+      >Phone Number</label
+    >
+    <div class="col-sm-4">
+      <input
+        value="<%= borrowerMtg.phoneNumber %>"
+        type="text"
+        name="phoneNumber"
+        id="phoneNumber"
+        class="form-control"
+      />
+    </div>
+
+    <label for="email" class="col-sm-2 col-form-label">Email</label>
+    <div class="col-sm-4">
+      <input
+        value="<%= borrowerMtg.email %>"
+        type="text"
+        name="email"
+        id="email"
+        class="form-control"
+      />
+    </div>
   </div>
 
   <h5>Primary Address</h5>
-  <div class="col-8">
-    <label for="inputAddress" class="form-label">Address</label>
-    <input
-      value="<%= borrowerMtg.street %>"
-      type="text"
-      name="street"
-      id="street"
-      class="form-control"
-    />
+
+  <div class="row mb-3 pb-2">
+    <label for="street" class="col-sm-2 col-form-label">Address</label>
+    <div class="col-sm-6">
+      <input
+        value="<%= borrowerMtg.street %>"
+        type="text"
+        name="street"
+        id="street"
+        class="form-control"
+      />
+    </div>
   </div>
-  <div class="col-8">
-    <label for="inputAddress2" class="form-label">Address 2</label>
-    <input
-      value="<%= borrowerMtg.streetLine2 %>"
-      type="text"
-      name="streetLine2"
-      id="streetLine2"
-      class="form-control"
-    />
+  <div class="row mb-3 pb-2">
+    <label for="streetLine2" class="col-sm-2 col-form-label">Address 2</label>
+    <div class="col-sm-6">
+      <input
+        value="<%= borrowerMtg.streetLine2 %>"
+        type="text"
+        name="streetLine2"
+        id="streetLine2"
+        class="form-control"
+      />
+    </div>
   </div>
-  <div class="col-md-5">
-    <label for="inputCity" class="form-label">City</label>
-    <input
-      value="<%= borrowerMtg.city %>"
-      type="text"
-      name="city"
-      id="city"
-      class="form-control"
-    />
-  </div>
-  <div class="col-md-3">
-    <label for="inputState" class="form-label">State</label>
-    <input
-      value="<%= borrowerMtg.state %>"
-      type="text"
-      name="state"
-      id="state"
-      class="form-control"
-    />
-  </div>
-  <div class="col-md-2">
-    <label for="inputZip" class="form-label">Zip</label>
-    <input
-      value="<%= borrowerMtg.zipCode %>"
-      type="text"
-      name="zipCode"
-      id="zipCode"
-      class="form-control"
-    />
+
+  <div class="row mb-3 pb-2">
+    <label for="city" class="col-sm-1 col-form-label">City</label>
+    <div class="col-sm-3">
+      <input
+        value="<%= borrowerMtg.city %>"
+        type="text"
+        name="city"
+        id="city"
+        class="form-control"
+      />
+    </div>
+
+    <label for="state" class="col-sm-1 col-form-label">State</label>
+    <div class="col-sm-3">
+      <input
+        value="<%= borrowerMtg.state %>"
+        type="text"
+        name="state"
+        id="state"
+        class="form-control"
+      />
+    </div>
+
+    <label for="zipCode" class="col-sm-1 col-form-label">Zip</label>
+    <div class="col-sm-2">
+      <input
+        value="<%= borrowerMtg.zipCode %>"
+        type="text"
+        name="zipCode"
+        id="zipCode"
+        class="form-control"
+      />
+    </div>
   </div>
 </form>
 
-<h4 class="pt-4">Subject Property</h4>
+<h4 class="py-4">Subject Property</h4>
 
 <div><%- include('../partials/_properties.ejs') %></div>
+
+<style>
+  .row {
+    background-color: #fbfdfe;
+    padding: 10px;
+    border: 1px solid #e9ecef;
+    border-radius: 5px;
+  }
+
+  .row {
+    margin-bottom: 15px;
+  }
+
+  .col-form-label {
+    margin-bottom: 5px;
+  }
+
+  .form-control {
+    margin-bottom: 10px;
+  }
+  label {
+    font-weight: bold;
+    color: #495057;
+  }
+</style>

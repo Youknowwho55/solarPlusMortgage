@@ -54,8 +54,8 @@
         />
       </form>
       <div>
-        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-          <li class="nav-item" role="presentation">
+        <ul class="nav nav-pills mx-1" id="pills-tab" role="tablist">
+          <li class="px-3 nav-item" role="presentation">
             <a class="nav-link" id="pills-home-tab" href="/" role="tab" aria-controls="pills-home" aria-selected="true">Mortgage</a>
           </li>
           <li class="nav-item" role="prpillsesentation">
@@ -65,31 +65,39 @@
       </div>
 
       <div class="btn-group">
-      <div class="dropdown">
-        <button
-          type="button"
-          class="btn btn-primary dropdown-toggle"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-        >
-          <a href="#" class="profile">
-            <img src="/images/DR-Logo.jpg" width="30" height="30" />
-          </a>
-        </button>
+        <div class="dropdown">
+          <button
+            type="button"
+            class="btn btn-primary "
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <a href="#" class="profile">
+              <!-- Use a container for the circular profile photo and icon -->
+              <div class="profile-container">
+                <!-- Circular profile photo -->
+                <div class="profile-photo">
+                  <!-- Dynamically generate the initials using the first letters of the first and last name -->
+                  <span class="initials"><%= user.firstName ? user.firstName.charAt(0) : '' %><%= user.lastName ? user.lastName.charAt(0) : '' %></span>
 
-        <ul class="dropdown-menu">
-          <li>
-            <a class="dropdown-item" href="/settings"
-              ><i class="bx bx-cog"></i>Settings</a
-            >
-          </li>
-          <li>
-            <a href="/logout" class="dropdown-item logout">
-              <i class="bx bx-log-out-circle"></i>Logout</a
-            >
-          </li>
-        </ul>
-      </div>
+                </div>
+                <!-- Toggle-down icon -->
+                <i class="bx bx-chevron-down"></i>
+              </div>
+            </a>
+          </button>
+      
+          <ul class="dropdown-menu">
+            <li>
+              <a class="dropdown-item" href="/settings"><i class="bx bx-cog"></i>Settings</a>
+            </li>
+            <li>
+              <a href="/logout" class="dropdown-item logout"><i class="bx bx-log-out-circle"></i>Logout</a>
+            </li>
+          </ul>
+        </div>
+      
+      
 
     </nav>
 

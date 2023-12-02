@@ -7,23 +7,26 @@
 <h6 class="pt-3">Comments:</h6>
 <form action="/comments/newComment/<%= borrowerMtg.id %>" method="POST">
   <div>
-  <div class="row">
-    <div class="col-md-12">
-      <div
-        id="commentSection"
-        contenteditable="false"
-        class="word-wrap"
-        style="border: 1px solid #ccc; padding: 5px; min-height: 100px"
-      >
-        <% comments.forEach(function(comment) { %>
-          <span class="blue-text"><%= comment.createdAt %></span>: <%= comment.comment %><br>
-        <% }); %>
-
-
+    <div class="row">
+      <div class="col-md-12">
+        <div
+          id="commentSection"
+          contenteditable="false"
+          class="word-wrap"
+          style="border: 1px solid #ccc; padding: 5px; min-height: 100px"
+        >
+          <% comments.forEach(function(comment) { %>
+            <span class="blue-text">
+              <%= comment.createdAt %>,
+              <%= comment.user ? comment.user.username : 'Unknown User' %>
+            </span>: <%= comment.comment %><br>
+                        <% }); %>
+        </div>
       </div>
     </div>
   </div>
-</div>
+  
+  
   
 
   <div class="row mt-3">
@@ -45,54 +48,55 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-  $(document).ready(function () {
-    $("#addCommentButton").on("click", function (e) {
-      e.preventDefault(); // Prevent the default form submission
+ $(document).ready(function () {
+  $("#addCommentButton").on("click", function (e) {
+    e.preventDefault(); // Prevent the default form submission
 
-      var commentText = $("#comment").val();
-      if (commentText.trim() !== "") {
-        var options = {
-          month: "numeric",
-          day: "numeric",
-          year: "numeric",
-          hour: "numeric",
-          minute: "numeric",
-          hour12: true,
-        };
+    var commentText = $("#comment").val();
+    if (commentText.trim() !== "") {
+      var options = {
+        month: "numeric",
+        day: "numeric",
+        year: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+        hour12: true,
+      };
 
-        var formattedDate = new Date().toLocaleString("en-US", options);
+      var formattedDate = new Date().toLocaleString("en-US", options);
 
-        // Update the local comment section
-        var newComment =
-          '<span class="blue-text">' +
-          formattedDate +
-          " Username" +
-          "</span>: " +
-          commentText +
-          "<br>";
-          "<br>";
+      // Update the local comment section
+      var newComment =
+        '<span class="blue-text">' +
+        formattedDate +
+        " " +
+        '<%= user.username ? user.username : "User" %>' +
+        "</span>: " +
+        commentText +
+        "<br><br>";
 
-        $("#commentSection").append(newComment);
-        $("#comment").val(""); // Clear the input field
+      $("#commentSection").append(newComment);
+      $("#comment").val(""); // Clear the input field
 
-        // Send the comment to the server using AJAX
-        $.ajax({
-          url: "/comments/newComment/<%= borrowerMtg.id %>",
-          method: "PUT",
-          data: {
-            username: "Username", // Replace with actual username
-            comment: commentText,
-          },
-          success: function (response) {
-            // Handle the server response if needed
-          },
-          error: function (error) {
-            console.error("Error posting comment:", error);
-          },
-        });
-      }
-    });
+      // Send the comment to the server using AJAX
+      $.ajax({
+        url: "/comments/newComment/<%= borrowerMtg.id %>",
+        method: "PUT",
+        data: {
+          username: '<%= user.firstName ? user.firstName : "User" %>',
+          comment: commentText,
+        },
+        success: function (response) {
+          // Handle the server response if needed
+        },
+        error: function (error) {
+          console.error("Error posting comment:", error);
+        },
+      });
+    }
   });
+});
+
 </script>
 
 
