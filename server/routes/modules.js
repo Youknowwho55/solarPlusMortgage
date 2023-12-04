@@ -16,6 +16,11 @@ router.get("/analytics", checkAuthenticated, modulesController.getAnalytics);
 router.get("/guides", checkAuthenticated, modulesController.getGuides);
 router.get("/marketData", checkAuthenticated, modulesController.getMarketData);
 router.get("/partners", checkAuthenticated, modulesController.getPartners);
+router.get(
+  "/dashboard/search",
+  checkAuthenticated,
+  modulesController.getDashSearch
+);
 
 router.get(
   "/workbook/:id",
@@ -47,5 +52,7 @@ router.get("/income/:id", checkAuthenticated, modulesController.getIncomeID);
 //postroute
 router.post("/conditions/:id", modulesController.postConditions);
 router.put("/conditions/:id", modulesController.putConditionsID);
+
+router.post("/addIncome", modulesController.postAddIncome);
 
 module.exports = router;

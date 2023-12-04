@@ -674,6 +674,8 @@ input {
 
 .blue-text {
   color: blue;
+  font-weight: 600;
+  font-size: 12px;
 }
 
 .word-wrap {
@@ -704,11 +706,12 @@ input {
 
 .initials {
   color: black; /* Choose a text color for the initials */
-  font-size: 16px; /* Choose a font size for the initials */
+  font-size: 14px; /* Choose a font size for the initials */
   font-weight: bold;
   margin-right: -1px; /* Adjust the margin to bring initials closer together */
   font-family: "pacifico";
   margin-top: 1px;
+  letter-spacing: -1px; /* Adjust the letter-spacing to bring letters closer together */
 }
 
 /* Style for the toggle-down icon */
@@ -716,4 +719,15 @@ input {
   font-size: 16px; /* Choose a font size for the icon */
   padding-left: 3px;
   color: white;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
 }

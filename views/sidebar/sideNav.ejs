@@ -78,8 +78,14 @@
                 <!-- Circular profile photo -->
                 <div class="profile-photo">
                   <!-- Dynamically generate the initials using the first letters of the first and last name -->
-                  <span class="initials"><%= user.firstName ? user.firstName.charAt(0) : '' %><%= user.lastName ? user.lastName.charAt(0) : '' %></span>
-
+                  <span class="initials">
+                    <% if (typeof user !== 'undefined' && user) { %>
+                      <%= user.firstName ? user.firstName.charAt(0) : 'H' %>
+                      <%= user.lastName ? user.lastName.charAt(0) : 'M' %>
+                    <% } else { %>
+                      HM
+                    <% } %>
+                  </span>
                 </div>
                 <!-- Toggle-down icon -->
                 <i class="bx bx-chevron-down"></i>

@@ -2,87 +2,135 @@
 
 <%- include('../partials/_tabs.ejs') %>
 <body>
-  <h3 class="mb-4">Income Calculator:</h3>
-  <p>
-    Income Calculation File // income - sellect source (SS - grossable, W2, SE,
-    Rental) calculations to see what the alue is. Then have a selector on the
-    worksheet to see
-  </p>
-  <button>Add Employer</button>
-  <% if (borrowerMtg.employer) { %>
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-2 mb-3 border-bottom">
+    <h1> Income Calculator</h1>
+    
 
-  <div class="card">
-    <div class="col-4">
-      <label for="employerName" class="form-label">Employer Name</label>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#incomeModal">
++ Add Income</button>
+
+<!-- Modal -->
+<div class="modal fade" id="incomeModal" tabindex="-1" aria-labelledby="incomeModal" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+  <h1 class="modal-title fs-5" id="mtgModalLabel">Add Income</h1>
+  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+
+<div class="modal-body">
+  <form action="/addIncome" method="POST">
+
+    <div class="col-8">
+      <label>Borrower</label>
+
+      <select>
+  <option>Dynamically Update bwr 1</option>
+      </select>
+
+    </div>
+    <div class="col-8">
+      <label for="incomeType" class="form-label">Income Type:</label>
+      <select>
+        <option>W2</option>
+        <option>Schedule C</option>
+        <option>Partnership</option>
+        <option>1099</option>
+        <option>Real Estate</option>
+            </select>
+    </div>
+    <div class="col-8">
+      <label for="monthlyAmount" class="form-label">Monthly Amount:</label>
       <input
-        value="<%= borrowerMtg.employer.employerName %>"
+        value="<%= borrowerMtg.employer ? borrowerMtg.employer.monthlyAmount : '' %>"
         type="text"
-        name="employerName"
-        id="employerName"
+        name="monthlyAmount"
+        id="monthlyAmount"
         class="form-control"
       />
-
-      <div class="col-12">
-        <label for="inputAddress" class="form-label">Address</label>
-        <input
-          value="<%= borrowerMtg.employer.employerStreet %>"
-          type="text"
-          name="street"
-          id="street"
-          class="form-control"
-        />
-      </div>
-      <div class="col-12">
-        <label for="inputAddress2" class="form-label">Address 2</label>
-        <input
-          value="<%= borrowerMtg.employer.employerStreetLine2 %>"
-          type="text"
-          name="streetLine2"
-          id="streetLine2"
-          class="form-control"
-        />
-      </div>
-      <div class="col-md-6">
-        <label for="inputCity" class="form-label">City</label>
-        <input
-          value="<%= borrowerMtg.employer.employerCity %>"
-          type="text"
-          name="city"
-          id="city"
-          class="form-control"
-        />
-      </div>
-      <div class="col-md-4">
-        <label for="inputState" class="form-label">State</label>
-        <input
-          value="<%= borrowerMtg.employer.employerState %>"
-          type="text"
-          name="state"
-          id="state"
-          class="form-control"
-        />
-        <select id="inputState" class="form-select">
-          <option selected>Choose...</option>
-          <option>CA</option>
-          <option>AZ</option>
-          <option>NM</option>
-        </select>
-      </div>
-      <div class="col-md-2">
-        <label for="inputZip" class="form-label">Zip</label>
-        <input
-          value="<%= borrowerMtg.employer.employerZipCode %>"
-          type="text"
-          name="zipCode"
-          id="zipCode"
-          class="form-control"
-        />
-      </div>
     </div>
-  </div>
-  <% } else { %>
-  <p>No employer information available</p>
-  <% } %>
+    
+</div>
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+</div>
+
+</div>
+</div>
+</div>
+
+</div>
+<!-- End of Modal and Heading Class -->
+
+
+
+
+
+
+
+    <tbody>
+      <div class="table-responsive">
+        <table class="table table-sm">
+          <thead>
+            <tr>
+              <th>Borrower</th>
+              <th>Employer</th>
+              <th>Income Type</th>
+              <th>Monthly Amount</th>
+              <th>Enter</th>
+
+            </tr>
+          </thead>
+      
+          <tbody>
+            <tr>
+
+              <td>
+                <strong>
+                  <p class="card-title">
+                    <%= borrowerMtg.firstName %> <%= borrowerMtg.lastName %>
+                  </p>
+                </strong>
+              </td>
+              <td>
+                <% if (borrowerMtg.employer) { %>
+                  <%= borrowerMtg.employer.employerName %>
+                <% } else { %>
+                  N/A
+                <% } %>
+              </td>
+              <td>
+                <% if (borrowerMtg.employer) { %>
+                  <%= borrowerMtg.employer.incomeType %>
+                <% } else { %>
+                  N/A
+                <% } %>
+              </td>
+              <td>
+                <% if (borrowerMtg.employer) { %>
+                  <%= borrowerMtg.employer.monthlyAmount %>
+                <% } else { %>
+                  N/A
+                <% } %>
+              </td>
+              <td> <a href="borrowersMtg/" class="btn btn-primary">Enter</a></td>     
+
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      </tbody>
 </body>
 
 <script src="/public/Jquery/income.js"></script>
+
+
+
+
+
+

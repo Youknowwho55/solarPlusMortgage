@@ -18,12 +18,15 @@ exports.getBorrowerMtgById = async (req, res) => {
     );
     const user = await User.findById(req.user.id).populate("borrowerMtg");
 
+    let numberOfProperties = 2;
+
     const locals = {
       title: "Edit",
       description: "Edit the borrower's information",
       borrowerMtg,
       comments,
       user,
+      numberOfProperties, // Pass the numberOfProperties to the template
       layout: "../views/layouts/dashboardLayout",
     };
 
@@ -34,7 +37,6 @@ exports.getBorrowerMtgById = async (req, res) => {
   }
 };
 
-//the ID might now work., its not getting called>
 exports.createBorrowerMtg = async (req, res) => {
   const locals = {
     title: "Create",
@@ -133,6 +135,12 @@ async function saveBorrowerMtgAndRender(req, res, path, locals) {
     borrowerMtg.phoneNumber = req.body.phoneNumber;
     borrowerMtg.email = req.body.email;
     borrowerMtg.loanOfficer = req.body.loanOfficer;
+
+    borrowerMtg.street = req.body.street;
+    borrowerMtg.streetLine2 = req.body.streetLine2;
+    borrowerMtg.city = req.body.city;
+    borrowerMtg.state = req.body.state;
+    borrowerMtg.zipCode = req.body.zipCode;
 
     // Associate user with borrowerMtg
     borrowerMtg.user = req.user.id;

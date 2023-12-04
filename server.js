@@ -81,6 +81,7 @@ app.use("/comments", require("./server/routes/comments"));
 app.use("/", require("./server/routes/auth"));
 app.use("/", require("./server/routes/index"));
 app.use("/", require("./server/routes/404"));
+app.use("/", require("./server/routes/incomeCalc"));
 
 app.listen(port, () => {
   console.log(`Backend server is running on http://localhost:${port}`);

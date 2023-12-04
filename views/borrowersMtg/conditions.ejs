@@ -76,32 +76,33 @@
 <!-- End of Modal and Heading Class -->
 
 <% conditions.forEach((condition, index) => { %>
-<div>
-  <p class="d-inline-flex gap-1">
-    <button
-      class="btn btn-primary"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#collapseExample<%= index %>"
-      aria-expanded="false"
-      aria-controls="collapseExample<%= index %>"
+<p class="d-inline-flex gap-1">
+  <button
+    class="btn btn-primary"
+    type="button"
+    data-bs-toggle="collapse"
+    data-bs-target="#collapseExample<%= index %>"
+    aria-expanded="false"
+    aria-controls="collapseExample<%= index %>"
+    value="<%= condition.condition %>"
+  >
+    <%= condition.condition %>
+    <!-- Display the condition text in the button -->
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      fill="currentColor"
+      class="bi bi-caret-down"
+      viewBox="0 0 16 16"
     >
-      Dynamically Update the Condition Name
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="16"
-        height="16"
-        fill="currentColor"
-        class="bi bi-caret-down"
-        viewBox="0 0 16 16"
-      >
-        <path
-          d="M3.204 5h9.592L8 10.481 3.204 5zm-.753.659 4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659z"
-        />
-      </svg>
-    </button>
-  </p>
-          <form id="updateConditionForm">
+      <path
+        d="M3.204 5h9.592L8 10.481 3.204 5zm-.753.659 4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659z"
+      />
+    </svg>
+  </button>
+</p>
+<form id="updateConditionForm">
   <div class="collapse" id="collapseExample<%= index %>">
     <div class="card card-body">
       <div class="col-8">
@@ -127,53 +128,54 @@
 
         <label for="description" class="form-label">Notes:</label>
         <div class="col-8">
-          <textarea><%= condition.notes %></textarea>
-        </div>
+          <div class="col-12 pb-2">
+            <div
+              id="noteCommentSection"
+              contenteditable="true"
+              class="word-wrap"
+              style="border: 1px solid #ccc; padding: 5px; min-height: 100px"
+              value=" <%= condition.notes %>"
+            ></div>
+          </div>
 
-        <div class="buttons-selection">
-          <button
-            type="button"
-            class="btn btn-success"
-            onclick="updateRow('<%= index %>', 'Requested')"
-          >
-            Requested
-          </button>
-          <button
-            type="button"
-            class="btn btn-success"
-            onclick="updateRow('<%= index %>', 'Completed')"
-          >
-            Completed
-          </button>
-          <button
-            type="button"
-            class="btn btn-success"
-            onclick="updateRow('<%= index %>', 'Cleared')"
-          >
-            Cleared
-          </button>
-        </div>
+          <div class="buttons-selection">
+            <button
+              type="button"
+              class="btn btn-success"
+              onclick="updateRow('<%= index %>', 'Requested')"
+            >
+              Requested
+            </button>
+            <button
+              type="button"
+              class="btn btn-success"
+              onclick="updateRow('<%= index %>', 'Completed')"
+            >
+              Completed
+            </button>
+            <button
+              type="button"
+              class="btn btn-success"
+              onclick="updateRow('<%= index %>', 'Cleared')"
+            >
+              Cleared
+            </button>
+          </div>
 
-        <div class="row" id="rowInfo_<%= index %>">
-          <div class="col" id="dateRequested_<%= index %>">-</div>
-          <div class="col" id="requestedBy_<%= index %>">-</div>
-          <div class="col" id="dateCompleted_<%= index %>">-</div>
-          <div class="col" id="completedBy_<%= index %>">-</div>
-          <div class="col" id="cleared_<%= index %>">-</div>
-          <div class="col">Edit</div>
-          <div class="col">Delete</div>
+          <div class="row" id="rowInfo_<%= index %>">
+            <div class="col" id="dateRequested_<%= index %>">-</div>
+            <div class="col" id="requestedBy_<%= index %>">-</div>
+            <div class="col" id="dateCompleted_<%= index %>">-</div>
+            <div class="col" id="completedBy_<%= index %>">-</div>
+            <div class="col" id="cleared_<%= index %>">-</div>
+            <div class="col">Save</div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-<% }) %>
-
-<style>
-  textarea {
-    margin-top: 10px;
-  }
-</style>
+  <% }) %>
+</form>
 
 <script>
   function updateRow(index, status) {
@@ -200,42 +202,45 @@
   }
 </script>
 
-
 <!-- Include Axios (you can use npm install axios or include it from a CDN) -->
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
 <script>
   // Function to update the hidden inputs in the update form
-  function prepareUpdateForm(conditionId, notes /* add other parameters as needed */) {
-    document.getElementById('conditionId').value = conditionId;
-    document.getElementById('notes').value = notes;
+  function prepareUpdateForm(
+    conditionId,
+    notes /* add other parameters as needed */
+  ) {
+    document.getElementById("conditionId").value = conditionId;
+    document.getElementById("notes").value = notes;
     // Update other fields in a similar manner
   }
 
   // Function to submit the update form using Axios
   function submitUpdateForm() {
     // Get the form element
-    var updateForm = document.getElementById('updateConditionForm');
+    var updateForm = document.getElementById("updateConditionForm");
 
     // Use the FormData API to serialize the form data
     var formData = new FormData(updateForm);
 
     // Send the form data to the server using Axios
-    axios.put('/your-update-endpoint', formData)
+    axios
+      .put("/your-update-endpoint", formData)
       .then(function (response) {
         // Handle a successful response from the server
-        console.log('Update successful', response.data);
+        console.log("Update successful", response.data);
         // Optionally, close the modal or perform other actions
       })
       .catch(function (error) {
         // Handle errors, e.g., show an error message
-        console.error('Error updating condition:', error);
+        console.error("Error updating condition:", error);
       });
   }
 
   // Add click event listeners to dynamically update the update form fields
-  document.querySelectorAll('.btn-primary').forEach((btn, index) => {
-    btn.addEventListener('click', () => {
+  document.querySelectorAll(".btn-primary").forEach((btn, index) => {
+    btn.addEventListener("click", () => {
       // Pass necessary parameters like conditionId, notes, etc.
       prepareUpdateForm(/* conditionId, notes, etc. */);
       // Show or trigger the update form modal as needed

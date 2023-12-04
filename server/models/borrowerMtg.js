@@ -30,7 +30,25 @@ const borrowerMtgSchema = new mongoose.Schema({
     type: String,
   },
   address: {
-    type: String,
+    street: {
+      type: String,
+      required: true,
+    },
+    streetLine2: {
+      type: String,
+    },
+    city: {
+      type: String,
+      required: true,
+    },
+    state: {
+      type: String,
+      required: true,
+    },
+    zipCode: {
+      type: String,
+      required: true,
+    },
   },
   lender: {
     type: String,
@@ -99,6 +117,8 @@ const employerSchema = new mongoose.Schema({
   employerCity: { type: Number },
   employerState: { type: Number },
   employerZipCode: { type: Number },
+  incomeType: { type: String },
+  monthlyAmount: { type: Number },
 });
 
 module.exports = {

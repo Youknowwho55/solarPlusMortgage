@@ -1,136 +1,34 @@
 <!-- @format -->
 
-<form>
-  <div class="col-8">
-    <label for="inputAddress" class="form-label">Address</label>
-    <input
-      value="<%= borrowerMtg.street %>"
-      type="text"
-      name="street"
-      id="street"
-      class="form-control"
-    />
-  </div>
-  <div class="col-8">
-    <label for="inputAddress2" class="form-label">Address 2</label>
-    <input
-      value="<%= borrowerMtg.streetLine2 %>"
-      type="text"
-      name="streetLine2"
-      id="streetLine2"
-      class="form-control"
-    />
-  </div>
-  <div class="col-md-5">
-    <label for="inputCity" class="form-label">City</label>
-    <input
-      value="<%= borrowerMtg.city %>"
-      type="text"
-      name="city"
-      id="city"
-      class="form-control"
-    />
-  </div>
-  <div class="col-md-3">
-    <label for="inputState" class="form-label">State</label>
-    <input
-      value="<%= borrowerMtg.state %>"
-      type="text"
-      name="state"
-      id="state"
-      class="form-control"
-    />
-  </div>
-  <div class="col-md-2">
-    <label for="inputZip" class="form-label">Zip</label>
-    <input
-      value="<%= borrowerMtg.zipCode %>"
-      type="text"
-      name="zipCode"
-      id="zipCode"
-      class="form-control"
-    />
-  </div>
-  <div class="row mb-3">
-    <label for="occupancyMainFile" class="col-sm-2 col-form-label"
-      >Occupancy</label
-    >
-    <div class="col-sm-3">
-      <input type="text" class="form-control" id="occupancyMainFile" />
-    </div>
-  </div>
-  <div class="row mb-3">
-    <label for="mortgageMainFile" class="col-sm-2 col-form-label"
-      >Mortgage Holder</label
-    >
-    <div class="col-sm-3">
-      <input type="text" class="form-control" id="mortgageMainFile" />
-    </div>
-  </div>
-  <div class="row mb-3">
-    <label for="originaAmtlMainFile" class="col-sm-2 col-form-label"
-      >Original Amount</label
-    >
-    <div class="col-sm-3">
-      <input type="number" class="form-control" id="originaAmtlMainFile" />
-    </div>
-  </div>
-  <div class="row mb-3">
-    <label for="loanAmtMainFile" class="col-sm-2 col-form-label"
-      >Loan Amount</label
-    >
-    <div class="col-sm-3">
-      <input type="number" class="form-control" id="loanAmtMainFile" />
-    </div>
-  </div>
-  <div class="row mb-3">
-    <label for="dateOpenedMainFile" class="col-sm-2 col-form-label"
-      >Date Opened</label
-    >
-    <div class="col-sm-3">
-      <input type="date" class="form-control" id="dateOpenedMainFile" />
-    </div>
-  </div>
-  <div class="row mb-3">
-    <label for="rateMainFile" class="col-sm-2 col-form-label">Rate</label>
-    <div class="col-sm-3">
-      <input type="number" class="form-control" id="rateMainFile" />
-    </div>
-  </div>
-  <div class="row mb-3">
-    <label for="termMainFile" class="col-sm-2 col-form-label">Term</label>
-    <div class="col-sm-3">
-      <input type="number" class="form-control" id="termMainFile" />
-    </div>
-  </div>
-</form>
+<!-- _properties.ejs -->
 
-<div class="row mb-3">
-  <label for="mtgPmtMainFile" class="col-sm-2 col-form-label"
-    >Mortgage payment</label
+<div>
+  <!-- Add a unique identifier to the button and collapse elements -->
+  <button
+    class="btn btn-primary"
+    type="button"
+    data-bs-toggle="collapse"
+    data-bs-target="#collapseExample"
+    aria-expanded="false"
+    aria-controls="collapseExample"
+    value=""
   >
-  <div class="col-sm-3">
-    <input type="number" class="form-control" id="mtgPmtMainFile" />
-  </div>
-</div>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      fill="currentColor"
+      class="bi bi-caret-down"
+      viewBox="0 0 16 16"
+    >
+      <path
+        d="M3.204 5h9.592L8 10.481 3.204 5zm-.753.659 4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659z"
+      />
+    </svg>
+  </button>
 
-<div class="row mb-3">
-  <label for="propTaxMainFile" class="col-sm-2 col-form-label">Taxes</label>
-  <div class="col-sm-3">
-    <input type="number" class="form-control" id="propTaxMainFile" />
-  </div>
-</div>
-
-<div class="row mb-3">
-  <label for="propInsMainFile" class="col-sm-2 col-form-label">Insurance</label>
-  <div class="col-sm-3">
-    <input type="number" class="form-control" id="propInsMainFile" />
-  </div>
-</div>
-
-<div class="row mb-3">
-  <label for="propHOAMainFile" class="col-sm-2 col-form-label">HOA</label>
-  <div class="col-sm-3">
-    <input type="number" class="form-control" id="propHOAMainFile" />
+  <div class="collapse" id="collapseExample">
+    <!-- Include the property fields partial template -->
+    %>
   </div>
 </div>

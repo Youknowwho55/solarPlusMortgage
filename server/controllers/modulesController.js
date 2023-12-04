@@ -253,6 +253,7 @@ exports.getIncomeID = async (req, res) => {
 };
 
 // POST Conditions
+// POST Conditions
 exports.postConditions = async (req, res) => {
   try {
     const borrowerMtgId = req.params.id;
@@ -265,10 +266,15 @@ exports.postConditions = async (req, res) => {
 
     await newCondition.save();
 
-    const borrowerMtg = await BorrowerMtg.findById(borrowerMtgId);
+    let borrowerMtg = await BorrowerMtg.findById(borrowerMtgId);
 
     if (!borrowerMtg) {
       return res.status(404).json({ error: "BorrowerMtg not found" });
+    }
+
+    // Check if borrowerMtg.conditions is an array, and initialize it if not
+    if (!Array.isArray(borrowerMtg.conditions)) {
+      borrowerMtg.conditions = [];
     }
 
     borrowerMtg.conditions.push(newCondition);
@@ -277,7 +283,8 @@ exports.postConditions = async (req, res) => {
 
     res
       .status(201)
-      .json({ message: "Condition added successfully", newCondition });
+      .json({ message: "Condition added successfully", newCondition })
+      .render("borrowesMtg/conditions");
   } catch (error) {
     console.error("Error adding condition:", error);
     res.status(500).json({ error: "Internal Server Error" });
@@ -337,3 +344,53 @@ exports.putConditionsID = async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 };
+
+// Add the incmooe
+exports.postAddIncome = async (req, res) => {
+  const locals = {
+    title: "Create",
+    description: "Create a new borrower",
+  };
+
+  await saveIncomeAndRender(req, res, locals);
+};
+
+//dashboard search functino
+exports.getDashSearch = async (req, res) => {
+  const searchTerm = req.query.searchTerm;
+
+  // Implement your search logic here
+  // You might query the database or perform any search operations
+
+  // Example: rendering a search results page
+  // res.render("searchResults", { searchTerm, results });
+};
+async function saveIncomeAndRender(req, res, locals) {
+  let borrowerMtg;
+
+  try {
+    borrowerMtg = req.params.id
+      ? await BorrowerMtg.findById(req.params.id)
+      : new BorrowerMtg();
+
+    // Initialize employer if not already present
+    if (!borrowerMtg.employer) {
+      borrowerMtg.employer = {};
+    }
+
+    borrowerMtg.employer.incomeType = req.body.incomeType;
+    borrowerMtg.employer.monthlyAmount = req.body.monthlyAmount;
+
+    // Associate user with borrowerMtg
+    borrowerMtg.user = req.user.id;
+
+    await borrowerMtg.save();
+
+    // Redirect to the income page specific to the borrower
+    res.redirect(`/income/${borrowerMtg.id}`);
+  } catch (error) {
+    console.error(error);
+    res.redirect(302, `/income/${borrowerMtg.id}`);
+  }
+}
+///Still working on this!!!!!!
