@@ -1,10 +1,6 @@
 /** @format */
 
-const {
-  BorrowerMtg,
-  MortgageLoan,
-  Employer,
-} = require("../models/borrowerMtg");
+const { BorrowerMtg, MortgageLoan } = require("../models/borrowerMtg");
 const Condition = require("../models/condition");
 const Partners = require("../models/partner");
 const User = require("../models/user");
@@ -82,6 +78,21 @@ exports.getPartners = async (req, res) => {
         "Daily market information about rate adjustments and market trensd",
     };
     res.render("sidebar/partners", { locals, partner, user });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
+};
+
+exports.getToDo = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).populate("borrowerMtg");
+
+    const locals = {
+      title: "To Do items",
+      description: "List of items to be added",
+    };
+    res.render("sidebar/todo", { locals, user });
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");
@@ -227,11 +238,17 @@ exports.getBenefitID = async (req, res) => {
 
 exports.getIncomeID = async (req, res) => {
   try {
-    const borrowerMtg = await BorrowerMtg.findById(req.params.id)
-      .populate("mortgageLoan")
-      .populate("employer");
+    const borrowerMtgId = req.params.id;
+    const borrowerMtg = await BorrowerMtg.findById(borrowerMtgId).populate(
+      "incomes"
+    );
+
+    if (!borrowerMtg) {
+      return res.status(404).json({ error: "BorrowerMtg not found" });
+    }
+
     const comments = await commentsController.getCommentsByBorrowerMtgId(
-      req.params.id
+      borrowerMtgId
     );
     const user = await User.findById(req.user.id).populate("borrowerMtg");
 
@@ -239,12 +256,16 @@ exports.getIncomeID = async (req, res) => {
       title: "Income",
       description: "Calculates income",
     };
+
+    // Pass the complete income data to the frontend
+    // Pass the income variable as part of the data object
     res.render("borrowersMtg/income", {
       locals,
-      borrowerMtg: borrowerMtg,
+      borrowerMtg,
       comments,
       layout: "../views/layouts/dashboardLayout",
       user,
+      income: req.flash("income")[0], // Assuming you're using express-flash for flash messages
     });
   } catch (error) {
     console.error(error);
@@ -252,7 +273,6 @@ exports.getIncomeID = async (req, res) => {
   }
 };
 
-// POST Conditions
 // POST Conditions
 exports.postConditions = async (req, res) => {
   try {
@@ -281,10 +301,7 @@ exports.postConditions = async (req, res) => {
 
     await borrowerMtg.save();
 
-    res
-      .status(201)
-      .json({ message: "Condition added successfully", newCondition })
-      .render("borrowesMtg/conditions");
+    res.redirect(`/conditions/${borrowerMtg.id}`);
   } catch (error) {
     console.error("Error adding condition:", error);
     res.status(500).json({ error: "Internal Server Error" });
@@ -336,23 +353,63 @@ exports.putConditionsID = async (req, res) => {
 
     await borrowerMtg.save();
 
-    res
-      .status(200)
-      .json({ message: "Condition updated successfully", updatedCondition });
+    res.redirect(`/conditions/${borrowerMtg.id}`);
   } catch (error) {
     console.error("Error updating condition:", error);
     res.status(500).send("Internal Server Error");
   }
 };
 
-// Add the incmooe
-exports.postAddIncome = async (req, res) => {
-  const locals = {
-    title: "Create",
-    description: "Create a new borrower",
-  };
+// Example of updating incomes in the postAddIncome route
+// Import necessary modules and models
 
-  await saveIncomeAndRender(req, res, locals);
+exports.postAddIncome = async (req, res) => {
+  try {
+    const borrowerMtgId = req.params.id;
+    const borrowerMtg = await BorrowerMtg.findById(borrowerMtgId).populate(
+      "incomes"
+    );
+
+    // Check if req.params.id is present
+    if (!borrowerMtgId) {
+      return res.status(400).send("Invalid request: Missing borrower ID");
+    }
+
+    if (!borrowerMtg) {
+      return res.status(404).json({ error: "BorrowerMtg not found" });
+    }
+
+    // Create a new income object
+    const newIncome = {
+      employerName: req.body.employerName,
+      incomeType: req.body.incomeType,
+      monthlyAmount: req.body.monthlyAmount,
+    };
+
+    // Log the newIncome object
+    console.log("New Income:", newIncome);
+
+    // Push the new income to the incomes array
+    borrowerMtg.incomes.push(newIncome);
+
+    // Log the updated borrowerMtg to the console
+    console.log("Updated borrowerMtg:", borrowerMtg);
+
+    // Associate user with borrowerMtg
+    borrowerMtg.user = req.user.id;
+
+    // Save the updated borrowerMtg
+    await borrowerMtg.save();
+
+    // Set a flash message with the new income data
+    req.flash("income", newIncome);
+
+    // Redirect to the income page
+    res.redirect(`/income/${borrowerMtg.id}`);
+  } catch (error) {
+    console.error("Error saving income:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 };
 
 //dashboard search functino
@@ -365,32 +422,3 @@ exports.getDashSearch = async (req, res) => {
   // Example: rendering a search results page
   // res.render("searchResults", { searchTerm, results });
 };
-async function saveIncomeAndRender(req, res, locals) {
-  let borrowerMtg;
-
-  try {
-    borrowerMtg = req.params.id
-      ? await BorrowerMtg.findById(req.params.id)
-      : new BorrowerMtg();
-
-    // Initialize employer if not already present
-    if (!borrowerMtg.employer) {
-      borrowerMtg.employer = {};
-    }
-
-    borrowerMtg.employer.incomeType = req.body.incomeType;
-    borrowerMtg.employer.monthlyAmount = req.body.monthlyAmount;
-
-    // Associate user with borrowerMtg
-    borrowerMtg.user = req.user.id;
-
-    await borrowerMtg.save();
-
-    // Redirect to the income page specific to the borrower
-    res.redirect(`/income/${borrowerMtg.id}`);
-  } catch (error) {
-    console.error(error);
-    res.redirect(302, `/income/${borrowerMtg.id}`);
-  }
-}
-///Still working on this!!!!!!

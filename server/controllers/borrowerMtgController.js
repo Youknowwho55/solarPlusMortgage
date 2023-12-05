@@ -43,7 +43,7 @@ exports.createBorrowerMtg = async (req, res) => {
     description: "Create a new borrower",
   };
 
-  await saveBorrowerMtgAndRender(req, res, "edit", locals);
+  await saveBorrowerMtgAndRender(req, res, locals);
 };
 
 exports.updateBorrowerMtg = async (req, res) => {
@@ -52,7 +52,7 @@ exports.updateBorrowerMtg = async (req, res) => {
     description: "Update borrower",
   };
 
-  await saveBorrowerMtgAndRender(req, res, "edit", locals);
+  await updateBorrowerMtg(req, res, locals);
 };
 
 exports.updateBorrowerMtgModal = async (req, res) => {
@@ -122,7 +122,7 @@ exports.deleteBorrowerMtg = async (req, res) => {
   }
 };
 
-async function saveBorrowerMtgAndRender(req, res, path, locals) {
+async function saveBorrowerMtgAndRender(req, res, locals) {
   let borrowerMtg;
 
   try {
@@ -136,12 +136,6 @@ async function saveBorrowerMtgAndRender(req, res, path, locals) {
     borrowerMtg.email = req.body.email;
     borrowerMtg.loanOfficer = req.body.loanOfficer;
 
-    borrowerMtg.street = req.body.street;
-    borrowerMtg.streetLine2 = req.body.streetLine2;
-    borrowerMtg.city = req.body.city;
-    borrowerMtg.state = req.body.state;
-    borrowerMtg.zipCode = req.body.zipCode;
-
     // Associate user with borrowerMtg
     borrowerMtg.user = req.user.id;
 
@@ -150,8 +144,49 @@ async function saveBorrowerMtgAndRender(req, res, path, locals) {
     res.redirect(`/borrowersMtg/${borrowerMtg.id}`);
   } catch (error) {
     console.error(error);
-    res.render(`borrowersMtg/${path}`, {
-      borrowerMtg: borrowerMtg,
+    res.redirect(`/borrowersMtg/mainFile?id=${borrowerMtg.id}`);
+  }
+}
+
+async function updateBorrowerMtg(req, res, locals) {
+  try {
+    // Find the existing BorrowerMtg by ID
+    const borrowerMtg = await BorrowerMtg.findById(req.params.id);
+
+    if (!borrowerMtg) {
+      // Handle the case where the BorrowerMtg is not found
+      return res.status(404).send("BorrowerMtg not found");
+    }
+
+    // Update the fields based on the request body
+    borrowerMtg.firstName = req.body.firstName;
+    borrowerMtg.lastName = req.body.lastName;
+    borrowerMtg.phoneNumber = req.body.phoneNumber;
+    borrowerMtg.email = req.body.email;
+    borrowerMtg.loanOfficer = req.body.loanOfficer;
+
+    // Update address fields if needed
+    if (
+      req.body.zipCode ||
+      req.body.state ||
+      req.body.city ||
+      req.body.street
+    ) {
+      borrowerMtg.address = {
+        zipCode: req.body.zipCode || borrowerMtg.address.zipCode,
+        state: req.body.state || borrowerMtg.address.state,
+        city: req.body.city || borrowerMtg.address.city,
+        street: req.body.street || borrowerMtg.address.street,
+      };
+    }
+
+    // Save the updated BorrowerMtg
+    await borrowerMtg.save();
+
+    res.redirect(`/borrowersMtg/${borrowerMtg.id}`);
+  } catch (error) {
+    console.error(error);
+    res.redirect(`/borrowersMtg/mainFile`, {
       locals: locals,
     });
   }

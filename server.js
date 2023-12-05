@@ -72,6 +72,7 @@ initialize(
 app.use(bodyParser.urlencoded({ limit: "10mb", extended: false }));
 app.use(expressLayouts);
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(methodOverride("_method"));
 
 // All routes

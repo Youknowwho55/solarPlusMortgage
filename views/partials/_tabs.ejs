@@ -5,9 +5,10 @@
     <a
       class="nav-link"
       aria-current="page"
-      href="/borrowersMtg/<%= borrowerMtg.id %>"
+      href="<%= borrowerMtg ? '/borrowersMtg/' + borrowerMtg.id : '#' %>"
       class="btn btn-info"
-      >Customer</a
+    >
+      Customer</a
     >
   </li>
   <li class="nav-item">

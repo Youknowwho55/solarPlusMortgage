@@ -32,22 +32,18 @@ const borrowerMtgSchema = new mongoose.Schema({
   address: {
     street: {
       type: String,
-      required: true,
     },
     streetLine2: {
       type: String,
     },
     city: {
       type: String,
-      required: true,
     },
     state: {
       type: String,
-      required: true,
     },
     zipCode: {
       type: String,
-      required: true,
     },
   },
   lender: {
@@ -95,10 +91,13 @@ const borrowerMtgSchema = new mongoose.Schema({
     ref: "MortgageLoan",
   },
 
-  employer: {
-    type: Schema.Types.ObjectId,
-    ref: "Employer",
-  },
+  incomes: [
+    {
+      employerName: String,
+      incomeType: String,
+      monthlyAmount: Number,
+    },
+  ],
 });
 
 const mortgageLoanSchema = new mongoose.Schema({
@@ -110,21 +109,7 @@ const mortgageLoanSchema = new mongoose.Schema({
   amortizedMonths: { type: Number, default: 360 },
 });
 
-const employerSchema = new mongoose.Schema({
-  employerName: { type: String },
-  employerStreet: { type: Number },
-  employerStreetLine2: { type: Number },
-  employerCity: { type: Number },
-  employerState: { type: Number },
-  employerZipCode: { type: Number },
-  incomeType: { type: String },
-  monthlyAmount: { type: Number },
-});
-
 module.exports = {
   BorrowerMtg: mongoose.model("BorrowerMtg", borrowerMtgSchema),
   MortgageLoan: mongoose.model("MortgageLoan", mortgageLoanSchema),
-  Employer: mongoose.model("Employer", employerSchema),
 };
-
-// module.exports = mongoose.model('mtgConditions', mtgConditionsSchema)
