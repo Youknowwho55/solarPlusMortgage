@@ -4,6 +4,7 @@ const { BorrowerMtg, MortgageLoan } = require("../models/borrowerMtg");
 const Condition = require("../models/condition");
 const Partners = require("../models/partner");
 const User = require("../models/user");
+const Properties = require("../models/properties");
 
 const commentsController = require("./commentController");
 
@@ -69,15 +70,19 @@ exports.getMarketData = async (req, res) => {
 
 exports.getPartners = async (req, res) => {
   try {
-    const partner = await Partners.findById(req.params.id);
-    const user = await User.findById(req.user.id).populate("borrowerMtg");
+    // Fetch all partners for the currently signed-in user
+    const partners = await Partners.find({ createdBy: req.user.id });
+    const user = await User.findById(req.user.id).populate("partners");
 
+    // Create locals object with the necessary data
     const locals = {
-      title: "Market Data",
-      description:
-        "Daily market information about rate adjustments and market trensd",
+      title: "Partners",
+      description: "List of Partners to work with",
+      partners: partners,
     };
-    res.render("sidebar/partners", { locals, partner, user });
+
+    // Render the EJS template with the locals object
+    res.render("sidebar/partners", { locals, user });
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");
@@ -117,6 +122,74 @@ exports.getWorkbookID = async (req, res) => {
       comments,
       layout: "../views/layouts/dashboardLayout",
       user,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
+};
+
+exports.getPropertiesID = async (req, res) => {
+  try {
+    const borrowerMtg = await BorrowerMtg.findById(req.params.id);
+    const comments = await commentsController.getCommentsByBorrowerMtgId(
+      req.params.id
+    );
+    const user = await User.findById(req.user.id).populate("borrowerMtg");
+    const properties = await Properties.findById(req.user.id).populate(
+      "borrowerMtg"
+    );
+
+    const locals = {
+      title: "Properties",
+      description: "All of the borrower's properties",
+    };
+    res.render("borrowersMtg/properties", {
+      locals,
+      borrowerMtg: borrowerMtg,
+      comments,
+      layout: "../views/layouts/dashboardLayout",
+      user,
+      properties,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
+};
+
+exports.postWorkbookID = async (req, res) => {
+  try {
+    const borrowerMtg = await BorrowerMtg.findById(req.params.id);
+    const comments = await commentsController.getCommentsByBorrowerMtgId(
+      req.params.id
+    );
+    const user = await User.findById(req.user.id).populate("borrowerMtg");
+
+    // Assuming you have a model for Workbook, adjust this based on your actual model
+    const newWorkbookData = {
+      // Extract the data from the request body or any other source
+      // Example: property1: req.body.property1,
+      //          property2: req.body.property2,
+      //          ...
+    };
+
+    // Assuming you have a model for Workbook, adjust this based on your actual model
+    const newWorkbook = await Workbook.create(newWorkbookData);
+
+    const locals = {
+      title: "Workbook",
+      description: "calculate te mortgage payment",
+    };
+
+    // Render the same EJS page or redirect to the workbook page as needed
+    res.render("borrowersMtg/workbook", {
+      locals,
+      borrowerMtg: borrowerMtg,
+      comments,
+      layout: "../views/layouts/dashboardLayout",
+      user,
+      newWorkbook: newWorkbook, // Pass the newWorkbook data to your EJS page if needed
     });
   } catch (error) {
     console.error(error);
@@ -421,4 +494,33 @@ exports.getDashSearch = async (req, res) => {
 
   // Example: rendering a search results page
   // res.render("searchResults", { searchTerm, results });
+};
+
+exports.postAddPartner = async (req, res) => {
+  const locals = {
+    title: "Create",
+    description: "Create a new borrower",
+  };
+  try {
+    // Assuming you have a user object in your request (e.g., req.user)
+    const userId = req.user.id;
+
+    const newPartner = new Partners({
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      phoneNumber: req.body.phoneNumber,
+      email: req.body.email,
+      business: req.body.business,
+      createdBy: req.user._id, // Assuming you have a user object in your request
+    });
+
+    await newPartner.save();
+
+    res.redirect(`/partners`);
+  } catch (error) {
+    console.error(error);
+    res.redirect(`/partners`, {
+      locals: locals,
+    });
+  }
 };

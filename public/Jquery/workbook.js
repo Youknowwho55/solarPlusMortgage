@@ -19,16 +19,6 @@ $("#result").text(
     multiplicationResult
 );
 
-// Define a custom JavaScript function
-function myCustomFunction() {
-  alert("Hello from my custom function!");
-}
-
-// Call the custom function when a button with the ID "myButton" is clicked
-$("#myButton").click(function () {
-  myCustomFunction();
-});
-
 $(document).ready(function () {
   var ids = {
     monthlySavings: $("#monthlySavings"),
@@ -113,3 +103,36 @@ $(document).ready(function () {
 
   // You can perform similar operations for other elements as needed.
 });
+
+// Get the values of totalLoanAmount and marketValue
+var baseLoanAmountValue = ids.baseLoanAmountAmount.val();
+var totalLoanAmountValue = ids.totalLoanAmount.val();
+var marketValueValue = ids.marketValue.val();
+
+// Do whatever processing or calculations you need with these values
+
+// Save the values in CLTVvalue
+ids.CLTVvalue.val(baseLoanAmountValue + marketValueValue);
+
+// Assuming totalLoanAmount and marketValue are input fields
+$("#totalLoanAmount, #marketValue").on("input", function () {
+  updateCLTVValue();
+});
+
+function updateCLTVValue() {
+  var totalLoanAmountValue = parseFloat(ids.totalLoanAmount.val()) || 0;
+  var marketValueValue = parseFloat(ids.marketValue.val()) || 0;
+
+  ids.CLTVvalue.val(totalLoanAmountValue + marketValueValue);
+}
+
+$("#baseLoanAmount, #marketValue").on("input", function () {
+  updateLTVValue();
+});
+
+function updateLTVValue() {
+  var baseLoanAmountValue = parseFloat(ids.baseLoanAmountAmount.val()) || 0;
+  var marketValueValue = parseFloat(ids.marketValue.val()) || 0;
+
+  ids.CLTVvalue.val(baseLoanAmountValue / marketValueValue);
+}

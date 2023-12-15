@@ -18,7 +18,7 @@
 </div>
 
 <div class="modal-body">
-  <form action="/partner" method="POST">
+  <form action="/addPartner" method="POST">
 
     <div class="col-8">
       <label for="firstName" class="form-label">First Name *</label>
@@ -33,7 +33,7 @@
       <input value="" type="text" name="email" id="email" class="form-control">
     </div>
     <div class="col-8">
-      <label for="business" class="form-label">Business</label>
+      <label for="business" class="form-label">Business *</label>
       <input Required value="" type="text" name="business" id="business" class="form-control">
     </div>
 </div>
@@ -55,42 +55,31 @@
 
 
 
-  <div class="table-responsive">
-    <table class="table table-sm">
-      <thead>
-        <tr>
-          <th>Partner</th>
-          <th>Business</th>
-          <th>Loans received last 90 Days</th>
-          <th>Loans in process last 90 Days</th>
-          <th>Loans Funded last 90 Days</th>
-          <th>Edit</th>
-          <th>Enter</th>
+<div class="table-responsive">
+  <table class="table table-sm">
+    <thead>
+      <tr>
+        <th>Partner</th>
+        <th>Business</th>
+        <th>Edit</th>
+      </tr>
+    </thead>
 
-        </tr>
-      </thead>
-
-
-
-      <tbody>
-        <% if (partner && partner.length > 0) { %>
-          <% partner.forEach((partner, index) => { %>
-            <tr>
-              <td><%= partner.firstName %></td>
-              <td><%= partner.business %></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td><a href="partner/<%= partner.id %>" class="btn btn-primary">Edit</a></td>
-              <td><a href="partner/<%= partner.id %>" class="btn btn-primary">Enter</a></td>
-            </tr>
-          <% }) %>
-        <% } else { %>
+    <tbody>
+      <% if (partners && partners.length > 0) { %>
+        <% partners.forEach((partner, index) => { %>
           <tr>
-            <td colspan="7">No partners available</td>
+            <td><%= partner.firstName %> <%= partner.lastName %></td>
+            <td><%= partner.business %></td>
+            <!-- Add data for "Loans received last 90 Days," "Loans in process last 90 Days," and "Loans Funded last 90 Days" here if available -->
+            <td><a href="/editPartner/<%= partner._id %>" class="btn btn-primary">Edit</a></td>
           </tr>
-        <% } %>
-      </tbody>
-
-        </table></div>
-  
+        <% }) %>
+      <% } else { %>
+        <tr>
+          <td colspan="4">No partners available</td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
+</div>

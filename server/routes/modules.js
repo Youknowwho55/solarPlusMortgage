@@ -25,11 +25,6 @@ router.get(
 );
 
 router.get(
-  "/workbook/:id",
-  checkAuthenticated,
-  modulesController.getWorkbookID
-);
-router.get(
   "/conditions/:id",
   checkAuthenticated,
   modulesController.getConditionsID
@@ -48,6 +43,12 @@ router.get(
 
 router.get("/benefit/:id", checkAuthenticated, modulesController.getBenefitID);
 router.get("/income/:id", checkAuthenticated, modulesController.getIncomeID);
+router.get(
+  "/properties/:id",
+  checkAuthenticated,
+  modulesController.getPropertiesID
+);
+
 // router.get("/income/employer/:id", dashboardController.getEmployerID);
 // router.get("/income/calculate/:id", dashboardController.getIncomeCalcID);
 
@@ -55,6 +56,19 @@ router.get("/income/:id", checkAuthenticated, modulesController.getIncomeID);
 router.post("/conditions/:id", modulesController.postConditions);
 router.put("/conditions/:id", modulesController.putConditionsID);
 
+router.get(
+  "/workbook/:id",
+  checkAuthenticated,
+  modulesController.getWorkbookID
+);
+
+router.post(
+  "/workbook/:id",
+  checkAuthenticated,
+  modulesController.postWorkbookID
+);
+
 router.post("/addIncome/:id", modulesController.postAddIncome);
+router.post("/addPartner", modulesController.postAddPartner);
 
 module.exports = router;

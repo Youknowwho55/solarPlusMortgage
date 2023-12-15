@@ -17,7 +17,11 @@ const PartnerSchema = new mongoose.Schema({
     default: Date.now,
   },
   email: { type: String },
-  business: { type: Date },
+  business: { type: String }, // Assuming business is a string, not a date
+  createdBy: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User", // Reference to the User model
+  },
 });
 
 module.exports = mongoose.model("Partners", PartnerSchema);

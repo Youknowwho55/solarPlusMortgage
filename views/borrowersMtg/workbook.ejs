@@ -1,8 +1,9 @@
 
 
 <%- include('../partials/_tabs.ejs') %>
-
+<form action="/workbook/<%= borrowerMtg.id %>" method="post">
 <div class="row mb-3 text-left">
+  <button type="submit">Submit</button>
 
 <div class="table-responsive ">
   <table class="table ">
@@ -452,7 +453,7 @@
 
   </table>
 </div>
-
+</form>
 
 
 <style>

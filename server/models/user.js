@@ -27,6 +27,7 @@ const UserSchema = new Schema({
   },
   googleId: { type: String },
   borrowerMtg: [{ type: mongoose.Schema.Types.ObjectId, ref: "BorrowerMtg" }],
+  partners: [{ type: mongoose.Schema.Types.ObjectId, ref: "Partners" }],
 });
 
 UserSchema.plugin(passportLocalMongoose);

@@ -5,7 +5,7 @@
       <label for="street" class="col-sm-2 col-form-label">Address</label>
       <div class="col-sm-6">
         <input
-          value="<%= property.street %>"
+          value="<%= properties.street %>"
           type="text"
           name="street"
           id="street"
@@ -19,7 +19,7 @@
       <label for="streetLine2" class="col-sm-2 col-form-label">Address 2</label>
       <div class="col-sm-6">
         <input
-          value="<%= property.streetLine2 %>"
+          value="<%= properties.streetLine2 %>"
           type="text"
           name="streetLine2"
           id="streetLine2"
@@ -32,7 +32,7 @@
       <label for="city" class="col-sm-1 col-form-label">City</label>
       <div class="col-sm-3">
         <input
-          value="<%= property.city %>"
+          value="<%= properties.city %>"
           type="text"
           name="city"
           id="city"
@@ -43,7 +43,7 @@
       <label for="state" class="col-sm-1 col-form-label">State</label>
       <div class="col-sm-3">
         <input
-          value="<%= property.state %>"
+          value="<%= properties.state %>"
           type="text"
           name="state"
           id="state"
@@ -54,7 +54,7 @@
       <label for="zipCode" class="col-sm-1 col-form-label">Zip</label>
       <div class="col-sm-2">
         <input
-          value="<%= property.zipCode %>"
+          value="<%= properties.zipCode %>"
           type="text"
           name="zipCode"
           id="zipCode"
@@ -79,7 +79,7 @@
           >Mortgage Holder</label
         >
         <div class="col-sm-3">
-          <input value="<%= property.mortgageHolder %>" type="text" class="form-control" id="mortgageHolder" name="mortgageHolder"
+          <input value="<%= properties.mortgageHolder %>" type="text" class="form-control" id="mortgageHolder" name="mortgageHolder"
           />
 
         </div>
@@ -90,14 +90,14 @@
           >Original Amount</label
         >
         <div class="col-sm-3">
-          <input value="<%= property.originalAmount %>" type="number" class="form-control" id="originalAmount" name="originalAmount"/>
+          <input value="<%= properties.originalAmount %>" type="number" class="form-control" id="originalAmount" name="originalAmount"/>
         </div>
   
         <label for="loanAmount" class="col-sm-2 col-form-label"
           >Loan Amount</label
         >
         <div class="col-sm-3">
-          <input value="<%= property.loanAmount %>" type="number" class="form-control" id="loanAmount" name="loanAmount"/>
+          <input value="<%= properties.loanAmount %>" type="number" class="form-control" id="loanAmount" name="loanAmount"/>
         </div>
       </div>
   
@@ -106,47 +106,47 @@
           >Date Opened</label
         >
         <div class="col-sm-3">
-          <input value="<%= property.dateOpened %>" type="date" class="form-control" id="dateOpened" name="dateOpened"/>
+          <input value="<%= properties.dateOpened %>" type="date" class="form-control" id="dateOpened" name="dateOpened"/>
         </div>
   
         <label for="rate" class="col-sm-2 col-form-label">Rate</label>
         <div class="col-sm-3">
-          <input  value="<%= property.rate %>"type="number" class="form-control" id="rate" name="rate"/>
+          <input  value="<%= properties.rate %>"type="number" class="form-control" id="rate" name="rate"/>
         </div>
       </div>
   
       <div class="row mb-3">
         <label for="term" class="col-sm-2 col-form-label">Term</label>
         <div class="col-sm-3">
-          <input value="<%= property.term %>" type="number" class="form-control" id="term" name="term"/>
+          <input value="<%= properties.term %>" type="number" class="form-control" id="term" name="term"/>
         </div>
   
         <label for="mortgagePayment" class="col-sm-2 col-form-label"
           >Mortgage payment</label
         >
         <div class="col-sm-3">
-          <input  value="<%= property.mortgagePayment %>"type="number" class="form-control" id="mortgagePayment" name="mortgagePayment" />
+          <input  value="<%= properties.mortgagePayment %>"type="number" class="form-control" id="mortgagePayment" name="mortgagePayment" />
         </div>
       </div>
   
       <div class="row mb-3">
         <label for="propertyTax" class="col-sm-2 col-form-label">Taxes</label>
         <div class="col-sm-3">
-          <input  value="<%= property.propertyTax %>"type="number" class="form-control" id="propertyTax" name="propertyTax"/>
+          <input  value="<%= properties.propertyTax %>"type="number" class="form-control" id="propertyTax" name="propertyTax"/>
         </div>
   
         <label for="propertyInsurance" class="col-sm-2 col-form-label"
           >Insurance</label
         >
         <div class="col-sm-3">
-          <input value="<%= property.propertyInsurance %>" type="number" class="form-control" id="propertyInsurance" name="propertyInsurance"/>
+          <input value="<%= properties.propertyInsurance %>" type="number" class="form-control" id="propertyInsurance" name="propertyInsurance"/>
         </div>
       </div>
   
       <div class="row mb-3">
         <label for="propertyHOA" class="col-sm-2 col-form-label">HOA</label>
         <div class="col-sm-3">
-          <input value="<%= property.propertyHOA %>" type="number" class="form-control" id="propertyHOA" name="propertyHOA" />
+          <input value="<%= properties.propertyHOA %>" type="number" class="form-control" id="propertyHOA" name="propertyHOA" />
         </div>
       </div>
     </form>

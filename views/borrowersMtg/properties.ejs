@@ -1,0 +1,86 @@
+<%- include('../partials/_tabs.ejs') %>
+<body>
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-2 mb-3 border-bottom">
+    <h3> Income Calculator</h3>
+    
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#incomeModal">
+      + Add Income
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="incomeModal" tabindex="-1" aria-labelledby="incomeModal" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="mtgModalLabel">Add Income</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+
+          <div class="modal-body">
+            <form action="/addProperty<%= borrowerMtg.id %>" method="POST">
+
+              <div class="col-8">
+                <label>Address</label>
+              </div>
+
+              <div class="col-8">
+                <label for="employerName" class="form-label">Employer:</label>
+                <input
+                  value="<%= income && income.employerName ? income.employerName : '' %>"
+                  type="text"
+                  name="employerName"
+                  id="employerName"
+                  class="form-control"
+                />
+              </div>
+              
+              <div class="col-8">
+                <label for="incomeType" class="form-label">Income Type:</label>
+                <input
+                  value="<%= income && income.incomeType ? income.incomeType : '' %>"
+                  type="text"
+                  name="incomeType" 
+                  id="incomeType"
+                  class="form-control"
+                />
+              </div>
+              
+              <div class="col-8">
+                <label for="monthlyAmount" class="form-label">Monthly Amount:</label>
+                <input
+                  value="<%= income && income.monthlyAmount ? income.monthlyAmount : '' %>"
+                  type="text"
+                  name="monthlyAmount"
+                  id="monthlyAmount"
+                  class="form-control"
+                />
+              </div>
+
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- End of Modal and Heading Class -->
+
+  <div class="table-responsive">
+    <table class="table table-sm">
+      <thead>
+        <tr>
+          <th>Borrower</th>
+          <th>Employer</th>
+          <th>Income Type</th>
+          <th>Monthly Amount</th>
+          <th>Enter</th>
+        </tr>
+      </thead>
+      <tbody>

@@ -2,6 +2,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+//need to add this in
 const LOANSTATS = {
   NEW: "new", // new
   NOS: "nos", //no sale - remove
@@ -88,7 +89,7 @@ const borrowerMtgSchema = new mongoose.Schema({
   },
   mortgageLoan: {
     type: Schema.Types.ObjectId,
-    ref: "MortgageLoan",
+    ref: "workbook",
   },
 
   incomes: [
@@ -111,5 +112,4 @@ const mortgageLoanSchema = new mongoose.Schema({
 
 module.exports = {
   BorrowerMtg: mongoose.model("BorrowerMtg", borrowerMtgSchema),
-  MortgageLoan: mongoose.model("MortgageLoan", mortgageLoanSchema),
 };
