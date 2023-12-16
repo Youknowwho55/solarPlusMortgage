@@ -82,7 +82,7 @@ exports.getPartners = async (req, res) => {
     };
 
     // Render the EJS template with the locals object
-    res.render("sidebar/partners", { locals, user });
+    res.render("sidebar/partners", { user, ...locals });
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");
@@ -155,6 +155,51 @@ exports.getPropertiesID = async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).send("Internal Server Error");
+  }
+};
+
+exports.postProperties = async (req, res) => {
+  try {
+    const borrowerMtgId = req.params.id;
+    const borrowerMtg = await BorrowerMtg.findById(borrowerMtgId).populate(
+      "incomes"
+    );
+
+    // Check if req.params.id is present
+    if (!borrowerMtgId) {
+      return res.status(400).send("Invalid request: Missing borrower ID");
+    }
+
+    if (!borrowerMtg) {
+      return res.status(404).json({ error: "BorrowerMtg not found" });
+    }
+
+    // Create a new income object
+    const newProperty = {
+      street: req.body.street,
+      streetLine2: req.body.streetLine2,
+      city: req.body.city,
+      state: req.body.state,
+      zipCode: req.body.zipCode,
+    };
+
+    // Push the new income to the incomes array
+    borrowerMtg.property.push(newProperty);
+
+    // Log the updated borrowerMtg to the console
+    console.log("Updated borrowerMtg:", borrowerMtg);
+
+    // Associate user with borrowerMtg
+    borrowerMtg.user = req.user.id;
+
+    // Save the updated borrowerMtg
+    await borrowerMtg.save();
+
+    // Redirect to the income page
+    res.redirect(`/properties/${borrowerMtg.id}`);
+  } catch (error) {
+    console.error("Error saving income:", error);
+    res.status(500).json({ error: "Internal Server Error" });
   }
 };
 

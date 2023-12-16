@@ -711,7 +711,7 @@ input {
   margin-right: -1px; /* Adjust the margin to bring initials closer together */
   font-family: "pacifico";
   margin-top: 1px;
-  letter-spacing: -1px; /* Adjust the letter-spacing to bring letters closer together */
+  letter-spacing: -2px; /* Adjust the letter-spacing to bring letters closer together */
 }
 
 /* Style for the toggle-down icon */

@@ -1,11 +1,11 @@
 <%- include('../partials/_tabs.ejs') %>
 <body>
   <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-2 mb-3 border-bottom">
-    <h3> Income Calculator</h3>
+    <h3> Properties</h3>
     
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#incomeModal">
-      + Add Income
+      + Add Property
     </button>
 
     <!-- Modal -->
@@ -13,7 +13,7 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="mtgModalLabel">Add Income</h1>
+            <h1 class="modal-title fs-5" id="mtgModalLabel">Add Address</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
 
@@ -24,38 +24,66 @@
                 <label>Address</label>
               </div>
 
-              <div class="col-8">
-                <label for="employerName" class="form-label">Employer:</label>
-                <input
-                  value="<%= income && income.employerName ? income.employerName : '' %>"
-                  type="text"
-                  name="employerName"
-                  id="employerName"
-                  class="form-control"
-                />
+              <div class="row mb-3 pb-2">
+                <label for="street" class="col-sm-2 col-form-label">Address</label>
+                <div class="col-sm-6">
+                  <input
+                    value="<%= borrowerMtg.address.street %>"
+                    type="text"
+                    name="street"
+                    id="street"
+                    class="form-control"
+                  />
+                </div>
               </div>
-              
-              <div class="col-8">
-                <label for="incomeType" class="form-label">Income Type:</label>
-                <input
-                  value="<%= income && income.incomeType ? income.incomeType : '' %>"
-                  type="text"
-                  name="incomeType" 
-                  id="incomeType"
-                  class="form-control"
-                />
+              <div class="row mb-3 pb-2">
+                <label for="streetLine2" class="col-sm-2 col-form-label">Address 2</label>
+                <div class="col-sm-6">
+                  <input
+                    value="<%= borrowerMtg.address.streetLine2 %>"
+                    type="text"
+                    name="streetLine2"
+                    id="streetLine2"
+                    class="form-control"
+                  />
+                </div>
               </div>
-              
-              <div class="col-8">
-                <label for="monthlyAmount" class="form-label">Monthly Amount:</label>
-                <input
-                  value="<%= income && income.monthlyAmount ? income.monthlyAmount : '' %>"
-                  type="text"
-                  name="monthlyAmount"
-                  id="monthlyAmount"
-                  class="form-control"
-                />
+            
+              <div class="row mb-3 pb-2">
+                <label for="city" class="col-sm-1 col-form-label">City</label>
+                <div class="col-sm-3">
+                  <input
+                    value="<%= borrowerMtg.address.city %>"
+                    type="text"
+                    name="city"
+                    id="city"
+                    class="form-control"
+                  />
+                </div>
+            
+                <label for="state" class="col-sm-1 col-form-label">State</label>
+                <div class="col-sm-3">
+                  <input
+                    value="<%= borrowerMtg.address.state %>"
+                    type="text"
+                    name="state"
+                    id="state"
+                    class="form-control"
+                  />
+                </div>
+            
+                <label for="zipCode" class="col-sm-1 col-form-label">Zip</label>
+                <div class="col-sm-2">
+                  <input
+                    value="<%= borrowerMtg.address.zipCode %>"
+                    type="text"
+                    name="zipCode"
+                    id="zipCode"
+                    class="form-control"
+                  />
+                </div>
               </div>
+            </form>
 
           </div>
 
@@ -76,11 +104,13 @@
     <table class="table table-sm">
       <thead>
         <tr>
-          <th>Borrower</th>
-          <th>Employer</th>
-          <th>Income Type</th>
-          <th>Monthly Amount</th>
+          <th>Address</th>
+          <th>Occuancy</th>
+          <th>Property Type</th>
           <th>Enter</th>
         </tr>
       </thead>
       <tbody>
+        </tbody>
+        </table>
+        </div>
