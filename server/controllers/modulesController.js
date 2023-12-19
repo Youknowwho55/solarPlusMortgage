@@ -186,9 +186,6 @@ exports.postProperties = async (req, res) => {
     // Push the new income to the incomes array
     borrowerMtg.property.push(newProperty);
 
-    // Log the updated borrowerMtg to the console
-    console.log("Updated borrowerMtg:", borrowerMtg);
-
     // Associate user with borrowerMtg
     borrowerMtg.user = req.user.id;
 
@@ -321,7 +318,6 @@ exports.downloadGoogle = async function downloadFile(realFileId) {
       fileId: fileId,
       alt: "media",
     });
-    console.log(file.status);
     return file.status;
   } catch (err) {
     // TODO(developer) - Handle error
@@ -504,14 +500,8 @@ exports.postAddIncome = async (req, res) => {
       monthlyAmount: req.body.monthlyAmount,
     };
 
-    // Log the newIncome object
-    console.log("New Income:", newIncome);
-
     // Push the new income to the incomes array
     borrowerMtg.incomes.push(newIncome);
-
-    // Log the updated borrowerMtg to the console
-    console.log("Updated borrowerMtg:", borrowerMtg);
 
     // Associate user with borrowerMtg
     borrowerMtg.user = req.user.id;

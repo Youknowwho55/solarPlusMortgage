@@ -10,7 +10,7 @@
 
     <!-- Modal -->
     <div class="modal fade" id="incomeModal" tabindex="-1" aria-labelledby="incomeModal" aria-hidden="true">
-      <div class="modal-dialog">
+      <div class="modal-dialog  modal-lg">
         <div class="modal-content">
           <div class="modal-header">
             <h1 class="modal-title fs-5" id="mtgModalLabel">Add Address</h1>
@@ -18,12 +18,9 @@
           </div>
 
           <div class="modal-body">
-            <form action="/addProperty<%= borrowerMtg.id %>" method="POST">
+            <form action="/addProperties" method="POST">
 
-              <div class="col-8">
-                <label>Address</label>
-              </div>
-
+      
               <div class="row mb-3 pb-2">
                 <label for="street" class="col-sm-2 col-form-label">Address</label>
                 <div class="col-sm-6">
@@ -100,6 +97,8 @@
   </div>
   <!-- End of Modal and Heading Class -->
 
+
+
   <div class="table-responsive">
     <table class="table table-sm">
       <thead>
@@ -111,6 +110,23 @@
         </tr>
       </thead>
       <tbody>
+
+        <% if (properties && properties.length > 0) { %>
+          <% properties.forEach((properties, index) => { %>
+            <tr>
+              <td><%= partner.firstName %> <%= partner.lastName %></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <!-- Add data for "Loans received last 90 Days," "Loans in process last 90 Days," and "Loans Funded last 90 Days" here if available -->
+              <td><a href="/editProperties/<%= properties._id %>" class="btn btn-primary">Edit</a></td>
+            </tr>
+          <% }) %>
+        <% } else { %>
+          <tr>
+            <td colspan="4">No Properties available</td>
+          </tr>
+        <% } %>
         </tbody>
         </table>
         </div>

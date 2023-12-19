@@ -90,8 +90,7 @@ exports.addUser = async (req, res) => {
           if (er) {
             res.json({ success: false, message: er });
           } else {
-            res.json({ success: true, message: "Your account has been saved" });
-            res.redirect("mainDashboard/index");
+            res.redirect("admin");
           }
         });
       }

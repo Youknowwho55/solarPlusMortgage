@@ -69,7 +69,7 @@ router.post(
 );
 
 router.post("/addIncome/:id", modulesController.postAddIncome);
-router.post("/addProperties/:id", modulesController.postProperties);
+router.post("/addProperties", modulesController.postProperties);
 
 router.post("/addPartner", modulesController.postAddPartner);
 
