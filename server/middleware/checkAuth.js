@@ -12,6 +12,17 @@ const findOrCreate = require("mongoose-findorcreate");
 const passportLocalMongoose = require("passport-local-mongoose");
 const User = require("../models/user");
 
+function authRole(role) {
+  return (req, res, next) => {
+    if (req.user.role !== role) {
+      res.status(401);
+      return res.send("Not allowed");
+    }
+
+    next();
+  };
+}
+
 function initialize(passport, getUserByEmail, getUserById) {
   const authenticateUser = async (email, password, done) => {
     try {
@@ -130,4 +141,9 @@ passport.use(
   )
 );
 
-module.exports = { initialize, checkAuthenticated, checkNotAuthenticated };
+module.exports = {
+  initialize,
+  checkAuthenticated,
+  checkNotAuthenticated,
+  authRole,
+};

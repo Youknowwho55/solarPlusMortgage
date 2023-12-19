@@ -7,9 +7,10 @@ const authController = require("../controllers/authController");
 const {
   checkAuthenticated,
   checkNotAuthenticated,
+  authRole,
 } = require("../middleware/checkAuth");
 
-router.get("/User", authController.getUserAdmin);
+router.get("/User", authRole("admin"), authController.getUserAdmin);
 router.get("/login", checkNotAuthenticated, authController.getLogin);
 router.get("/auth/google", authController.getGoogle);
 router.get(

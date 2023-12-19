@@ -10,6 +10,7 @@ const dashController = require("../controllers/dashController");
 const {
   checkAuthenticated,
   checkNotAuthenticated,
+  authRole,
 } = require("../middleware/checkAuth");
 /**
  * App Routes
@@ -17,7 +18,12 @@ const {
 router.get("/", checkAuthenticated, dashController.dashSales);
 router.get("/solar", checkAuthenticated, dashController.dashSolar);
 
-router.get("/admin", checkAuthenticated, dashController.getAdmin);
+router.get(
+  "/admin",
+  checkAuthenticated,
+  authRole("Admin"),
+  dashController.getAdmin
+);
 router.get("/processing", checkAuthenticated, dashController.dashProcessing);
 router.get("/settings", checkAuthenticated, dashController.dashSettings);
 

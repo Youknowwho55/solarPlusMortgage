@@ -19,7 +19,11 @@ const UserSchema = new Schema({
   email: { type: String, required: true, unique: true },
   username: { type: String, unique: true, required: true },
   company: { type: String },
-  role: { type: String },
+  role: {
+    type: String,
+    enum: Object.values(ROLE),
+    default: ROLE.LO, // You can set a default role here if needed
+  },
   nmls: { type: String },
   createdAtUser: {
     type: Date,
