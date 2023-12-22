@@ -48,6 +48,12 @@ router.get(
   checkAuthenticated,
   modulesController.getPropertiesID
 );
+//tthis ID is that of the property  ID
+router.get(
+  "/propertieInfo/:id",
+  checkAuthenticated,
+  modulesController.getPropertieInfo
+);
 
 // router.get("/income/employer/:id", dashboardController.getEmployerID);
 // router.get("/income/calculate/:id", dashboardController.getIncomeCalcID);
@@ -69,7 +75,7 @@ router.post(
 );
 
 router.post("/addIncome/:id", modulesController.postAddIncome);
-router.post("/addProperties", modulesController.postProperties);
+router.post("/addProperties/:id", modulesController.postProperties);
 
 router.post("/addPartner", modulesController.postAddPartner);
 

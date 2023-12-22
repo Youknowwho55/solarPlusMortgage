@@ -3,9 +3,9 @@
 const mongoose = require("mongoose");
 
 const propertiesSchema = new mongoose.Schema({
-  borrowersMtg: {
+  borrowerMtg: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "borrowersMtg",
+    ref: "BorrowerMtg", // Adjust the reference to match your model name
   },
 
   street: String,

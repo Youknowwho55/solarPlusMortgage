@@ -157,12 +157,42 @@ exports.getPropertiesID = async (req, res) => {
     res.status(500).send("Internal Server Error");
   }
 };
+//get the individual Property info
+exports.getPropertieInfo = async (req, res) => {
+  try {
+    const borrowerMtg = await BorrowerMtg.findById(req.params.id);
+    const comments = await commentsController.getCommentsByBorrowerMtgId(
+      req.params.id
+    );
+    const user = await User.findById(req.user.id).populate("borrowerMtg");
+
+    // Fetch properties associated with the borrowerMtg
+    const properties = await Properties.find({ borrowerMtg: borrowerMtg._id });
+
+    const locals = {
+      title: "Properties",
+      description: "All of the borrower's properties",
+    };
+
+    res.render("borrowersMtg/propertiesID", {
+      locals,
+      borrowerMtg,
+      comments,
+      layout: "../views/layouts/dashboardLayout",
+      user,
+      properties,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
+};
 
 exports.postProperties = async (req, res) => {
   try {
     const borrowerMtgId = req.params.id;
     const borrowerMtg = await BorrowerMtg.findById(borrowerMtgId).populate(
-      "incomes"
+      "properties"
     );
 
     // Check if req.params.id is present
@@ -174,7 +204,7 @@ exports.postProperties = async (req, res) => {
       return res.status(404).json({ error: "BorrowerMtg not found" });
     }
 
-    // Create a new income object
+    // Create a new property object
     const newProperty = {
       street: req.body.street,
       streetLine2: req.body.streetLine2,
@@ -183,8 +213,8 @@ exports.postProperties = async (req, res) => {
       zipCode: req.body.zipCode,
     };
 
-    // Push the new income to the incomes array
-    borrowerMtg.property.push(newProperty);
+    // Push the new property to the properties array
+    borrowerMtg.properties.push(newProperty);
 
     // Associate user with borrowerMtg
     borrowerMtg.user = req.user.id;
@@ -192,10 +222,10 @@ exports.postProperties = async (req, res) => {
     // Save the updated borrowerMtg
     await borrowerMtg.save();
 
-    // Redirect to the income page
+    // Redirect to the properties page
     res.redirect(`/properties/${borrowerMtg.id}`);
   } catch (error) {
-    console.error("Error saving income:", error);
+    console.error("Error saving property:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };

@@ -58,11 +58,12 @@
   <table class="table table-sm">
     <thead>
       <tr>
+        <th>Photo</th>
         <th>Partner</th>
         <th>Business</th>
-        <th>Loans received last 90 Days</th>
-        <th>Loans in process last 90 Days</th>
-        <th>Loans Funded last 90 Days</th>
+        <th>Received (Prev. 90 Days)</th>
+        <th>In Process (Prev. 90 Days)</th>
+        <th>Funded (Prev. 90 Days)</th>
         <th>Edit</th>
       </tr>
     </thead>
@@ -71,6 +72,14 @@
       <% if (partners && partners.length > 0) { %>
         <% partners.forEach((partner, index) => { %>
           <tr>
+            <td> <span class="initials">
+              <% if (typeof user !== 'undefined' && user) { %>
+                <%= partner.firstName ? partner.firstName.charAt(0) : 'H' %>
+                <%= partner.lastName ? partner.lastName.charAt(0) : 'M' %>
+              <% } else { %>
+                HM
+              <% } %>
+            </span></td>
             <td><%= partner.firstName %> <%= partner.lastName %></td>
             <td><%= partner.business %></td>
             <td></td>
