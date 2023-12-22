@@ -73,7 +73,7 @@
         <% partners.forEach((partner, index) => { %>
           <tr>
             <td> <span class="initials">
-              <% if (typeof user !== 'undefined' && user) { %>
+              <% if (typeof partner !== 'undefined' && partner) { %>
                 <%= partner.firstName ? partner.firstName.charAt(0) : 'H' %>
                 <%= partner.lastName ? partner.lastName.charAt(0) : 'M' %>
               <% } else { %>

@@ -75,107 +75,7 @@
 </div>
 <!-- End of Modal and Heading Class -->
 
-<% conditions.forEach((condition, index) => { %>
-<p class="d-inline-flex gap-1">
-  <button
-    class="btn btn-primary"
-    type="button"
-    data-bs-toggle="collapse"
-    data-bs-target="#collapseExample<%= index %>"
-    aria-expanded="false"
-    aria-controls="collapseExample<%= index %>"
-    value="<%= condition.condition %>"
-  >
-    <%= condition.condition %>
-    <!-- Display the condition text in the button -->
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="16"
-      height="16"
-      fill="currentColor"
-      class="bi bi-caret-down"
-      viewBox="0 0 16 16"
-    >
-      <path
-        d="M3.204 5h9.592L8 10.481 3.204 5zm-.753.659 4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659z"
-      />
-    </svg>
-  </button>
-</p>
-<form id="updateConditionForm">
-  <div class="collapse" id="collapseExample<%= index %>">
-    <div class="card card-body">
-      <div class="col-8">
-        <label for="condition" class="form-label">Condition Title:</label>
-        <input
-          value="<%= condition.condition %>"
-          type="text"
-          name="condition"
-          id="condition_<%= index %>"
-          class="form-control"
-        />
 
-        <label for="description" class="form-label"
-          >Condition Description:</label
-        >
-        <input
-          value="<%= condition.description %>"
-          type="text"
-          name="description"
-          class="form-control"
-          id="description_<%= index %>"
-        />
-
-        <label for="description" class="form-label">Notes:</label>
-        <div class="col-8">
-          <div class="col-12 pb-2">
-            <div
-              id="noteCommentSection"
-              contenteditable="true"
-              class="word-wrap"
-              style="border: 1px solid #ccc; padding: 5px; min-height: 100px"
-              value=" <%= condition.notes %>"
-            ></div>
-          </div>
-
-          <div class="buttons-selection">
-            <button
-              type="button"
-              class="btn btn-success"
-              onclick="updateRow('<%= index %>', 'Requested')"
-            >
-              Requested
-            </button>
-            <button
-              type="button"
-              class="btn btn-success"
-              onclick="updateRow('<%= index %>', 'Completed')"
-            >
-              Completed
-            </button>
-            <button
-              type="button"
-              class="btn btn-success"
-              onclick="updateRow('<%= index %>', 'Cleared')"
-            >
-              Cleared
-            </button>
-          </div>
-
-          <div class="row" id="rowInfo_<%= index %>">
-            <div class="col" id="dateRequested_<%= index %>">-</div>
-            <div class="col" id="requestedBy_<%= index %>">-</div>
-            <div class="col" id="dateCompleted_<%= index %>">-</div>
-            <div class="col" id="completedBy_<%= index %>">-</div>
-            <div class="col" id="cleared_<%= index %>">-</div>
-            <div class="col">Save</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <% }) %>
-</form>
 
 <div class="table-responsive">
   <table class="table table-sm">
@@ -183,6 +83,10 @@
       <tr>
         <th>Condition</th>
         <th>Description</th>
+        <th>Requested</th>
+        <th>Completed</th>
+        <th>Cleared</th>
+
         <th>Expand</th>
       </tr>
     </thead>
@@ -190,7 +94,14 @@
     <tbody>
 
       <% conditions.forEach((condition, index) => { %>
-      <td>  <p class="d-inline-flex gap-1">
+      <tr>
+      <td>            
+        <%= condition.condition %>
+      </td>
+      <td><%= condition.description%></td>
+
+        <td>  
+        <p class="d-inline-flex gap-1">
           <button
             class="btn btn-primary"
             type="button"
@@ -200,7 +111,7 @@
             aria-controls="collapseExample<%= index %>"
             value="<%= condition.condition %>"
           >
-            <%= condition.condition %>
+          Dropdown
             <!-- Display the condition text in the button -->
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -214,10 +125,86 @@
                 d="M3.204 5h9.592L8 10.481 3.204 5zm-.753.659 4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659z"
               />
             </svg>
+
+            <form id="updateConditionForm">
+              <div class="collapse" id="collapseExample<%= index %>">
+                <div class="card card-body">
+                  <div class="col-8">
+                    <label for="condition" class="form-label">Condition Title:</label>
+                    <input
+                      value="<%= condition.condition %>"
+                      type="text"
+                      name="condition"
+                      id="condition_<%= index %>"
+                      class="form-control"
+                    />
+            
+                    <label for="description" class="form-label"
+                      >Condition Description:</label
+                    >
+                    <input
+                      value="<%= condition.description %>"
+                      type="text"
+                      name="description"
+                      class="form-control"
+                      id="description_<%= index %>"
+                    />
+            
+                    <label for="description" class="form-label">Notes:</label>
+                    <div class="col-8">
+                      <div class="col-12 pb-2">
+                        <div
+                          id="noteCommentSection"
+                          contenteditable="true"
+                          class="word-wrap"
+                          style="border: 1px solid #ccc; padding: 5px; min-height: 100px"
+                          value=" <%= condition.notes %>"
+                        ></div>
+                      </div>
+            
+                      <div class="buttons-selection">
+                        <button
+                          type="button"
+                          class="btn btn-success"
+                          onclick="updateRow('<%= index %>', 'Requested')"
+                        >
+                          Requested
+                        </button>
+                        <button
+                          type="button"
+                          class="btn btn-success"
+                          onclick="updateRow('<%= index %>', 'Completed')"
+                        >
+                          Completed
+                        </button>
+                        <button
+                          type="button"
+                          class="btn btn-success"
+                          onclick="updateRow('<%= index %>', 'Cleared')"
+                        >
+                          Cleared
+                        </button>
+                      </div>
+            
+                      <div class="row" id="rowInfo_<%= index %>">
+                        <div class="col" id="dateRequested_<%= index %>">-</div>
+                        <div class="col" id="requestedBy_<%= index %>">-</div>
+                        <div class="col" id="dateCompleted_<%= index %>">-</div>
+                        <div class="col" id="completedBy_<%= index %>">-</div>
+                        <div class="col" id="cleared_<%= index %>">-</div>
+                        <div class="col">Save</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+
+
+
           </button>
         </p></td>
-      <tr>
-        <td><%= condition.condition%></td>
+      </tr>
 
       </tbody>
       <% }) %>
@@ -225,7 +212,7 @@
       <script>
           function updateRow(index, status) {
             var currentTime = new Date().toLocaleTimeString();
-            var user = "John Doe";
+            var user = "<%= user.username %>";
 
             switch (status) {
               case "Requested":
