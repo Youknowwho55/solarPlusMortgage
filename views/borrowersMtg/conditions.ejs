@@ -100,54 +100,8 @@
       </td>
       <td><%= condition.description%></td>
 
-        <td>  
-          <button
-            class="btn btn-primary"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#collapseExample<%= index %>"
-            aria-expanded="false"
-            aria-controls="collapseExample<%= index %>"
-          >
-            <!-- Display the condition text in the button -->
 
-
-            <form id="updateConditionForm">
-              <div class="collapse" id="collapseExample<%= index %>">
-                <div class="card card-body">
-                  <div class="col-8">
-                    <label for="condition" class="form-label">Condition Title:</label>
-                    <input
-                      value="<%= condition.condition %>"
-                      type="text"
-                      name="condition"
-                      id="condition_<%= index %>"
-                      class="form-control"
-                    />
-            
-                    <label for="description" class="form-label"
-                      >Condition Description:</label
-                    >
-                    <input
-                      value="<%= condition.description %>"
-                      type="text"
-                      name="description"
-                      class="form-control"
-                      id="description_<%= index %>"
-                    />
-            
-                    <label for="description" class="form-label">Notes:</label>
-                    <div class="col-8">
-                      <div class="col-12 pb-2">
-                        <div
-                          id="noteCommentSection"
-                          contenteditable="true"
-                          class="word-wrap"
-                          style="border: 1px solid #ccc; padding: 5px; min-height: 100px"
-                          value=" <%= condition.notes %>"
-                        ></div>
-                      </div>
-            
+            <td>
                       <div class="buttons-selection">
                         <button
                           type="button"
@@ -156,6 +110,12 @@
                         >
                           Requested
                         </button>
+                        <div class="row" id="rowInfo_<%= index %>">
+                          <div class="col" id="dateRequested_<%= index %>">-</div>
+                          <div class="col" id="requestedBy_<%= index %>">-</div>
+                          </div>
+                        </td>
+                        <td>
                         <button
                           type="button"
                           class="btn btn-success"
@@ -163,6 +123,13 @@
                         >
                           Completed
                         </button>
+                        <div class="row" id="rowInfo_<%= index %>">
+
+                          <div class="col" id="dateCompleted_<%= index %>">-</div>
+                          <div class="col" id="completedBy_<%= index %>">-</div>
+                          </div>
+                        </td>
+                        <td>
                         <button
                           type="button"
                           class="btn btn-success"
@@ -173,21 +140,63 @@
                       </div>
             
                       <div class="row" id="rowInfo_<%= index %>">
-                        <div class="col" id="dateRequested_<%= index %>">-</div>
-                        <div class="col" id="requestedBy_<%= index %>">-</div>
-                        <div class="col" id="dateCompleted_<%= index %>">-</div>
-                        <div class="col" id="completedBy_<%= index %>">-</div>
                         <div class="col" id="cleared_<%= index %>">-</div>
-                        <div class="col">Save</div>
+                                         
+
                       </div>
+                    </td>
+
+
+                    <td>
+                      <div data-bs-toggle="collapse" data-bs-target="#collapseExample<%= index %>" aria-expanded="false" aria-controls="collapseExample<%= index %>">
+                        <button class="btn btn-primary" type="button"><i class='bx bx-caret-down'></i></button>
+                      </div>
+                    
+                      <form id="updateConditionForm">
+                        <div class="collapse" id="collapseExample<%= index %>">
+                          <div class="card card-body">
+                            <div class="col-8">
+                              <label for="condition" class="form-label">Condition Title:</label>
+                              <input
+                                value="<%= condition.condition %>"
+                                type="text"
+                                name="condition"
+                                id="condition_<%= index %>"
+                                class="form-control"
+                              />
+                    
+                              <label for="description" class="form-label">Condition Description:</label>
+                              <input
+                                value="<%= condition.description %>"
+                                type="text"
+                                name="description"
+                                class="form-control"
+                                id="description_<%= index %>"
+                              />
+                    
+                              <label for="description" class="form-label">Notes:</label>
+                              <div class="col-8">
+                                <div class="col-12 pb-2">
+                                  <div
+                                    id="noteCommentSection"
+                                    contenteditable="true"
+                                    class="word-wrap"
+                                    style="border: 1px solid #ccc; padding: 5px; min-height: 100px"
+                                    value="<%= condition.notes %>"
+                                  ></div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </form>
+                    </td>
+                    
                     </div>
                   </div>
                 </div>
               </div>
             </form>
-
-
-
         </td>
       </tr>
 
@@ -196,7 +205,7 @@
       
       <script>
           function updateRow(index, status) {
-            var currentTime = new Date().toLocaleTimeString();
+            var currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
             var user = "<%= user.username %>";
 
             switch (status) {
