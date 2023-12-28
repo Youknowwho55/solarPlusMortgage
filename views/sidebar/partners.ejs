@@ -72,14 +72,26 @@
       <% if (partners && partners.length > 0) { %>
         <% partners.forEach((partner, index) => { %>
           <tr>
-            <td> <span class="initials">
-              <% if (typeof partner !== 'undefined' && partner) { %>
-                <%= partner.firstName ? partner.firstName.charAt(0) : 'H' %>
-                <%= partner.lastName ? partner.lastName.charAt(0) : 'M' %>
-              <% } else { %>
-                HM
-              <% } %>
-            </span></td>
+            <td>
+            <div class="profile-container">
+              <!-- Circular profile photo -->
+              <div class="profile-photo-partners">
+                <!-- Dynamically generate the initials using the first letters of the first and last name -->
+                <span class="initials">
+                  <% if (typeof partner !== 'undefined' && partner) { %>
+                    <%= partner.firstName ? partner.firstName.charAt(0).toUpperCase() : 'H' %>
+                    <%= partner.lastName ? partner.lastName.charAt(0).toUpperCase() : 'M' %>                    
+                  <% } else { %>
+                    HM
+                  <% } %>
+                </span>
+              </div>
+            </div>
+
+          </td>
+
+
+
             <td><%= partner.firstName %> <%= partner.lastName %></td>
             <td><%= partner.business %></td>
             <td></td>
