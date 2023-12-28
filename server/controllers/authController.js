@@ -1,5 +1,4 @@
 /** @format */
-
 const BorrowerMtg = require("../models/borrowerMtg");
 
 const User = require("../models/user");

@@ -9,6 +9,7 @@ const ROLE = {
   ADMIN: "admin",
   LO: "lo",
   MANAGER: "manager",
+  SOLAR: "solar",
   ALLSALES: "allSales",
   PROCESSOR: "processor",
 };

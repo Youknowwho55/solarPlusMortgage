@@ -91,12 +91,13 @@
           <div class="col-8">
             <label for="role" class="form-label">Role *</label>
             <select Required value="<%= users.role %>" name="role" id="role">
-              <option>Loan Officer</option>
-              <option>Solar</option>
-              <option>All Sales</option>
-              <option>Manager</option>
-              <option>Processor</option>
-              <option>Admin</option>
+
+              <option value="lo" <%= users.role === 'lo' ? 'selected' : '' %>>Loan Officer</option>
+              <option value="solar" <%= users.role === 'solar' ? 'selected' : '' %>>Solar</option>
+              <option value="admin" <%= users.role === 'admin' ? 'selected' : '' %>>Admin</option>
+              <option value="allSales" <%= users.role === 'allSales' ? 'selected' : '' %>>All Sales</option>
+              <option value="manager" <%= users.role === 'manager' ? 'selected' : '' %>>Manager</option>
+              <option value="processor" <%= users.role === 'processor' ? 'selected' : '' %>>Processing</option>
             </select>
           </div>
           <div class="col-8">
