@@ -1,0 +1,1491 @@
+<!-- @format -->
+
+<table class="table fs-9 mb-0 leads-table">
+  <thead>
+    <tr>
+      <th
+        class="white-space-nowrap fs-9 align-middle ps-0"
+        style="max-width: 20px; width: 18px"
+      >
+        <div class="form-check mb-0 fs-8">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            data-bulk-select='{"body":"leal-tables-body"}'
+          />
+        </div>
+      </th>
+      <th
+        class="sort white-space-nowrap align-middle text-uppercase ps-0"
+        scope="col"
+        data-sort="name"
+        style="width: 25%"
+      >
+        Name
+      </th>
+      <th
+        class="sort align-middle ps-4 pe-5 text-uppercase border-end border-translucent"
+        scope="col"
+        data-sort="email"
+        style="width: 15%"
+      >
+        <div class="d-inline-flex flex-center">
+          <div
+            class="d-flex align-items-center px-1 py-1 bg-success-subtle rounded me-2"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16px"
+              height="16px"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="feather feather-mail text-success-dark"
+            >
+              <path
+                d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+              ></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+          </div>
+          <span>Email</span>
+        </div>
+      </th>
+      <th
+        class="sort align-middle ps-4 pe-5 text-uppercase border-end border-translucent"
+        scope="col"
+        data-sort="phone"
+        style="width: 15%; min-width: 180px"
+      >
+        <div class="d-inline-flex flex-center">
+          <div
+            class="d-flex align-items-center px-1 py-1 bg-primary-subtle rounded me-2"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16px"
+              height="16px"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="feather feather-phone text-primary-dark"
+            >
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+              ></path>
+            </svg>
+          </div>
+          <span>Phone</span>
+        </div>
+      </th>
+      <th
+        class="sort align-middle ps-4 pe-5 text-uppercase border-end border-translucent"
+        scope="col"
+        data-sort="contact"
+        style="width: 15%"
+      >
+        <div class="d-inline-flex flex-center">
+          <div
+            class="d-flex align-items-center px-1 py-1 bg-info-subtle rounded me-2"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16px"
+              height="16px"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="feather feather-user text-info-dark"
+            >
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </div>
+          <span>Contact name</span>
+        </div>
+      </th>
+      <th
+        class="sort align-middle ps-4 pe-5 text-uppercase border-end border-translucent"
+        scope="col"
+        data-sort="company"
+        style="width: 15%"
+      >
+        <div class="d-inline-flex flex-center">
+          <div
+            class="d-flex align-items-center px-1 py-1 bg-warning-subtle rounded me-2"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16px"
+              height="16px"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="feather feather-grid text-warning-dark"
+            >
+              <rect x="3" y="3" width="7" height="7"></rect>
+              <rect x="14" y="3" width="7" height="7"></rect>
+              <rect x="14" y="14" width="7" height="7"></rect>
+              <rect x="3" y="14" width="7" height="7"></rect>
+            </svg>
+          </div>
+          <span>Company name</span>
+        </div>
+      </th>
+      <th
+        class="sort align-middle ps-4 pe-5 text-uppercase"
+        scope="col"
+        data-sort="date"
+        style="width: 15%"
+      >
+        Create date
+      </th>
+      <th class="sort text-end align-middle pe-0 ps-4" scope="col"></th>
+    </tr>
+  </thead>
+  <tbody class="list" id="leal-tables-body">
+    <tr class="hover-actions-trigger btn-reveal-trigger position-static">
+      <td class="fs-9 align-middle">
+        <div class="form-check mb-0 fs-8">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            data-bulk-select-row='{"customer":{"avatar":"/team/32.webp","name":"Anthoney Michael","designation":"VP Accounting","status":{"label":"new lead","type":"badge-phoenix-primary"}},"email":"anth125@gmail.com","phone":"+1-202-555-0126","contact":"Ally Aagaard","company":"Google.inc","date":"Jan 01, 12:56 PM"}'
+          />
+        </div>
+      </td>
+      <td class="name align-middle white-space-nowrap ps-0">
+        <div class="d-flex align-items-center">
+          <a href="#!">
+            <div class="avatar avatar-xl me-3">
+              <img
+                class="rounded-circle"
+                src="../../assets/img/team/32.webp"
+                alt=""
+              />
+            </div>
+          </a>
+          <div>
+            <a class="fs-8 fw-bold" href="#!">Anthoney Michael</a>
+            <div class="d-flex align-items-center">
+              <p class="mb-0 text-body-highlight fw-semibold fs-9 me-2">
+                VP Accounting
+              </p>
+              <span class="badge badge-phoenix badge-phoenix-primary"
+                >new lead</span
+              >
+            </div>
+          </div>
+        </div>
+      </td>
+      <td
+        class="email align-middle white-space-nowrap fw-semibold ps-4 border-end border-translucent"
+      >
+        <a class="text-body-highlight" href="mailto:anth125@gmail.com"
+          >anth125@gmail.com</a
+        >
+      </td>
+      <td
+        class="phone align-middle white-space-nowrap fw-semibold ps-4 border-end border-translucent"
+      >
+        <a class="text-body-highlight" href="tel:+1-202-555-0126"
+          >+1-202-555-0126</a
+        >
+      </td>
+      <td
+        class="contact align-middle white-space-nowrap ps-4 border-end border-translucent fw-semibold text-body-highlight"
+      >
+        Ally Aagaard
+      </td>
+      <td
+        class="company align-middle white-space-nowrap text-body-tertiary text-opacity-85 ps-4 border-end border-translucent fw-semibold text-body-highlight"
+      >
+        Google.inc
+      </td>
+      <td
+        class="date align-middle white-space-nowrap text-body-tertiary text-opacity-85 ps-4 text-body-tertiary"
+      >
+        Jan 01, 12:56 PM
+      </td>
+      <td class="align-middle white-space-nowrap text-end pe-0 ps-4">
+        <div class="btn-reveal-trigger position-static">
+          <button
+            class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs-10"
+            type="button"
+            data-bs-toggle="dropdown"
+            data-boundary="window"
+            aria-haspopup="true"
+            aria-expanded="false"
+            data-bs-reference="parent"
+          >
+            <svg
+              class="svg-inline--fa fa-ellipsis fs-10"
+              aria-hidden="true"
+              focusable="false"
+              data-prefix="fas"
+              data-icon="ellipsis"
+              role="img"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 448 512"
+              data-fa-i2svg=""
+            >
+              <path
+                fill="currentColor"
+                d="M120 256C120 286.9 94.93 312 64 312C33.07 312 8 286.9 8 256C8 225.1 33.07 200 64 200C94.93 200 120 225.1 120 256zM280 256C280 286.9 254.9 312 224 312C193.1 312 168 286.9 168 256C168 225.1 193.1 200 224 200C254.9 200 280 225.1 280 256zM328 256C328 225.1 353.1 200 384 200C414.9 200 440 225.1 440 256C440 286.9 414.9 312 384 312C353.1 312 328 286.9 328 256z"
+              ></path>
+            </svg>
+            <!-- <span class="fas fa-ellipsis-h fs-10"></span> Font Awesome fontawesome.com -->
+          </button>
+          <div class="dropdown-menu dropdown-menu-end py-2">
+            <a class="dropdown-item" href="#!">View</a
+            ><a class="dropdown-item" href="#!">Export</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item text-danger" href="#!">Remove</a>
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr class="hover-actions-trigger btn-reveal-trigger position-static">
+      <td class="fs-9 align-middle">
+        <div class="form-check mb-0 fs-8">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            data-bulk-select-row='{"customer":{"avatar":"/team/33.webp","name":"Jacob Russell","designation":"Executive Manager","status":{"label":"Cancelled","type":"badge-phoenix-secondary"}},"email":"jacob@yahoo.com","phone":"+1-202-555-0135","contact":"Alex Abadi","company":"Google.inc","date":"Dec 31, 11:51 PM"}'
+          />
+        </div>
+      </td>
+      <td class="name align-middle white-space-nowrap ps-0">
+        <div class="d-flex align-items-center">
+          <a href="#!">
+            <div class="avatar avatar-xl me-3">
+              <img
+                class="rounded-circle"
+                src="../../assets/img/team/33.webp"
+                alt=""
+              />
+            </div>
+          </a>
+          <div>
+            <a class="fs-8 fw-bold" href="#!">Jacob Russell</a>
+            <div class="d-flex align-items-center">
+              <p class="mb-0 text-body-highlight fw-semibold fs-9 me-2">
+                Executive Manager
+              </p>
+              <span class="badge badge-phoenix badge-phoenix-secondary"
+                >Cancelled</span
+              >
+            </div>
+          </div>
+        </div>
+      </td>
+      <td
+        class="email align-middle white-space-nowrap fw-semibold ps-4 border-end border-translucent"
+      >
+        <a class="text-body-highlight" href="mailto:jacob@yahoo.com"
+          >jacob@yahoo.com</a
+        >
+      </td>
+      <td
+        class="phone align-middle white-space-nowrap fw-semibold ps-4 border-end border-translucent"
+      >
+        <a class="text-body-highlight" href="tel:+1-202-555-0135"
+          >+1-202-555-0135</a
+        >
+      </td>
+      <td
+        class="contact align-middle white-space-nowrap ps-4 border-end border-translucent fw-semibold text-body-highlight"
+      >
+        Alex Abadi
+      </td>
+      <td
+        class="company align-middle white-space-nowrap text-body-tertiary text-opacity-85 ps-4 border-end border-translucent fw-semibold text-body-highlight"
+      >
+        Google.inc
+      </td>
+      <td
+        class="date align-middle white-space-nowrap text-body-tertiary text-opacity-85 ps-4 text-body-tertiary"
+      >
+        Dec 31, 11:51 PM
+      </td>
+      <td class="align-middle white-space-nowrap text-end pe-0 ps-4">
+        <div class="btn-reveal-trigger position-static">
+          <button
+            class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs-10"
+            type="button"
+            data-bs-toggle="dropdown"
+            data-boundary="window"
+            aria-haspopup="true"
+            aria-expanded="false"
+            data-bs-reference="parent"
+          >
+            <svg
+              class="svg-inline--fa fa-ellipsis fs-10"
+              aria-hidden="true"
+              focusable="false"
+              data-prefix="fas"
+              data-icon="ellipsis"
+              role="img"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 448 512"
+              data-fa-i2svg=""
+            >
+              <path
+                fill="currentColor"
+                d="M120 256C120 286.9 94.93 312 64 312C33.07 312 8 286.9 8 256C8 225.1 33.07 200 64 200C94.93 200 120 225.1 120 256zM280 256C280 286.9 254.9 312 224 312C193.1 312 168 286.9 168 256C168 225.1 193.1 200 224 200C254.9 200 280 225.1 280 256zM328 256C328 225.1 353.1 200 384 200C414.9 200 440 225.1 440 256C440 286.9 414.9 312 384 312C353.1 312 328 286.9 328 256z"
+              ></path>
+            </svg>
+            <!-- <span class="fas fa-ellipsis-h fs-10"></span> Font Awesome fontawesome.com -->
+          </button>
+          <div class="dropdown-menu dropdown-menu-end py-2">
+            <a class="dropdown-item" href="#!">View</a
+            ><a class="dropdown-item" href="#!">Export</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item text-danger" href="#!">Remove</a>
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr class="hover-actions-trigger btn-reveal-trigger position-static">
+      <td class="fs-9 align-middle">
+        <div class="form-check mb-0 fs-8">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            data-bulk-select-row='{"customer":{"avatar":"/team/34.webp","name":"Diego Anthony","designation":"CEO","status":{"label":"In progress","type":"badge-phoenix-info"}},"email":"diego20@hotmail.com","phone":"+44 1632 960970","contact":"Lyla Nicole","company":"Adobe Inc.","date":"Dec 29, 02:11 AM"}'
+          />
+        </div>
+      </td>
+      <td class="name align-middle white-space-nowrap ps-0">
+        <div class="d-flex align-items-center">
+          <a href="#!">
+            <div class="avatar avatar-xl me-3">
+              <img
+                class="rounded-circle"
+                src="../../assets/img/team/34.webp"
+                alt=""
+              />
+            </div>
+          </a>
+          <div>
+            <a class="fs-8 fw-bold" href="#!">Diego Anthony</a>
+            <div class="d-flex align-items-center">
+              <p class="mb-0 text-body-highlight fw-semibold fs-9 me-2">CEO</p>
+              <span class="badge badge-phoenix badge-phoenix-info"
+                >In progress</span
+              >
+            </div>
+          </div>
+        </div>
+      </td>
+      <td
+        class="email align-middle white-space-nowrap fw-semibold ps-4 border-end border-translucent"
+      >
+        <a class="text-body-highlight" href="mailto:diego20@hotmail.com"
+          >diego20@hotmail.com</a
+        >
+      </td>
+      <td
+        class="phone align-middle white-space-nowrap fw-semibold ps-4 border-end border-translucent"
+      >
+        <a class="text-body-highlight" href="tel:+441632960970"
+          >+44 1632 960970</a
+        >
+      </td>
+      <td
+        class="contact align-middle white-space-nowrap ps-4 border-end border-translucent fw-semibold text-body-highlight"
+      >
+        Lyla Nicole
+      </td>
+      <td
+        class="company align-middle white-space-nowrap text-body-tertiary text-opacity-85 ps-4 border-end border-translucent fw-semibold text-body-highlight"
+      >
+        Adobe Inc.
+      </td>
+      <td
+        class="date align-middle white-space-nowrap text-body-tertiary text-opacity-85 ps-4 text-body-tertiary"
+      >
+        Dec 29, 02:11 AM
+      </td>
+      <td class="align-middle white-space-nowrap text-end pe-0 ps-4">
+        <div class="btn-reveal-trigger position-static">
+          <button
+            class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs-10"
+            type="button"
+            data-bs-toggle="dropdown"
+            data-boundary="window"
+            aria-haspopup="true"
+            aria-expanded="false"
+            data-bs-reference="parent"
+          >
+            <svg
+              class="svg-inline--fa fa-ellipsis fs-10"
+              aria-hidden="true"
+              focusable="false"
+              data-prefix="fas"
+              data-icon="ellipsis"
+              role="img"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 448 512"
+              data-fa-i2svg=""
+            >
+              <path
+                fill="currentColor"
+                d="M120 256C120 286.9 94.93 312 64 312C33.07 312 8 286.9 8 256C8 225.1 33.07 200 64 200C94.93 200 120 225.1 120 256zM280 256C280 286.9 254.9 312 224 312C193.1 312 168 286.9 168 256C168 225.1 193.1 200 224 200C254.9 200 280 225.1 280 256zM328 256C328 225.1 353.1 200 384 200C414.9 200 440 225.1 440 256C440 286.9 414.9 312 384 312C353.1 312 328 286.9 328 256z"
+              ></path>
+            </svg>
+            <!-- <span class="fas fa-ellipsis-h fs-10"></span> Font Awesome fontawesome.com -->
+          </button>
+          <div class="dropdown-menu dropdown-menu-end py-2">
+            <a class="dropdown-item" href="#!">View</a
+            ><a class="dropdown-item" href="#!">Export</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item text-danger" href="#!">Remove</a>
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr class="hover-actions-trigger btn-reveal-trigger position-static">
+      <td class="fs-9 align-middle">
+        <div class="form-check mb-0 fs-8">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            data-bulk-select-row='{"customer":{"avatar":"/team/35.webp","name":"Austin James","designation":"Creative Director","status":{"label":"Cold lead","type":"badge-phoenix-warning"}},"email":"austin@sni.it","phone":"+44 1632 960970","contact":"Kylia Abbott","company":"Facebook","date":"Dec 28, 10:56 PM"}'
+          />
+        </div>
+      </td>
+      <td class="name align-middle white-space-nowrap ps-0">
+        <div class="d-flex align-items-center">
+          <a href="#!">
+            <div class="avatar avatar-xl me-3">
+              <img
+                class="rounded-circle"
+                src="../../assets/img/team/35.webp"
+                alt=""
+              />
+            </div>
+          </a>
+          <div>
+            <a class="fs-8 fw-bold" href="#!">Austin James</a>
+            <div class="d-flex align-items-center">
+              <p class="mb-0 text-body-highlight fw-semibold fs-9 me-2">
+                Creative Director
+              </p>
+              <span class="badge badge-phoenix badge-phoenix-warning"
+                >Cold lead</span
+              >
+            </div>
+          </div>
+        </div>
+      </td>
+      <td
+        class="email align-middle white-space-nowrap fw-semibold ps-4 border-end border-translucent"
+      >
+        <a class="text-body-highlight" href="mailto:austin@sni.it"
+          >austin@sni.it</a
+        >
+      </td>
+      <td
+        class="phone align-middle white-space-nowrap fw-semibold ps-4 border-end border-translucent"
+      >
+        <a class="text-body-highlight" href="tel:+441632960970"
+          >+44 1632 960970</a
+        >
+      </td>
+      <td
+        class="contact align-middle white-space-nowrap ps-4 border-end border-translucent fw-semibold text-body-highlight"
+      >
+        Kylia Abbott
+      </td>
+      <td
+        class="company align-middle white-space-nowrap text-body-tertiary text-opacity-85 ps-4 border-end border-translucent fw-semibold text-body-highlight"
+      >
+        Facebook
+      </td>
+      <td
+        class="date align-middle white-space-nowrap text-body-tertiary text-opacity-85 ps-4 text-body-tertiary"
+      >
+        Dec 28, 10:56 PM
+      </td>
+      <td class="align-middle white-space-nowrap text-end pe-0 ps-4">
+        <div class="btn-reveal-trigger position-static">
+          <button
+            class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs-10"
+            type="button"
+            data-bs-toggle="dropdown"
+            data-boundary="window"
+            aria-haspopup="true"
+            aria-expanded="false"
+            data-bs-reference="parent"
+          >
+            <svg
+              class="svg-inline--fa fa-ellipsis fs-10"
+              aria-hidden="true"
+              focusable="false"
+              data-prefix="fas"
+              data-icon="ellipsis"
+              role="img"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 448 512"
+              data-fa-i2svg=""
+            >
+              <path
+                fill="currentColor"
+                d="M120 256C120 286.9 94.93 312 64 312C33.07 312 8 286.9 8 256C8 225.1 33.07 200 64 200C94.93 200 120 225.1 120 256zM280 256C280 286.9 254.9 312 224 312C193.1 312 168 286.9 168 256C168 225.1 193.1 200 224 200C254.9 200 280 225.1 280 256zM328 256C328 225.1 353.1 200 384 200C414.9 200 440 225.1 440 256C440 286.9 414.9 312 384 312C353.1 312 328 286.9 328 256z"
+              ></path>
+            </svg>
+            <!-- <span class="fas fa-ellipsis-h fs-10"></span> Font Awesome fontawesome.com -->
+          </button>
+          <div class="dropdown-menu dropdown-menu-end py-2">
+            <a class="dropdown-item" href="#!">View</a
+            ><a class="dropdown-item" href="#!">Export</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item text-danger" href="#!">Remove</a>
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr class="hover-actions-trigger btn-reveal-trigger position-static">
+      <td class="fs-9 align-middle">
+        <div class="form-check mb-0 fs-8">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            data-bulk-select-row='{"customer":{"avatar":"/team/24.webp","name":"Sarah Lynn","designation":"Accountant","status":{"label":"won lead","type":"badge-phoenix-success"}},"email":"sarah@technext.it","phone":"+1-202-555-0177","contact":"Bryce Abbott","company":"Twitter","date":"Dec 27, 11:43 PM"}'
+          />
+        </div>
+      </td>
+      <td class="name align-middle white-space-nowrap ps-0">
+        <div class="d-flex align-items-center">
+          <a href="#!">
+            <div class="avatar avatar-xl me-3">
+              <img
+                class="rounded-circle"
+                src="../../assets/img/team/24.webp"
+                alt=""
+              />
+            </div>
+          </a>
+          <div>
+            <a class="fs-8 fw-bold" href="#!">Sarah Lynn</a>
+            <div class="d-flex align-items-center">
+              <p class="mb-0 text-body-highlight fw-semibold fs-9 me-2">
+                Accountant
+              </p>
+              <span class="badge badge-phoenix badge-phoenix-success"
+                >won lead</span
+              >
+            </div>
+          </div>
+        </div>
+      </td>
+      <td
+        class="email align-middle white-space-nowrap fw-semibold ps-4 border-end border-translucent"
+      >
+        <a class="text-body-highlight" href="mailto:sarah@technext.it"
+          >sarah@technext.it</a
+        >
+      </td>
+      <td
+        class="phone align-middle white-space-nowrap fw-semibold ps-4 border-end border-translucent"
+      >
+        <a class="text-body-highlight" href="tel:+1-202-555-0177"
+          >+1-202-555-0177</a
+        >
+      </td>
+      <td
+        class="contact align-middle white-space-nowrap ps-4 border-end border-translucent fw-semibold text-body-highlight"
+      >
+        Bryce Abbott
+      </td>
+      <td
+        class="company align-middle white-space-nowrap text-body-tertiary text-opacity-85 ps-4 border-end border-translucent fw-semibold text-body-highlight"
+      >
+        Twitter
+      </td>
+      <td
+        class="date align-middle white-space-nowrap text-body-tertiary text-opacity-85 ps-4 text-body-tertiary"
+      >
+        Dec 27, 11:43 PM
+      </td>
+      <td class="align-middle white-space-nowrap text-end pe-0 ps-4">
+        <div class="btn-reveal-trigger position-static">
+          <button
+            class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs-10"
+            type="button"
+            data-bs-toggle="dropdown"
+            data-boundary="window"
+            aria-haspopup="true"
+            aria-expanded="false"
+            data-bs-reference="parent"
+          >
+            <svg
+              class="svg-inline--fa fa-ellipsis fs-10"
+              aria-hidden="true"
+              focusable="false"
+              data-prefix="fas"
+              data-icon="ellipsis"
+              role="img"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 448 512"
+              data-fa-i2svg=""
+            >
+              <path
+                fill="currentColor"
+                d="M120 256C120 286.9 94.93 312 64 312C33.07 312 8 286.9 8 256C8 225.1 33.07 200 64 200C94.93 200 120 225.1 120 256zM280 256C280 286.9 254.9 312 224 312C193.1 312 168 286.9 168 256C168 225.1 193.1 200 224 200C254.9 200 280 225.1 280 256zM328 256C328 225.1 353.1 200 384 200C414.9 200 440 225.1 440 256C440 286.9 414.9 312 384 312C353.1 312 328 286.9 328 256z"
+              ></path></svg
+            ><!-- <span class="fas fa-ellipsis-h fs-10"></span> Font Awesome fontawesome.com -->
+          </button>
+          <div class="dropdown-menu dropdown-menu-end py-2">
+            <a class="dropdown-item" href="#!">View</a
+            ><a class="dropdown-item" href="#!">Export</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item text-danger" href="#!">Remove</a>
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr class="hover-actions-trigger btn-reveal-trigger position-static">
+      <td class="fs-9 align-middle">
+        <div class="form-check mb-0 fs-8">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            data-bulk-select-row='{"customer":{"avatar":"/team/29.webp","name":"Reyna Denise","designation":"Executive Manager","status":{"label":"new lead","type":"badge-phoenix-info"}},"email":"reyna99@gmail.com","phone":"+44 1632 960958","contact":"Jase Adams","company":"Twitter","date":"Dec 25, 12:55 PM"}'
+          />
+        </div>
+      </td>
+      <td class="name align-middle white-space-nowrap ps-0">
+        <div class="d-flex align-items-center">
+          <a href="#!">
+            <div class="avatar avatar-xl me-3">
+              <img
+                class="rounded-circle"
+                src="../../assets/img/team/29.webp"
+                alt=""
+              />
+            </div>
+          </a>
+          <div>
+            <a class="fs-8 fw-bold" href="#!">Reyna Denise</a>
+            <div class="d-flex align-items-center">
+              <p class="mb-0 text-body-highlight fw-semibold fs-9 me-2">
+                Executive Manager
+              </p>
+              <span class="badge badge-phoenix badge-phoenix-info"
+                >new lead</span
+              >
+            </div>
+          </div>
+        </div>
+      </td>
+      <td
+        class="email align-middle white-space-nowrap fw-semibold ps-4 border-end border-translucent"
+      >
+        <a class="text-body-highlight" href="mailto:reyna99@gmail.com"
+          >reyna99@gmail.com</a
+        >
+      </td>
+      <td
+        class="phone align-middle white-space-nowrap fw-semibold ps-4 border-end border-translucent"
+      >
+        <a class="text-body-highlight" href="tel:+441632960958"
+          >+44 1632 960958</a
+        >
+      </td>
+      <td
+        class="contact align-middle white-space-nowrap ps-4 border-end border-translucent fw-semibold text-body-highlight"
+      >
+        Jase Adams
+      </td>
+      <td
+        class="company align-middle white-space-nowrap text-body-tertiary text-opacity-85 ps-4 border-end border-translucent fw-semibold text-body-highlight"
+      >
+        Twitter
+      </td>
+      <td
+        class="date align-middle white-space-nowrap text-body-tertiary text-opacity-85 ps-4 text-body-tertiary"
+      >
+        Dec 25, 12:55 PM
+      </td>
+      <td class="align-middle white-space-nowrap text-end pe-0 ps-4">
+        <div class="btn-reveal-trigger position-static">
+          <button
+            class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs-10"
+            type="button"
+            data-bs-toggle="dropdown"
+            data-boundary="window"
+            aria-haspopup="true"
+            aria-expanded="false"
+            data-bs-reference="parent"
+          >
+            <svg
+              class="svg-inline--fa fa-ellipsis fs-10"
+              aria-hidden="true"
+              focusable="false"
+              data-prefix="fas"
+              data-icon="ellipsis"
+              role="img"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 448 512"
+              data-fa-i2svg=""
+            >
+              <path
+                fill="currentColor"
+                d="M120 256C120 286.9 94.93 312 64 312C33.07 312 8 286.9 8 256C8 225.1 33.07 200 64 200C94.93 200 120 225.1 120 256zM280 256C280 286.9 254.9 312 224 312C193.1 312 168 286.9 168 256C168 225.1 193.1 200 224 200C254.9 200 280 225.1 280 256zM328 256C328 225.1 353.1 200 384 200C414.9 200 440 225.1 440 256C440 286.9 414.9 312 384 312C353.1 312 328 286.9 328 256z"
+              ></path></svg
+            ><!-- <span class="fas fa-ellipsis-h fs-10"></span> Font Awesome fontawesome.com -->
+          </button>
+          <div class="dropdown-menu dropdown-menu-end py-2">
+            <a class="dropdown-item" href="#!">View</a
+            ><a class="dropdown-item" href="#!">Export</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item text-danger" href="#!">Remove</a>
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr class="hover-actions-trigger btn-reveal-trigger position-static">
+      <td class="fs-9 align-middle">
+        <div class="form-check mb-0 fs-8">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            data-bulk-select-row='{"customer":{"avatar":"/team/65.webp","name":"Roy Anderson","designation":"System Admin","status":{"label":"Canceled","type":"badge-phoenix-secondary"}},"email":"andersonroy@netflix.chill","phone":"+1-613-555-0109","contact":"Jim Aldridge","company":"Google.inc","date":"Dec 24, 09:52 PM"}'
+          />
+        </div>
+      </td>
+      <td class="name align-middle white-space-nowrap ps-0">
+        <div class="d-flex align-items-center">
+          <a href="#!">
+            <div class="avatar avatar-xl me-3">
+              <img
+                class="rounded-circle"
+                src="../../assets/img/team/65.webp"
+                alt=""
+              />
+            </div>
+          </a>
+          <div>
+            <a class="fs-8 fw-bold" href="#!">Roy Anderson</a>
+            <div class="d-flex align-items-center">
+              <p class="mb-0 text-body-highlight fw-semibold fs-9 me-2">
+                System Admin
+              </p>
+              <span class="badge badge-phoenix badge-phoenix-secondary"
+                >Canceled</span
+              >
+            </div>
+          </div>
+        </div>
+      </td>
+      <td
+        class="email align-middle white-space-nowrap fw-semibold ps-4 border-end border-translucent"
+      >
+        <a class="text-body-highlight" href="mailto:andersonroy@netflix.chill"
+          >andersonroy@netflix.chill</a
+        >
+      </td>
+      <td
+        class="phone align-middle white-space-nowrap fw-semibold ps-4 border-end border-translucent"
+      >
+        <a class="text-body-highlight" href="tel:+1-613-555-0109"
+          >+1-613-555-0109</a
+        >
+      </td>
+      <td
+        class="contact align-middle white-space-nowrap ps-4 border-end border-translucent fw-semibold text-body-highlight"
+      >
+        Jim Aldridge
+      </td>
+      <td
+        class="company align-middle white-space-nowrap text-body-tertiary text-opacity-85 ps-4 border-end border-translucent fw-semibold text-body-highlight"
+      >
+        Google.inc
+      </td>
+      <td
+        class="date align-middle white-space-nowrap text-body-tertiary text-opacity-85 ps-4 text-body-tertiary"
+      >
+        Dec 24, 09:52 PM
+      </td>
+      <td class="align-middle white-space-nowrap text-end pe-0 ps-4">
+        <div class="btn-reveal-trigger position-static">
+          <button
+            class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs-10"
+            type="button"
+            data-bs-toggle="dropdown"
+            data-boundary="window"
+            aria-haspopup="true"
+            aria-expanded="false"
+            data-bs-reference="parent"
+          >
+            <svg
+              class="svg-inline--fa fa-ellipsis fs-10"
+              aria-hidden="true"
+              focusable="false"
+              data-prefix="fas"
+              data-icon="ellipsis"
+              role="img"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 448 512"
+              data-fa-i2svg=""
+            >
+              <path
+                fill="currentColor"
+                d="M120 256C120 286.9 94.93 312 64 312C33.07 312 8 286.9 8 256C8 225.1 33.07 200 64 200C94.93 200 120 225.1 120 256zM280 256C280 286.9 254.9 312 224 312C193.1 312 168 286.9 168 256C168 225.1 193.1 200 224 200C254.9 200 280 225.1 280 256zM328 256C328 225.1 353.1 200 384 200C414.9 200 440 225.1 440 256C440 286.9 414.9 312 384 312C353.1 312 328 286.9 328 256z"
+              ></path></svg
+            ><!-- <span class="fas fa-ellipsis-h fs-10"></span> Font Awesome fontawesome.com -->
+          </button>
+          <div class="dropdown-menu dropdown-menu-end py-2">
+            <a class="dropdown-item" href="#!">View</a
+            ><a class="dropdown-item" href="#!">Export</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item text-danger" href="#!">Remove</a>
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr class="hover-actions-trigger btn-reveal-trigger position-static">
+      <td class="fs-9 align-middle">
+        <div class="form-check mb-0 fs-8">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            data-bulk-select-row='{"customer":{"avatar":"/team/63.webp","name":"Emily Beazley","designation":"Marketing Executive","status":{"label":"New Lead","type":"badge-phoenix-info"}},"email":"beazley1@gmail.com","phone":"+61 1900 654 321","contact":"Zackry Aldridge","company":"Instagram","date":"Dec 22, 08:45 PM"}'
+          />
+        </div>
+      </td>
+      <td class="name align-middle white-space-nowrap ps-0">
+        <div class="d-flex align-items-center">
+          <a href="#!">
+            <div class="avatar avatar-xl me-3">
+              <img
+                class="rounded-circle"
+                src="../../assets/img/team/63.webp"
+                alt=""
+              />
+            </div>
+          </a>
+          <div>
+            <a class="fs-8 fw-bold" href="#!">Emily Beazley</a>
+            <div class="d-flex align-items-center">
+              <p class="mb-0 text-body-highlight fw-semibold fs-9 me-2">
+                Marketing Executive
+              </p>
+              <span class="badge badge-phoenix badge-phoenix-info"
+                >New Lead</span
+              >
+            </div>
+          </div>
+        </div>
+      </td>
+      <td
+        class="email align-middle white-space-nowrap fw-semibold ps-4 border-end border-translucent"
+      >
+        <a class="text-body-highlight" href="mailto:beazley1@gmail.com"
+          >beazley1@gmail.com</a
+        >
+      </td>
+      <td
+        class="phone align-middle white-space-nowrap fw-semibold ps-4 border-end border-translucent"
+      >
+        <a class="text-body-highlight" href="tel:+611900654321"
+          >+61 1900 654 321</a
+        >
+      </td>
+      <td
+        class="contact align-middle white-space-nowrap ps-4 border-end border-translucent fw-semibold text-body-highlight"
+      >
+        Zackry Aldridge
+      </td>
+      <td
+        class="company align-middle white-space-nowrap text-body-tertiary text-opacity-85 ps-4 border-end border-translucent fw-semibold text-body-highlight"
+      >
+        Instagram
+      </td>
+      <td
+        class="date align-middle white-space-nowrap text-body-tertiary text-opacity-85 ps-4 text-body-tertiary"
+      >
+        Dec 22, 08:45 PM
+      </td>
+      <td class="align-middle white-space-nowrap text-end pe-0 ps-4">
+        <div class="btn-reveal-trigger position-static">
+          <button
+            class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs-10"
+            type="button"
+            data-bs-toggle="dropdown"
+            data-boundary="window"
+            aria-haspopup="true"
+            aria-expanded="false"
+            data-bs-reference="parent"
+          >
+            <svg
+              class="svg-inline--fa fa-ellipsis fs-10"
+              aria-hidden="true"
+              focusable="false"
+              data-prefix="fas"
+              data-icon="ellipsis"
+              role="img"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 448 512"
+              data-fa-i2svg=""
+            >
+              <path
+                fill="currentColor"
+                d="M120 256C120 286.9 94.93 312 64 312C33.07 312 8 286.9 8 256C8 225.1 33.07 200 64 200C94.93 200 120 225.1 120 256zM280 256C280 286.9 254.9 312 224 312C193.1 312 168 286.9 168 256C168 225.1 193.1 200 224 200C254.9 200 280 225.1 280 256zM328 256C328 225.1 353.1 200 384 200C414.9 200 440 225.1 440 256C440 286.9 414.9 312 384 312C353.1 312 328 286.9 328 256z"
+              ></path></svg
+            ><!-- <span class="fas fa-ellipsis-h fs-10"></span> Font Awesome fontawesome.com -->
+          </button>
+          <div class="dropdown-menu dropdown-menu-end py-2">
+            <a class="dropdown-item" href="#!">View</a
+            ><a class="dropdown-item" href="#!">Export</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item text-danger" href="#!">Remove</a>
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr class="hover-actions-trigger btn-reveal-trigger position-static">
+      <td class="fs-9 align-middle">
+        <div class="form-check mb-0 fs-8">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            data-bulk-select-row='{"customer":{"avatar":"/team/31.webp","name":"Layla Beckstrand","designation":"Junior Executive","status":{"label":"cold lead","type":"badge-phoenix-warning"}},"email":"layla@live.com","phone":"+36 55 116 068","contact":"Daniel Alexander","company":"Linkedin","date":"Dec 20, 06:32 PM"}'
+          />
+        </div>
+      </td>
+      <td class="name align-middle white-space-nowrap ps-0">
+        <div class="d-flex align-items-center">
+          <a href="#!">
+            <div class="avatar avatar-xl me-3">
+              <img
+                class="rounded-circle"
+                src="../../assets/img/team/31.webp"
+                alt=""
+              />
+            </div>
+          </a>
+          <div>
+            <a class="fs-8 fw-bold" href="#!">Layla Beckstrand</a>
+            <div class="d-flex align-items-center">
+              <p class="mb-0 text-body-highlight fw-semibold fs-9 me-2">
+                Junior Executive
+              </p>
+              <span class="badge badge-phoenix badge-phoenix-warning"
+                >cold lead</span
+              >
+            </div>
+          </div>
+        </div>
+      </td>
+      <td
+        class="email align-middle white-space-nowrap fw-semibold ps-4 border-end border-translucent"
+      >
+        <a class="text-body-highlight" href="mailto:layla@live.com"
+          >layla@live.com</a
+        >
+      </td>
+      <td
+        class="phone align-middle white-space-nowrap fw-semibold ps-4 border-end border-translucent"
+      >
+        <a class="text-body-highlight" href="tel:+3655116068">+36 55 116 068</a>
+      </td>
+      <td
+        class="contact align-middle white-space-nowrap ps-4 border-end border-translucent fw-semibold text-body-highlight"
+      >
+        Daniel Alexander
+      </td>
+      <td
+        class="company align-middle white-space-nowrap text-body-tertiary text-opacity-85 ps-4 border-end border-translucent fw-semibold text-body-highlight"
+      >
+        Linkedin
+      </td>
+      <td
+        class="date align-middle white-space-nowrap text-body-tertiary text-opacity-85 ps-4 text-body-tertiary"
+      >
+        Dec 20, 06:32 PM
+      </td>
+      <td class="align-middle white-space-nowrap text-end pe-0 ps-4">
+        <div class="btn-reveal-trigger position-static">
+          <button
+            class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs-10"
+            type="button"
+            data-bs-toggle="dropdown"
+            data-boundary="window"
+            aria-haspopup="true"
+            aria-expanded="false"
+            data-bs-reference="parent"
+          >
+            <svg
+              class="svg-inline--fa fa-ellipsis fs-10"
+              aria-hidden="true"
+              focusable="false"
+              data-prefix="fas"
+              data-icon="ellipsis"
+              role="img"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 448 512"
+              data-fa-i2svg=""
+            >
+              <path
+                fill="currentColor"
+                d="M120 256C120 286.9 94.93 312 64 312C33.07 312 8 286.9 8 256C8 225.1 33.07 200 64 200C94.93 200 120 225.1 120 256zM280 256C280 286.9 254.9 312 224 312C193.1 312 168 286.9 168 256C168 225.1 193.1 200 224 200C254.9 200 280 225.1 280 256zM328 256C328 225.1 353.1 200 384 200C414.9 200 440 225.1 440 256C440 286.9 414.9 312 384 312C353.1 312 328 286.9 328 256z"
+              ></path></svg
+            ><!-- <span class="fas fa-ellipsis-h fs-10"></span> Font Awesome fontawesome.com -->
+          </button>
+          <div class="dropdown-menu dropdown-menu-end py-2">
+            <a class="dropdown-item" href="#!">View</a
+            ><a class="dropdown-item" href="#!">Export</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item text-danger" href="#!">Remove</a>
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr class="hover-actions-trigger btn-reveal-trigger position-static">
+      <td class="fs-9 align-middle">
+        <div class="form-check mb-0 fs-8">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            data-bulk-select-row='{"customer":{"avatar":"/team/26.webp","name":"Olivia Bensinger","designation":"Chief Tech Officer","status":{"label":"won lead","type":"badge-phoenix-success"}},"email":"olivia1986@gmail.com","phone":"+44 1632 960248","contact":"Sam Alimentato","company":"Google.inc","date":"Dec 19, 10:44 PM"}'
+          />
+        </div>
+      </td>
+      <td class="name align-middle white-space-nowrap ps-0">
+        <div class="d-flex align-items-center">
+          <a href="#!">
+            <div class="avatar avatar-xl me-3">
+              <img
+                class="rounded-circle"
+                src="../../assets/img/team/26.webp"
+                alt=""
+              />
+            </div>
+          </a>
+          <div>
+            <a class="fs-8 fw-bold" href="#!">Olivia Bensinger</a>
+            <div class="d-flex align-items-center">
+              <p class="mb-0 text-body-highlight fw-semibold fs-9 me-2">
+                Chief Tech Officer
+              </p>
+              <span class="badge badge-phoenix badge-phoenix-success"
+                >won lead</span
+              >
+            </div>
+          </div>
+        </div>
+      </td>
+      <td
+        class="email align-middle white-space-nowrap fw-semibold ps-4 border-end border-translucent"
+      >
+        <a class="text-body-highlight" href="mailto:olivia1986@gmail.com"
+          >olivia1986@gmail.com</a
+        >
+      </td>
+      <td
+        class="phone align-middle white-space-nowrap fw-semibold ps-4 border-end border-translucent"
+      >
+        <a class="text-body-highlight" href="tel:+441632960248"
+          >+44 1632 960248</a
+        >
+      </td>
+      <td
+        class="contact align-middle white-space-nowrap ps-4 border-end border-translucent fw-semibold text-body-highlight"
+      >
+        Sam Alimentato
+      </td>
+      <td
+        class="company align-middle white-space-nowrap text-body-tertiary text-opacity-85 ps-4 border-end border-translucent fw-semibold text-body-highlight"
+      >
+        Google.inc
+      </td>
+      <td
+        class="date align-middle white-space-nowrap text-body-tertiary text-opacity-85 ps-4 text-body-tertiary"
+      >
+        Dec 19, 10:44 PM
+      </td>
+      <td class="align-middle white-space-nowrap text-end pe-0 ps-4">
+        <div class="btn-reveal-trigger position-static">
+          <button
+            class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs-10"
+            type="button"
+            data-bs-toggle="dropdown"
+            data-boundary="window"
+            aria-haspopup="true"
+            aria-expanded="false"
+            data-bs-reference="parent"
+          >
+            <svg
+              class="svg-inline--fa fa-ellipsis fs-10"
+              aria-hidden="true"
+              focusable="false"
+              data-prefix="fas"
+              data-icon="ellipsis"
+              role="img"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 448 512"
+              data-fa-i2svg=""
+            >
+              <path
+                fill="currentColor"
+                d="M120 256C120 286.9 94.93 312 64 312C33.07 312 8 286.9 8 256C8 225.1 33.07 200 64 200C94.93 200 120 225.1 120 256zM280 256C280 286.9 254.9 312 224 312C193.1 312 168 286.9 168 256C168 225.1 193.1 200 224 200C254.9 200 280 225.1 280 256zM328 256C328 225.1 353.1 200 384 200C414.9 200 440 225.1 440 256C440 286.9 414.9 312 384 312C353.1 312 328 286.9 328 256z"
+              ></path></svg
+            ><!-- <span class="fas fa-ellipsis-h fs-10"></span> Font Awesome fontawesome.com -->
+          </button>
+          <div class="dropdown-menu dropdown-menu-end py-2">
+            <a class="dropdown-item" href="#!">View</a
+            ><a class="dropdown-item" href="#!">Export</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item text-danger" href="#!">Remove</a>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div
+  class="lead-details-offcanvas bg-body scrollbar phoenix-offcanvas phoenix-offcanvas-fixed"
+  id="productFilterColumn"
+>
+  <div class="d-flex justify-content-between align-items-center mb-2 d-md-none">
+    <h3 class="mb-0">Lead Details</h3>
+    <button class="btn p-0" data-phoenix-dismiss="offcanvas">
+      <span class="uil uil-times fs-7"></span>
+    </button>
+  </div>
+  <div class="card mb-3">
+    <div class="card-body">
+      <div class="row align-items-center g-3 text-center text-xxl-start">
+        <div class="col-12 col-xxl-auto">
+          <div class="avatar avatar-5xl">
+            <img
+              class="rounded-circle"
+              src="../../assets/img/team/33.webp"
+              alt=""
+            />
+          </div>
+        </div>
+        <div class="col-12 col-sm-auto flex-1">
+          <h3 class="fw-bolder mb-2">Ansolo Lazinatov</h3>
+          <p class="mb-0">Chief tech officer,</p>
+          <a class="fw-bold" href="#!">Blue Beetles</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card mb-3">
+    <div class="card-body">
+      <div class="d-flex align-items-center mb-5">
+        <h3>About lead</h3>
+        <button class="btn btn-link px-3" type="button">Edit</button>
+      </div>
+      <div class="mb-4">
+        <div class="d-flex align-items-center mb-1">
+          <span class="me-2 uil uil-envelope-alt"> </span>
+          <h5 class="text-body-highlight mb-0">Email</h5>
+        </div>
+        <a href="mailto:shatinon@jeemail.com:">ansolo5@jeemail.com</a>
+      </div>
+      <div class="mb-4">
+        <div class="d-flex align-items-center mb-1">
+          <span class="me-2 uil uil-phone"> </span>
+          <h5 class="text-body-highlight mb-0">Phone</h5>
+        </div>
+        <a href="tel:+1234567890">+1234567890 </a>
+      </div>
+      <div class="mb-4">
+        <div class="d-flex align-items-center mb-1">
+          <span class="me-2 uil uil-globe"></span>
+          <h5 class="text-body-highlight mb-0">Website</h5>
+        </div>
+        <a href="#!">www.bb.ru.com </a>
+      </div>
+      <div class="mb-4">
+        <div class="d-flex align-items-center mb-1">
+          <span class="me-2 uil uil-building"></span>
+          <h5 class="text-body-highlight mb-0">Industry</h5>
+        </div>
+        <p class="mb-0 text-body-secondary">Large Enterprise</p>
+      </div>
+      <div class="mb-4">
+        <div class="d-flex align-items-center mb-1">
+          <span class="me-2 uil uil-postcard"></span>
+          <h5 class="text-body-highlight mb-0">Number of employees</h5>
+        </div>
+        <p class="mb-0 text-body-secondary">126</p>
+      </div>
+      <div class="mb-4">
+        <div class="d-flex align-items-center mb-1">
+          <span class="me-2 uil uil-dollar-alt"></span>
+          <h5 class="text-body-highlight mb-0">Annual Revenue</h5>
+        </div>
+        <p class="mb-0 text-body-secondary">$12000</p>
+      </div>
+      <div class="mb-4">
+        <div class="d-flex align-items-center mb-1">
+          <span class="me-2 uil uil-clock"></span>
+          <h5 class="text-body-highlight mb-0">Last contacted</h5>
+        </div>
+        <p class="mb-0 text-body-secondary">12 November 2021, 10:54 AM</p>
+      </div>
+      <div class="mb-4">
+        <div class="d-flex align-items-center mb-1">
+          <span class="me-2 uil uil-file-check-alt"></span>
+          <h5 class="text-body-highlight mb-0">Lead source</h5>
+        </div>
+        <p class="mb-0 text-body-secondary">Advertisement</p>
+      </div>
+      <div>
+        <div class="d-flex align-items-center mb-1">
+          <span class="me-2 uil uil-check-circle"></span>
+          <h5 class="text-body-highlight mb-0">Lead status</h5>
+        </div>
+        <span class="badge badge-phoenix badge-phoenix-primary">New Lead</span>
+      </div>
+    </div>
+  </div>
+  <div class="card mb-3">
+    <div class="card-body">
+      <div class="d-flex align-items-center mb-5">
+        <h3>Address</h3>
+        <button class="btn btn-link" type="button">Edit</button>
+      </div>
+      <div class="mb-4">
+        <div class="d-flex align-items-center mb-1">
+          <span class="me-2 uil uil-estate"></span>
+          <h5 class="mb-0">Street</h5>
+        </div>
+        <p class="mb-0 text-body-secondary">38/2 Penelope street</p>
+      </div>
+      <div class="mb-4">
+        <div class="d-flex align-items-center mb-1">
+          <span class="me-2 uil uil-map-pin-alt"></span>
+          <h5 class="mb-0 text-body-highlight">Zip code</h5>
+        </div>
+        <p class="mb-0 text-body-secondary">1425</p>
+      </div>
+      <div class="mb-4">
+        <div class="d-flex align-items-center mb-1">
+          <span class="me-2 uil uil-map"></span>
+          <h5 class="mb-0 text-body-highlight">City</h5>
+        </div>
+        <p class="mb-0 text-body-secondary">Qualimando</p>
+      </div>
+      <div>
+        <div class="d-flex align-items-center mb-1">
+          <span class="me-2 uil uil-windsock"></span>
+          <h5 class="mb-0 text-body-highlight">Country</h5>
+        </div>
+        <p class="mb-0 text-body-secondary">United Empire of Brekania</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mb-3">
+  <div class="card-header">
+    <div class="row align-items-center">
+      <div class="col">
+        <h5 class="mb-0">Details</h5>
+      </div>
+      <div class="col-auto">
+        <a class="btn btn-falcon-default btn-sm" href="#!"
+          >
+    
+      </div>
+    </div>
+  </div>
+  <div class="card-body bg-body-tertiary border-top">
+    <div class="row">
+      <div class="col-lg col-xxl-5">
+        <h6 class="fw-semi-bold ls mb-3 text-uppercase">Account Information</h6>
+        <div class="row">
+          <div class="col-5 col-sm-4">
+            <p class="fw-semi-bold mb-1">ID</p>
+          </div>
+          <div class="col">dcfasyo_Dfdjl</div>
+        </div>
+        <div class="row">
+          <div class="col-5 col-sm-4">
+            <p class="fw-semi-bold mb-1">Created</p>
+          </div>
+          <div class="col">2019/01/12 23:13</div>
+        </div>
+        <div class="row">
+          <div class="col-5 col-sm-4">
+            <p class="fw-semi-bold mb-1">Email</p>
+          </div>
+          <div class="col">
+            <a href="mailto:tony@gmail.com">tony@gmail.com</a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-5 col-sm-4">
+            <p class="fw-semi-bold mb-1">Description</p>
+          </div>
+          <div class="col">
+            <p class="fst-italic text-400 mb-1">No Description</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-5 col-sm-4">
+            <p class="fw-semi-bold mb-0">VAT number</p>
+          </div>
+          <div class="col">
+            <p class="fst-italic text-400 mb-0">No VAT number</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg col-xxl-5 mt-4 mt-lg-0 offset-xxl-1">
+        <h6 class="fw-semi-bold ls mb-3 text-uppercase">Billing Information</h6>
+        <div class="row">
+          <div class="col-5 col-sm-4">
+            <p class="fw-semi-bold mb-1">Send email to</p>
+          </div>
+          <div class="col">
+            <a href="mailto:tony@gmail.com">tony@gmail.com</a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-5 col-sm-4">
+            <p class="fw-semi-bold mb-1">Address</p>
+          </div>
+          <div class="col">
+            <p class="mb-1">8962 Lafayette St. <br />Oswego, NY 13126</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-5 col-sm-4">
+            <p class="fw-semi-bold mb-1">Phone number</p>
+          </div>
+          <div class="col"><a href="tel:+12025550110">+1-202-555-0110</a></div>
+        </div>
+        <div class="row">
+          <div class="col-5 col-sm-4">
+            <p class="fw-semi-bold mb-0">Invoice prefix</p>
+          </div>
+          <div class="col">
+            <p class="fw-semi-bold mb-0">7C23435</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer border-top text-end">
+    <a class="btn btn-falcon-default btn-sm" href="#!"
+      ><svg
+        class="svg-inline--fa fa-dollar-sign fa-w-9 fs-11 me-1"
+        aria-hidden="true"
+        focusable="false"
+        data-prefix="fas"
+        data-icon="dollar-sign"
+        role="img"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 288 512"
+        data-fa-i2svg=""
+      >
+        <path
+          fill="currentColor"
+          d="M209.2 233.4l-108-31.6C88.7 198.2 80 186.5 80 173.5c0-16.3 13.2-29.5 29.5-29.5h66.3c12.2 0 24.2 3.7 34.2 10.5 6.1 4.1 14.3 3.1 19.5-2l34.8-34c7.1-6.9 6.1-18.4-1.8-24.5C238 74.8 207.4 64.1 176 64V16c0-8.8-7.2-16-16-16h-32c-8.8 0-16 7.2-16 16v48h-2.5C45.8 64-5.4 118.7.5 183.6c4.2 46.1 39.4 83.6 83.8 96.6l102.5 30c12.5 3.7 21.2 15.3 21.2 28.3 0 16.3-13.2 29.5-29.5 29.5h-66.3C100 368 88 364.3 78 357.5c-6.1-4.1-14.3-3.1-19.5 2l-34.8 34c-7.1 6.9-6.1 18.4 1.8 24.5 24.5 19.2 55.1 29.9 86.5 30v48c0 8.8 7.2 16 16 16h32c8.8 0 16-7.2 16-16v-48.2c46.6-.9 90.3-28.6 105.7-72.7 21.5-61.6-14.6-124.8-72.5-141.7z"
+        ></path></svg
+      ><!-- <span class="fas fa-dollar-sign fs-11 me-1"></span> Font Awesome fontawesome.com -->Refund</a
+    ><a class="btn btn-falcon-default btn-sm ms-2" href="#!"
+      ><svg
+        class="svg-inline--fa fa-check fa-w-16 fs-11 me-1"
+        aria-hidden="true"
+        focusable="false"
+        data-prefix="fas"
+        data-icon="check"
+        role="img"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 512 512"
+        data-fa-i2svg=""
+      >
+        <path
+          fill="currentColor"
+          d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"
+        ></path></svg
+      ><!-- <span class="fas fa-check fs-11 me-1"></span> Font Awesome fontawesome.com -->Save
+      changes</a
+    >
+  </div>
+</div>
+
+<style>
+  .fs-9 {
+    font-size: 0.8rem !important;
+  }
+
+  ::selection {
+    background-color: var(--phoenix-primary);
+    color: #fff;
+  }
+
+  .badge-phoenix-primary {
+    --phoenix-badge-bg: var(--phoenix-primary-bg-subtle);
+    --phoenix-badge-color: var(--phoenix-primary-text-emphasis);
+    --phoenix-badge-border-color: var(--phoenix-primary-border-subtle);
+  }
+
+  .badge-phoenix-secondary {
+    --phoenix-badge-bg: var(--phoenix-secondary-bg-subtle);
+    --phoenix-badge-color: var(--phoenix-secondary-text-emphasis);
+    --phoenix-badge-border-color: var(--phoenix-secondary-border-subtle);
+  }
+  .card {
+    --falcon-card-spacer-y: 1.25rem;
+    --falcon-card-spacer-x: 1.25rem;
+    --falcon-card-title-spacer-y: 0.5rem;
+    --falcon-card-title-color: var(--falcon-secondary-color);
+    --falcon-card-subtitle-color: ;
+    --falcon-card-border-width: 0px;
+    --falcon-card-border-color: rgba(var(--falcon-emphasis-color-rgb), 0.125);
+    --falcon-card-border-radius: 0.375rem;
+    --falcon-card-box-shadow: ;
+    --falcon-card-inner-border-radius: calc(0.375rem - 0px);
+    --falcon-card-cap-padding-y: 1rem;
+    --falcon-card-cap-padding-x: 1.25rem;
+    --falcon-card-cap-bg: rgba(0, 0, 0, 0);
+    --falcon-card-cap-color: ;
+    --falcon-card-height: ;
+    --falcon-card-color: ;
+    --falcon-card-bg: #fff;
+    --falcon-card-img-overlay-padding: 1rem;
+    --falcon-card-group-margin: 1rem;
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    height: var(--falcon-card-height);
+    color: var(--falcon-body-color);
+    word-wrap: break-word;
+    background-color: var(--falcon-card-bg);
+    background-clip: border-box;
+    border: var(--falcon-card-border-width) solid
+      var(--falcon-card-border-color);
+    border-radius: var(--falcon-card-border-radius);
+    -webkit-box-shadow: var(--falcon-card-box-shadow);
+    box-shadow: var(--falcon-card-box-shadow);
+  }
+</style>

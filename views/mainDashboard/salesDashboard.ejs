@@ -81,7 +81,9 @@
               <% filteredBorrowerMtg.forEach((borrowerMtg, index) => { %>
 
                 <tr>
-                    <td><span class="status"><%= borrowerMtg.loanStatus %></span></td>
+
+                    <td>                   <span class="badge bg-secondary">NEW</span>
+                      <span class="status"><%= borrowerMtg.loanStatus %></span></td>
                     <td><strong><p class="card-title"> <%= borrowerMtg.firstName %> <%= borrowerMtg.lastName %></p></strong>
                     </td>
                     <td><%= borrowerMtg.lender %></td>

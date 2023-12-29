@@ -85,7 +85,6 @@
           <th>Employer</th>
           <th>Income Type</th>
           <th>Monthly Amount</th>
-          <th>Enter</th>
         </tr>
       </thead>
       <tbody>
@@ -95,9 +94,7 @@
             <td><%= income.employerName ? income.employerName : 'N/A' %></td>
             <td><%= income.incomeType ? income.incomeType : 'N/A' %></td>
             <td>$ <%= income.monthlyAmount ? income.monthlyAmount : 'N/A' %></td>
-            <td>
-              <a href="borrowersMtg/" class="btn btn-primary">Enter</a>
-            </td>
+
           </tr>
         <% }) %>
       </tbody>

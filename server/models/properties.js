@@ -3,27 +3,26 @@
 const mongoose = require("mongoose");
 
 const propertiesSchema = new mongoose.Schema({
-  borrowerMtg: {
+  street: { type: String },
+  streetLine2: { type: String },
+  city: { type: String },
+  state: { type: String },
+  zipCode: { type: String },
+  occupancy: { type: String },
+  mortgageHolder: { type: String },
+  originalAmount: { type: Number },
+  loanAmount: { type: Number },
+  dateOpened: { type: Date },
+  rate: { type: Number },
+  term: { type: Number },
+  mortgagePayment: { type: Number },
+  propertyTax: { type: Number },
+  propertyInsurance: { type: Number },
+  propertyHOA: { type: Number },
+  borrowersMtg: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "BorrowerMtg", // Adjust the reference to match your model name
+    ref: "borrowersMtg",
   },
-
-  street: String,
-  streetLine2: String,
-  city: String,
-  state: String,
-  zipCode: String,
-  occupancy: String,
-  mortgageHolder: String,
-  originalAmount: Number,
-  loanAmount: Number,
-  dateOpened: Date,
-  rate: Number,
-  term: Number,
-  mortgagePayment: Number,
-  propertyTax: Number,
-  propertyInsurance: Number,
-  propertyHOA: Number,
 });
 
 module.exports = mongoose.model("Properties", propertiesSchema);

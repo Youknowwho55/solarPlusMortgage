@@ -104,6 +104,21 @@ exports.getToDo = async (req, res) => {
   }
 };
 
+exports.getTestTable = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).populate("borrowerMtg");
+
+    const locals = {
+      title: "To Do items",
+      description: "List of items to be added",
+    };
+    res.render("borrowersMtg/newTable", { locals, user });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal Server Error");
+  }
+};
+
 exports.getWorkbookID = async (req, res) => {
   try {
     const borrowerMtg = await BorrowerMtg.findById(req.params.id);
@@ -188,44 +203,39 @@ exports.getPropertieInfo = async (req, res) => {
   }
 };
 
+// POST Properties
 exports.postProperties = async (req, res) => {
   try {
     const borrowerMtgId = req.params.id;
-    const borrowerMtg = await BorrowerMtg.findById(borrowerMtgId).populate(
-      "properties"
-    );
 
-    // Check if req.params.id is present
-    if (!borrowerMtgId) {
-      return res.status(400).send("Invalid request: Missing borrower ID");
-    }
-
-    if (!borrowerMtg) {
-      return res.status(404).json({ error: "BorrowerMtg not found" });
-    }
-
-    // Create a new property object
-    const newProperty = {
+    const newProperty = new Properties({
       street: req.body.street,
       streetLine2: req.body.streetLine2,
       city: req.body.city,
       state: req.body.state,
       zipCode: req.body.zipCode,
-    };
+    });
 
-    // Push the new property to the properties array
+    await newProperty.save();
+
+    let borrowerMtg = await BorrowerMtg.findById(borrowerMtgId);
+
+    if (!borrowerMtg) {
+      return res.status(404).json({ error: "BorrowerMtg not found" });
+    }
+
+    // Check if borrowerMtg.properties is an array, and initialize it if not
+    if (!Array.isArray(borrowerMtg.properties)) {
+      borrowerMtg.properties = [];
+    }
+
     borrowerMtg.properties.push(newProperty);
 
-    // Associate user with borrowerMtg
-    borrowerMtg.user = req.user.id;
-
-    // Save the updated borrowerMtg
     await borrowerMtg.save();
 
-    // Redirect to the properties page
     res.redirect(`/properties/${borrowerMtg.id}`);
   } catch (error) {
-    console.error("Error saving property:", error);
+    console.error("Error adding property:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };

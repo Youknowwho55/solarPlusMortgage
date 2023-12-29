@@ -17,6 +17,7 @@ router.get("/guides", checkAuthenticated, modulesController.getGuides);
 router.get("/marketData", checkAuthenticated, modulesController.getMarketData);
 router.get("/partners", checkAuthenticated, modulesController.getPartners);
 router.get("/todo", checkAuthenticated, modulesController.getToDo);
+router.get("/testTable", modulesController.getTestTable);
 
 router.get(
   "/dashboard/search",
