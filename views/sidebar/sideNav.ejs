@@ -2,7 +2,7 @@
   <!-- Sidebar -->
   <div class="sidebar close">
     <a href="/" class="logo">
-      <div class="logo-name"><span>Name</span>TBD</div>
+      <div class="logo-name"><span>The</span>MAG</div>
     </a>
     <ul class="side-menu">
       <li>
@@ -38,9 +38,10 @@
  
 
   <!-- Main Content -->
-  <div class="content">
+  <div id="removeContent" class="content">
+  
     <nav
-      class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-1 mb-4"
+      class="d-flex flex-wrap align-items-center justify-content-between justify-content-md-between py-1 mb-4"
     >
       <i class="bx bx-menu"></i>
 
@@ -125,6 +126,7 @@
     </nav>
 
     <!-- End of Navbar -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
 
     <script>
@@ -156,5 +158,31 @@
           });
         });
       });
+
+ // Check screen width on page load
+ checkScreenWidth();
+
+// Check screen width on window resize
+$(window).resize(function () {
+  checkScreenWidth();
+});
+
+function checkScreenWidth() {
+  // Get the current screen width
+  var screenWidth = $(window).width();
+
+  // Remove the content class on small screens
+  if (screenWidth < 576) {
+    $('#removeContent').removeClass('content');
+  } else {
+    // Add the content class on larger screens
+    $('#removeContent').addClass('content');
+  }
+}
+
+  
+
+
+
     </script>
     

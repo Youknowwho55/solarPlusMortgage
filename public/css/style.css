@@ -629,6 +629,10 @@ input {
     display: none;
   }
 
+  /* Add this to your sidebar div */
+  .sidebar {
+    display: none; /* Hide sidebar by default */
+  }
   .content nav form .form-input button {
     width: auto;
     height: auto;
